@@ -300,3 +300,106 @@ body::after {
   background-repeat: repeat;
   background-size: 256px 256px;
 }
+
+
+/* ==========================================================================
+   7. FLOATING NAV (Vertical Scroll Dots)
+   ========================================================================== */
+
+.floating-nav {
+  position: fixed;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--duration-normal) var(--ease-smooth);
+}
+
+.floating-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Connecting line between dots ────────────────────────────────────────── */
+
+.floating-nav::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 50%;
+  width: 1px;
+  background: rgba(92, 89, 86, 0.2);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+/* ── Nav dot (clickable area) ────────────────────────────────────────────── */
+
+.nav-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ── Visible dot ─────────────────────────────────────────────────────────── */
+
+.nav-dot span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+/* ── Active state ────────────────────────────────────────────────────────── */
+
+.nav-dot.active span {
+  background: var(--accent);
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* ── Hover state ─────────────────────────────────────────────────────────── */
+
+.nav-dot:hover span {
+  background: var(--accent-hover);
+  transform: scale(1.3);
+}
+
+/* ── Label tooltip (appears on hover) ────────────────────────────────────── */
+
+.nav-dot::before {
+  content: attr(data-label);
+  position: absolute;
+  right: 100%;
+  margin-right: 12px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  color: var(--text-secondary);
+  background: var(--bg-surface);
+  padding: 4px 10px;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateX(5px);
+  transition: all var(--duration-fast) var(--ease-smooth);
+  pointer-events: none;
+}
+
+.nav-dot:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
