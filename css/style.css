@@ -1,3 +1,161 @@
 /* ==========================================================================
-   style.css — Layout, typography, colors, components
+   style.css — Design tokens, CSS reset, base typography, utilities
    ========================================================================== */
+
+
+/* ==========================================================================
+   1. DESIGN TOKENS (Custom Properties)
+   ========================================================================== */
+
+:root {
+  /* ── Colors ── Dark cinematic palette ─────────────────────────────────── */
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #111118;
+  --bg-surface: #18181f;
+  --text-primary: #f0ede6;
+  --text-secondary: #a8a4a0;
+  --text-muted: #5c5956;
+  --accent: #c9834e;
+  --accent-hover: #dda06e;
+  --accent-glow: rgba(201, 131, 78, 0.15);
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-weight-light: 200;
+  --font-weight-regular: 400;
+  --font-weight-bold: 800;
+
+  /* ── Spacing scale ─────────────────────────────────────────────────────── */
+  --space-xs: 0.5rem;   /* 8px  */
+  --space-sm: 1rem;     /* 16px */
+  --space-md: 1.5rem;   /* 24px */
+  --space-lg: 3rem;     /* 48px */
+  --space-xl: 5rem;     /* 80px */
+  --space-2xl: 8rem;    /* 128px */
+  --space-3xl: 12rem;   /* 192px */
+  --section-padding: clamp(4rem, 10vh, 8rem);
+  --content-width: 1200px;
+  --content-narrow: 800px;
+
+  /* ── Transitions ───────────────────────────────────────────────────────── */
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 0.3s;
+  --duration-normal: 0.6s;
+  --duration-slow: 1s;
+}
+
+
+/* ==========================================================================
+   2. CSS RESET & BASE STYLES
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+
+/* ── Custom scrollbar (webkit) ───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 131, 78, 0.25);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 131, 78, 0.4);
+}
+
+
+/* ==========================================================================
+   3. UTILITY CLASSES
+   ========================================================================== */
+
+.container {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.container--narrow {
+  max-width: var(--content-narrow);
+}
+
+.section {
+  padding: var(--section-padding) 0;
+}
+
+
+/* ==========================================================================
+   4. GRAIN / NOISE TEXTURE OVERLAY
+   ========================================================================== */
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
