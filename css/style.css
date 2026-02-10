@@ -1148,3 +1148,66 @@ body::after {
   color: var(--text-muted);
   font-style: italic;
 }
+
+
+/* ==========================================================================
+   14. CUSTOM CURSOR
+   ========================================================================== */
+
+body.has-custom-cursor,
+body.has-custom-cursor a,
+body.has-custom-cursor button {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10001;
+  pointer-events: none;
+  display: none;
+}
+
+body.has-custom-cursor .cursor {
+  display: block;
+}
+
+.cursor__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+}
+
+.cursor__ring {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 131, 78, 0.4);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: width var(--duration-fast), height var(--duration-fast),
+              border-color var(--duration-fast), opacity var(--duration-fast);
+}
+
+.cursor--hover .cursor__dot {
+  width: 4px;
+  height: 4px;
+  background: var(--accent-hover);
+}
+
+.cursor--hover .cursor__ring {
+  width: 50px;
+  height: 50px;
+  border-color: rgba(201, 131, 78, 0.6);
+}
+
+.cursor--click .cursor__ring {
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+}

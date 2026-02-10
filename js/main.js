@@ -81,4 +81,49 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* ========================================================================
+     Custom Cursor (Desktop Only)
+     ======================================================================== */
+
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+  if (!isTouchDevice) {
+    document.body.classList.add('has-custom-cursor');
+
+    const cursor = document.querySelector('.cursor');
+    const dot = document.querySelector('.cursor__dot');
+    const ring = document.querySelector('.cursor__ring');
+
+    let mouseX = 0, mouseY = 0;
+    let ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top = mouseY + 'px';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    const interactives = document.querySelectorAll('a, button, .project-card, .nav-dot');
+    interactives.forEach(el => {
+      el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
+      el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));
+    });
+
+    document.addEventListener('mousedown', () => cursor.classList.add('cursor--click'));
+    document.addEventListener('mouseup', () => cursor.classList.remove('cursor--click'));
+
+    document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
+    document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
+  }
 });
