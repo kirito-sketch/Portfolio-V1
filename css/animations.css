@@ -26,3 +26,42 @@
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
+
+
+/* ==========================================================================
+   2. GSAP SCROLL ANIMATION OVERRIDES
+   ========================================================================== */
+
+/*
+   Non-hero [data-animate] elements: remove any CSS transitions so GSAP
+   has full control over animation timing. Also ensure elements start hidden
+   to prevent flash of content before GSAP's fromTo initializes.
+*/
+[data-animate]:not(.hero [data-animate]) {
+  opacity: 0;
+  transition: none;
+}
+
+/*
+   Parallax images inside .cs-hero need overflow hidden on the parent
+   to contain the vertical movement.
+*/
+.cs-hero {
+  overflow: hidden;
+}
+
+/*
+   Feedback quote children start hidden — GSAP timeline controls their reveal.
+*/
+.feedback-quote__mark,
+.feedback-quote__text,
+.feedback-quote__source {
+  opacity: 0;
+}
+
+/*
+   Interstitial quote starts hidden — GSAP controls its reveal with scale + fade.
+*/
+.interstitial__quote {
+  opacity: 0;
+}
