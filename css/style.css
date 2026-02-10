@@ -1211,3 +1211,119 @@ body.has-custom-cursor .cursor {
   height: 30px;
   opacity: 0.8;
 }
+
+
+/* ==========================================================================
+   15. RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* ── Tablet (768px and below) ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+  /* Project overview: single column */
+  .projects-overview__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* Research cards: 1 column */
+  .cs-research__cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Aha: stack before/after */
+  .cs-aha__comparison {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* Iteration: single column */
+  .cs-iteration__sequence {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Finals gallery: single column */
+  .cs-finals__gallery {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Impact metrics: single column */
+  .cs-impact__metrics {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* About: stack to single column */
+  .about__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* Floating nav: hide on tablet/mobile */
+  .floating-nav {
+    display: none;
+  }
+
+  /* Reduce section spacing */
+  .case-study > div {
+    margin-bottom: var(--space-xl);
+  }
+
+  /* Setup meta: stack */
+  .cs-setup__meta {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+}
+
+/* ── Mobile (480px and below) ───────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+
+  /* Tighter container padding */
+  .container {
+    padding: 0 var(--space-sm);
+  }
+
+  /* Hero adjustments */
+  .hero__content {
+    padding: 0 var(--space-sm);
+  }
+
+  /* Scroll cue smaller */
+  .hero__scroll-cue {
+    bottom: 1.5rem;
+  }
+
+  .hero__scroll-arrow {
+    height: 30px;
+  }
+
+  /* Hook text smaller */
+  .cs-hook {
+    padding: var(--space-xl) 0;
+  }
+
+  /* Feedback quote: reduce mark size */
+  .feedback-quote__mark {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  /* About CTA: full width */
+  .about__cta {
+    display: block;
+    text-align: center;
+  }
+
+  /* Reduce overall section spacing */
+  .case-study > div {
+    margin-bottom: var(--space-lg);
+  }
+}
