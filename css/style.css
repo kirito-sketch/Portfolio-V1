@@ -945,3 +945,206 @@ body::after {
   margin-left: auto;
   margin-right: auto;
 }
+
+
+/* ==========================================================================
+   11. INTERSTITIAL QUOTE SECTION
+   ========================================================================== */
+
+.interstitial {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(201, 131, 78, 0.04) 0%, transparent 60%),
+    var(--bg-secondary);
+}
+
+.interstitial__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.3;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   12. ABOUT / CONTACT SECTION
+   ========================================================================== */
+
+.about {
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent
+  );
+}
+
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2xl);
+  align-items: start;
+}
+
+
+/* ── About card (left side) ────────────────────────────────────────────────── */
+
+.about__name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-xs);
+}
+
+.about__location {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin-bottom: var(--space-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+.about__focus {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.about__fun {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+
+/* ── Contact side (right side) ─────────────────────────────────────────────── */
+
+.about__contact {
+  padding-top: var(--space-md);
+}
+
+.about__looking {
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+
+/* ── CTA Button (premium feel) ─────────────────────────────────────────────── */
+
+.about__cta {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bg-primary);
+  background: var(--accent);
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--duration-fast) var(--ease-smooth);
+  box-shadow: 0 8px 24px var(--accent-glow);
+  margin-bottom: var(--space-lg);
+}
+
+.about__cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+}
+
+.about__cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(201, 131, 78, 0.25);
+}
+
+.about__cta:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+
+/* ── Social links ──────────────────────────────────────────────────────────── */
+
+.about__links {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.about__link {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  position: relative;
+  transition: color var(--duration-fast);
+}
+
+.about__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--duration-fast);
+  transform-origin: right;
+}
+
+.about__link:hover {
+  color: var(--accent);
+}
+
+.about__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* ==========================================================================
+   13. FOOTER
+   ========================================================================== */
+
+.footer {
+  padding: var(--space-lg) 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer__text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
