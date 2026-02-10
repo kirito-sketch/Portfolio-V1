@@ -1,3 +1,28 @@
 /* ==========================================================================
    animations.css — Keyframes, transitions, scroll-triggered styles
    ========================================================================== */
+
+
+/* ==========================================================================
+   1. HERO & LOADER KEYFRAMES
+   ========================================================================== */
+
+/* Hero gradient float — slow, organic drift */
+@keyframes gradientFloat {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(20px, -15px) scale(1.02); }
+  66% { transform: translate(-15px, 10px) scale(0.98); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* Scroll arrow bounce — subtle pulse to draw the eye */
+@keyframes scrollBounce {
+  0%, 100% { transform: scaleY(1); opacity: 0.5; }
+  50% { transform: scaleY(1.3); opacity: 1; }
+}
+
+/* Loader text pulse — breathe while loading */
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}

@@ -145,7 +145,148 @@ button {
 
 
 /* ==========================================================================
-   4. GRAIN / NOISE TEXTURE OVERLAY
+   4. LOADER
+   ========================================================================== */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background-color: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s var(--ease-smooth), opacity 0.8s var(--ease-smooth);
+}
+
+.loader__text {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+  animation: loaderPulse 1.5s ease-in-out infinite;
+}
+
+.loader.loaded {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+
+/* ==========================================================================
+   5. HERO SECTION
+   ========================================================================== */
+
+.hero {
+  min-height: 100vh;
+  padding: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__gradient {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(201, 131, 78, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(201, 131, 78, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(140, 90, 50, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(201, 131, 78, 0.05) 0%, transparent 40%);
+  animation: gradientFloat 25s ease-in-out infinite alternate;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 900px;
+  padding: 0 var(--space-md);
+}
+
+.hero__name {
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  line-height: 1.1;
+  margin-bottom: var(--space-sm);
+}
+
+.hero__tagline {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-light);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-md);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+.hero__role {
+  font-size: clamp(0.75rem, 1.5vw, 1rem);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: var(--font-weight-regular);
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  z-index: 1;
+}
+
+.hero__scroll-cue span {
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.hero__scroll-arrow {
+  width: 1px;
+  height: 40px;
+  background-color: var(--accent);
+  transform-origin: top;
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+
+/* ── Hero animation states ────────────────────────────────────────────────── */
+
+.hero [data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.hero [data-animate].revealed {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity var(--duration-slow) var(--ease-smooth),
+              transform var(--duration-slow) var(--ease-smooth);
+}
+
+
+/* ==========================================================================
+   6. GRAIN / NOISE TEXTURE OVERLAY
    ========================================================================== */
 
 body::after {
