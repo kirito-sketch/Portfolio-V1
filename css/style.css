@@ -403,3 +403,113 @@ body::after {
   opacity: 1;
   transform: translateX(0);
 }
+
+
+/* ==========================================================================
+   8. PROJECT OVERVIEW SECTION (Movie-poster cards)
+   ========================================================================== */
+
+/* ── Section label ─────────────────────────────────────────────────────────── */
+
+.projects-overview__label {
+  font-family: var(--font-display);
+  color: var(--text-muted);
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: var(--space-xl);
+}
+
+/* ── Grid layout ───────────────────────────────────────────────────────────── */
+
+.projects-overview__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+}
+
+/* ── Project card — base ───────────────────────────────────────────────────── */
+
+.project-card {
+  display: block;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--bg-surface);
+  transition: all var(--duration-normal) var(--ease-smooth);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ── Card image ────────────────────────────────────────────────────────────── */
+
+.project-card__image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.project-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-normal) var(--ease-smooth);
+}
+
+/* ── Card hover effects (premium feel) ─────────────────────────────────────── */
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.4),
+    0 0 0 1px var(--accent-glow);
+  border-color: rgba(201, 131, 78, 0.15);
+}
+
+.project-card:hover .project-card__image img {
+  transform: scale(1.05);
+}
+
+.project-card:hover .project-card__title {
+  color: var(--accent);
+}
+
+/* ── Card info ─────────────────────────────────────────────────────────────── */
+
+.project-card__info {
+  padding: var(--space-md);
+}
+
+.project-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  transition: color var(--duration-fast);
+}
+
+.project-card__subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+/* ── Tags ──────────────────────────────────────────────────────────────────── */
+
+.project-card__tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(201, 131, 78, 0.1);
+  color: var(--accent);
+  border: 1px solid rgba(201, 131, 78, 0.2);
+  font-weight: 500;
+}
