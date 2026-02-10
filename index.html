@@ -19,7 +19,302 @@
 <body>
 
   <div class="site-wrapper">
-    <!-- Site content goes here -->
+
+    <!-- Loading Screen -->
+    <div class="loader">
+      <div class="loader__text">Arun Peri</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"></div>
+    </div>
+
+    <!-- Floating Nav (right side vertical stepper) -->
+    <nav class="floating-nav" aria-label="Section navigation">
+      <a href="#hero" class="nav-dot active" data-label="Intro"><span></span></a>
+      <a href="#projects" class="nav-dot" data-label="Projects"><span></span></a>
+      <a href="#case-study-1" class="nav-dot" data-label="Mood Discovery"><span></span></a>
+      <a href="#case-study-2" class="nav-dot" data-label="Case Study 2"><span></span></a>
+      <a href="#about" class="nav-dot" data-label="About"><span></span></a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+
+      <!-- ================================================================
+           Section 1: Hero
+           ================================================================ -->
+      <section id="hero" class="section hero">
+        <div class="hero__bg">
+          <div class="hero__gradient"></div>
+        </div>
+        <div class="hero__content">
+          <h1 class="hero__name" data-animate="fade-up">Arun Peri</h1>
+          <p class="hero__tagline" data-animate="fade-up" data-delay="0.2">Just when you thought it was safe to ship without a designer...</p>
+          <p class="hero__role" data-animate="fade-up" data-delay="0.4">Senior UX Designer</p>
+        </div>
+        <div class="hero__scroll-cue" data-animate="fade-up" data-delay="0.8">
+          <span>Scroll</span>
+          <div class="hero__scroll-arrow"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           Section 2: Project Overview
+           ================================================================ -->
+      <section id="projects" class="section projects-overview">
+        <div class="container">
+          <h2 class="projects-overview__label" data-animate="fade-up">Selected Work</h2>
+          <div class="projects-overview__grid">
+
+            <!-- Project Card 1 -->
+            <a href="#case-study-1" class="project-card" data-animate="fade-up">
+              <div class="project-card__image">
+                <img src="assets/images/cs1-hero.jpg" alt="Mood-Based Discovery app showing content recommendations based on user mood" loading="lazy">
+              </div>
+              <div class="project-card__info">
+                <h3 class="project-card__title">Mood-Based Discovery</h3>
+                <p class="project-card__subtitle">Streaming Platform — Lead Designer</p>
+                <div class="project-card__tags">
+                  <span class="tag">Mobile App</span>
+                  <span class="tag">0 → 1</span>
+                </div>
+              </div>
+            </a>
+
+            <!-- Project Card 2 (placeholder) -->
+            <a href="#case-study-2" class="project-card" data-animate="fade-up" data-delay="0.15">
+              <div class="project-card__image">
+                <img src="assets/images/cs2-hero.jpg" alt="Case study 2 preview" loading="lazy">
+              </div>
+              <div class="project-card__info">
+                <h3 class="project-card__title">Project Two</h3>
+                <p class="project-card__subtitle">Company — Role</p>
+                <div class="project-card__tags">
+                  <span class="tag">Design System</span>
+                  <span class="tag">Enterprise</span>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           Section 3: Case Study 1 — Mood-Based Discovery
+           ================================================================ -->
+      <section id="case-study-1" class="section case-study">
+
+        <!-- CS Hero: Full-bleed opening image -->
+        <div class="cs-hero">
+          <img src="assets/images/cs1-hero-full.jpg" alt="Mood-Based Discovery final design — mood selection interface" data-animate="scale-in">
+        </div>
+
+        <!-- CS Hook: The relatable one-liner -->
+        <div class="cs-hook container container--narrow">
+          <p class="cs-hook__text" data-animate="fade-up">Ever spent 30 minutes choosing what to watch...<br>then watched nothing?</p>
+        </div>
+
+        <!-- CS Setup: Brief context -->
+        <div class="cs-setup container container--narrow">
+          <p class="cs-setup__text" data-animate="fade-up">Decision fatigue is killing streaming engagement. Users are overwhelmed by choice, endlessly scrolling through content libraries without committing.</p>
+          <div class="cs-setup__meta" data-animate="fade-up">
+            <span class="meta-item"><strong>Role</strong> Lead Designer</span>
+            <span class="meta-item"><strong>Duration</strong> 8 weeks</span>
+            <span class="meta-item"><strong>Team</strong> 2 designers, 3 engineers</span>
+            <span class="meta-item"><strong>Year</strong> 2024</span>
+          </div>
+        </div>
+
+        <!-- CS Problem: Visual demonstration -->
+        <div class="cs-problem container">
+          <div class="cs-problem__visual" data-animate="fade-up">
+            <img src="assets/images/cs1-problem.gif" alt="User endlessly scrolling through content library without selecting anything">
+          </div>
+          <div class="cs-problem__metric" data-animate="fade-up">
+            <span class="metric__number" data-target="68">0</span>
+            <span class="metric__unit">%</span>
+            <p class="metric__label">of users browse for 10+ minutes before selecting content</p>
+          </div>
+        </div>
+
+        <!-- CS Research: Key findings as cards -->
+        <div class="cs-research container">
+          <h3 class="cs-section-label" data-animate="fade-up">What we discovered</h3>
+          <div class="cs-research__cards">
+            <div class="research-card" data-animate="fade-up">
+              <div class="research-card__image">
+                <img src="assets/images/cs1-research-1.jpg" alt="User interview insight about content overwhelm">
+              </div>
+              <p class="research-card__text">Users don't know <em>what</em> they want — they know <em>how</em> they feel</p>
+            </div>
+            <div class="research-card" data-animate="fade-up" data-delay="0.1">
+              <div class="research-card__image">
+                <img src="assets/images/cs1-research-2.jpg" alt="Analytics showing browse-to-play conversion rates">
+              </div>
+              <p class="research-card__text">Browse-to-play conversion drops 40% after 5 minutes of scrolling</p>
+            </div>
+            <div class="research-card" data-animate="fade-up" data-delay="0.2">
+              <div class="research-card__image">
+                <img src="assets/images/cs1-research-3.jpg" alt="Competitive analysis of existing discovery methods">
+              </div>
+              <p class="research-card__text">Existing filters (genre, year, rating) don't match how people actually decide</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CS Aha: The pivot moment -->
+        <div class="cs-aha container">
+          <h3 class="cs-section-label" data-animate="fade-up">The shift</h3>
+          <div class="cs-aha__comparison">
+            <div class="cs-aha__before" data-animate="fade-right">
+              <span class="cs-aha__label">Before</span>
+              <img src="assets/images/cs1-before.jpg" alt="Original content discovery with traditional category browsing">
+            </div>
+            <div class="cs-aha__after" data-animate="fade-left">
+              <span class="cs-aha__label">After</span>
+              <img src="assets/images/cs1-after.jpg" alt="New mood-based discovery interface">
+            </div>
+          </div>
+          <p class="cs-aha__insight" data-animate="fade-up">What if we asked how you <em>feel</em>, not what you want?</p>
+        </div>
+
+        <!-- CS Iteration: Design evolution -->
+        <div class="cs-iteration container">
+          <h3 class="cs-section-label" data-animate="fade-up">Refining the experience</h3>
+          <div class="cs-iteration__sequence">
+            <div class="iteration-step" data-animate="fade-up">
+              <span class="iteration-step__version">V1</span>
+              <div class="iteration-step__image">
+                <img src="assets/images/cs1-v1.jpg" alt="First version of mood selection interface">
+              </div>
+              <p class="iteration-step__note">Started with a text-based mood picker. Users hesitated — too many labels.</p>
+            </div>
+            <div class="iteration-step" data-animate="fade-up" data-delay="0.1">
+              <span class="iteration-step__version">V2</span>
+              <div class="iteration-step__image">
+                <img src="assets/images/cs1-v2.jpg" alt="Second iteration with visual mood cards">
+              </div>
+              <p class="iteration-step__note">Switched to visual mood cards with color and imagery. Engagement jumped.</p>
+            </div>
+            <div class="iteration-step" data-animate="fade-up" data-delay="0.2">
+              <span class="iteration-step__version">Final</span>
+              <div class="iteration-step__image">
+                <img src="assets/images/cs1-final.jpg" alt="Final swipeable mood-based discovery design">
+              </div>
+              <p class="iteration-step__note">Made it swipeable. Selection time dropped from 12 seconds to 3.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CS Feedback: User quotes -->
+        <div class="cs-feedback container container--narrow">
+          <div class="feedback-quote" data-animate="fade-up">
+            <span class="feedback-quote__mark">"</span>
+            <blockquote class="feedback-quote__text">I finally stopped doom-scrolling. I just pick a mood and it gets me.</blockquote>
+            <cite class="feedback-quote__source">— Beta tester, usability study</cite>
+          </div>
+        </div>
+
+        <!-- CS Finals: Showcase the final product -->
+        <div class="cs-finals container">
+          <h3 class="cs-section-label" data-animate="fade-up">The final product</h3>
+          <div class="cs-finals__gallery">
+            <div class="cs-finals__mockup" data-animate="fade-up">
+              <img src="assets/images/cs1-final-1.jpg" alt="Final design — mood selection screen">
+            </div>
+            <div class="cs-finals__mockup" data-animate="fade-up" data-delay="0.1">
+              <img src="assets/images/cs1-final-2.jpg" alt="Final design — curated results based on mood">
+            </div>
+            <div class="cs-finals__mockup" data-animate="fade-up" data-delay="0.2">
+              <img src="assets/images/cs1-final-3.jpg" alt="Final design — content detail view">
+            </div>
+          </div>
+        </div>
+
+        <!-- CS Impact: Big metrics -->
+        <div class="cs-impact container">
+          <h3 class="cs-section-label" data-animate="fade-up">Impact</h3>
+          <div class="cs-impact__metrics">
+            <div class="impact-metric" data-animate="fade-up">
+              <span class="impact-metric__number" data-target="40">0</span>
+              <span class="impact-metric__unit">%</span>
+              <p class="impact-metric__label">faster content selection</p>
+            </div>
+            <div class="impact-metric" data-animate="fade-up" data-delay="0.15">
+              <span class="impact-metric__number" data-target="25">0</span>
+              <span class="impact-metric__unit">%</span>
+              <p class="impact-metric__label">increase in browse-to-play conversion</p>
+            </div>
+            <div class="impact-metric" data-animate="fade-up" data-delay="0.3">
+              <span class="impact-metric__number" data-target="4.6">0</span>
+              <span class="impact-metric__unit">/5</span>
+              <p class="impact-metric__label">user satisfaction score</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================================================================
+           Interstitial
+           ================================================================ -->
+      <section class="section interstitial">
+        <div class="interstitial__content container container--narrow">
+          <p class="interstitial__quote" data-animate="fade-up">"If the user needs a tutorial, the design failed."</p>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           Section 4: Case Study 2 (Placeholder)
+           ================================================================ -->
+      <section id="case-study-2" class="section case-study">
+        <div class="cs-hero">
+          <img src="assets/images/cs2-hero-full.jpg" alt="Case study 2 — coming soon" data-animate="scale-in">
+        </div>
+        <div class="cs-hook container container--narrow">
+          <p class="cs-hook__text" data-animate="fade-up">Case study coming soon.</p>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           Section 5: About / Closing
+           ================================================================ -->
+      <section id="about" class="section about">
+        <div class="container">
+          <div class="about__grid">
+            <div class="about__card" data-animate="fade-up">
+              <h2 class="about__name">Arun Peri</h2>
+              <p class="about__location">Senior UX Designer</p>
+              <p class="about__focus">Currently focused on product design that removes friction and respects people's time.</p>
+              <p class="about__fun">When not designing, probably arguing about film color grading.</p>
+            </div>
+            <div class="about__contact" data-animate="fade-up" data-delay="0.2">
+              <p class="about__looking">Open to full-time roles and select freelance projects.</p>
+              <a href="mailto:hello@arunperi.com?subject=Let's%20work%20together" class="about__cta">Let's talk</a>
+              <div class="about__links">
+                <a href="https://linkedin.com/in/arunperi" class="about__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="mailto:hello@arunperi.com" class="about__link">Email</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           Footer
+           ================================================================ -->
+      <footer class="footer">
+        <div class="container">
+          <p class="footer__text">"That's a wrap." — Every director, eventually</p>
+        </div>
+      </footer>
+
+    </main>
+
   </div>
 
   <!-- GSAP 3 + ScrollTrigger -->
