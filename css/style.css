@@ -1283,6 +1283,62 @@ body.has-custom-cursor .cursor {
   }
 }
 
+/* ==========================================================================
+   16. ACCESSIBILITY
+   ========================================================================== */
+
+/* Skip to content link — hidden until focused */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 10002;
+  background: var(--accent);
+  color: var(--bg-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 8px 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: top var(--duration-fast) var(--ease-smooth);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+}
+
+/* Focus outlines for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* Remove outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Nav dot focus */
+.nav-dot:focus-visible span {
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-glow);
+}
+
+/* Project card focus */
+.project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  transform: translateY(-4px);
+}
+
+/* CTA button focus */
+.about__cta:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+
 /* ── Mobile (480px and below) ───────────────────────────────────────────── */
 
 @media (max-width: 480px) {
