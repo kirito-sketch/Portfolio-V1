@@ -65,3 +65,40 @@
 .interstitial__quote {
   opacity: 0;
 }
+
+
+/* ==========================================================================
+   3. MEDIA PLACEHOLDERS — Shimmer loading effect
+   ========================================================================== */
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.project-card__image::before,
+.research-card__image::before,
+.iteration-step__image::before,
+.cs-finals__mockup::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 0%,
+    var(--bg-surface) 50%,
+    var(--bg-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Ensure images sit above shimmer */
+.project-card__image img,
+.research-card__image img,
+.iteration-step__image img,
+.cs-finals__mockup img {
+  position: relative;
+  z-index: 2;
+}

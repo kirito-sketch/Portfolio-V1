@@ -126,4 +126,27 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('mouseleave', () => cursor.style.opacity = '0');
     document.addEventListener('mouseenter', () => cursor.style.opacity = '1');
   }
+
+
+  /* ========================================================================
+     Video Autoplay Management
+     ======================================================================== */
+
+  const videos = document.querySelectorAll('video[autoplay]');
+  if (videos.length) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.play().catch(() => {});
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { threshold: 0.3 });
+
+    videos.forEach(video => {
+      video.pause();
+      videoObserver.observe(video);
+    });
+  }
 });
