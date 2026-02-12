@@ -1070,8 +1070,7 @@ body::after {
   z-index: -1;
   background:
     radial-gradient(ellipse at 80% 20%, rgba(201, 131, 78, 0.06) 0%, transparent 50%),
-    radial-gradient(ellipse at 20% 80%, rgba(160, 100, 60, 0.04) 0%, transparent 40%),
-    var(--bg-secondary);
+    radial-gradient(ellipse at 20% 80%, rgba(160, 100, 60, 0.04) 0%, transparent 40%);
 }
 
 .about::before {
