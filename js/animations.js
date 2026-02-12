@@ -144,24 +144,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ========================================================================
      3. Phone Parallax — Subtle vertical shift on scroll
-     Applies to finding phones and evolution phones
+     Only applies to showcase phones (finding/evolution phones are now
+     compact side-by-side / grid layouts where parallax would be jarring)
      ======================================================================== */
-
-  document.querySelectorAll('.cs-finding__phone, .cs-evolution__phone').forEach(phone => {
-    gsap.fromTo(phone,
-      { y: 40 },
-      {
-        y: -40,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: phone,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: true,
-        }
-      }
-    );
-  });
 
 
   /* ========================================================================

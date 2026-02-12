@@ -44,7 +44,7 @@
   --space-xl: 5rem;
   --space-2xl: 8rem;
   --space-3xl: 12rem;
-  --section-padding: clamp(5rem, 12vh, 10rem);
+  --section-padding: clamp(3rem, 8vh, 6rem);
   --content-width: 1200px;
   --content-narrow: 800px;
 
@@ -458,8 +458,8 @@ body::after {
 
 .work-showcase {
   position: relative;
-  padding-top: var(--space-2xl);
-  padding-bottom: var(--space-3xl);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
 }
 
 .work-ambient {
@@ -481,7 +481,7 @@ body::after {
   font-size: clamp(1rem, 1.5vw, 1.2rem);
   color: var(--text-secondary);
   text-align: center;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-lg);
 }
 
 /* ── Work Gallery — Large vertical card list ───────────────────────────── */
@@ -508,22 +508,10 @@ body::after {
   cursor: pointer;
 }
 
-/* Hover focus effect: dim siblings, highlight active */
-.work-gallery:hover .work-card {
-  opacity: 0.55;
-  filter: blur(1px);
-}
-
-.work-gallery:hover .work-card:hover {
-  opacity: 1;
-  filter: blur(0);
+.work-card:hover {
   transform: scale(1.015);
   border-color: rgba(201, 131, 78, 0.25);
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(201, 131, 78, 0.08);
-}
-
-.work-card:not(:hover) {
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
 /* ── Card image area ─────────────────────────────────────────────────── */
@@ -606,23 +594,14 @@ body::after {
   width: fit-content;
 }
 
-/* ── Placeholder card adjustments ────────────────────────────────────── */
+/* ── "More case studies" note ─────────────────────────────────────────── */
 
-.work-card--placeholder {
-  cursor: default;
-}
-
-.work-gallery:hover .work-card--placeholder {
-  opacity: 0.4;
-  filter: blur(1px);
-}
-
-.work-gallery:hover .work-card--placeholder:hover {
-  opacity: 0.6;
-  filter: blur(0);
-  transform: none;
-  border-color: var(--border-light);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+.work-showcase__coming {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: var(--space-lg);
+  letter-spacing: 0.02em;
 }
 
 
@@ -727,8 +706,6 @@ body::after {
   .work-card__image { min-height: 240px; padding: var(--space-lg); }
   .work-card__image img { max-width: 100%; }
   .work-card__content { padding: var(--space-lg); }
-  .work-gallery:hover .work-card { opacity: 1; filter: none; }
-  .work-gallery:hover .work-card--placeholder { opacity: 0.7; }
 }
 
 
@@ -1084,6 +1061,7 @@ body::after {
 .about {
   position: relative;
   overflow: hidden;
+  padding-bottom: var(--space-lg);
 }
 
 .about__ambient {
@@ -1127,7 +1105,7 @@ body::after {
   line-height: 1.2;
   letter-spacing: -0.02em;
   max-width: 800px;
-  margin-bottom: var(--space-2xl);
+  margin-bottom: var(--space-xl);
 }
 
 /* ── About grid — bio + details side by side ─────────────────────────── */
@@ -1135,7 +1113,7 @@ body::after {
 .about__grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
-  gap: var(--space-2xl);
+  gap: var(--space-xl);
   align-items: start;
 }
 
@@ -1194,15 +1172,18 @@ body::after {
    20. FOOTER — Floating rounded rectangle with retro grid
    ========================================================================== */
 
+.site-footer {
+  padding: 0 var(--space-md) var(--space-md);
+}
+
 .footer {
   position: relative;
-  margin: var(--space-xl) var(--space-md) 0;
   padding: clamp(4rem, 8vh, 6rem) var(--space-lg) var(--space-lg);
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
-  border-radius: 32px 32px 0 0;
+  border-radius: 32px;
   overflow: hidden;
-  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.06), 0 -2px 12px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.03);
 }
 
 .footer__content {
@@ -1290,20 +1271,13 @@ body::after {
   font-size: 1rem;
 }
 
-/* ── Footer bottom — credit ──────────────────────────────────────────── */
+/* ── Footer credit — sits outside the card ───────────────────────────── */
 
-.footer__bottom {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--border-subtle);
-  width: 100%;
-}
-
-.footer__credit {
-  font-size: 0.8rem;
+.site-footer__credit {
+  font-size: 0.75rem;
   color: var(--text-muted);
+  text-align: center;
+  padding: var(--space-md) 0;
 }
 
 
@@ -1444,17 +1418,13 @@ body.has-custom-cursor .cursor { display: block; }
   .site-nav__link { font-size: 0.8rem; }
   .site-nav__logo { font-size: 1rem; }
 
+  .site-footer { padding: 0 var(--space-sm) var(--space-sm); }
   .footer {
-    margin: var(--space-lg) var(--space-sm) 0;
     padding: var(--space-xl) var(--space-md) var(--space-md);
-    border-radius: 24px 24px 0 0;
+    border-radius: 24px;
   }
   .footer__heading { font-size: clamp(2rem, 8vw, 3rem); }
   .footer__link-row { flex-wrap: wrap; justify-content: center; }
-  .footer__bottom {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
 }
 
 @media (max-width: 480px) {

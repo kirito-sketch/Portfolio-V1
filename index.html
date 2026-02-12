@@ -70,17 +70,7 @@
       </section>
 
       <!-- ================================================================
-           INTRO — Brief positioning
-           ================================================================ -->
-      <section class="section intro">
-        <div class="intro__ambient"></div>
-        <div class="container container--narrow">
-          <p class="intro__text" data-animate="fade-up">I design products that respect people's time. My work sits at the intersection of research-driven insight and interaction craft — turning complex problems into experiences that feel effortless.</p>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           WORK SHOWCASE — Large card gallery
+           WORK SHOWCASE
            ================================================================ -->
       <section id="work" class="section work-showcase">
         <div class="work-ambient"></div>
@@ -111,37 +101,9 @@
             </div>
           </a>
 
-          <!-- Card 2 — Placeholder -->
-          <div class="work-card work-card--placeholder">
-            <div class="work-card__image work-card__image--empty">
-              <div class="work-card__image-placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              </div>
-            </div>
-            <div class="work-card__content">
-              <span class="work-card__number">02</span>
-              <h3 class="work-card__title">Coming Soon</h3>
-              <p class="work-card__tagline">A deep dive into product strategy and interaction design</p>
-              <span class="work-card__badge">In Progress</span>
-            </div>
-          </div>
-
-          <!-- Card 3 — Placeholder -->
-          <div class="work-card work-card--placeholder">
-            <div class="work-card__image work-card__image--empty">
-              <div class="work-card__image-placeholder">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              </div>
-            </div>
-            <div class="work-card__content">
-              <span class="work-card__number">03</span>
-              <h3 class="work-card__title">Coming Soon</h3>
-              <p class="work-card__tagline">More work to be shared</p>
-              <span class="work-card__badge">In Progress</span>
-            </div>
-          </div>
-
         </div>
+
+        <p class="work-showcase__coming" data-animate="fade-up" data-delay="0.3">More case studies in progress</p>
       </section>
 
       <!-- ================================================================
@@ -177,10 +139,13 @@
         </div>
       </section>
 
-      <!-- ================================================================
-           FOOTER
-           ================================================================ -->
-      <footer class="footer">
+    </main>
+
+    <!-- ================================================================
+         FOOTER — Floating card
+         ================================================================ -->
+    <footer class="site-footer">
+      <div class="footer">
         <!-- Retro Grid Background -->
         <div class="retro-grid" aria-hidden="true">
           <div class="retro-grid__plane">
@@ -217,15 +182,11 @@
               </a>
             </div>
           </div>
-
-          <!-- Bottom credit -->
-          <div class="footer__bottom">
-            <p class="footer__credit">Designed & built by Arun Peri</p>
-          </div>
         </div>
-      </footer>
+      </div>
+      <p class="site-footer__credit">Designed & built by Arun Peri</p>
+    </footer>
 
-    </main>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
