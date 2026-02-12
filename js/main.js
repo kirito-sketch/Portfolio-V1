@@ -1,6 +1,19 @@
 /* ==========================================================================
-   main.js — DOM interactions, nav, cursor, loading
+   main.js — DOM interactions, nav, cursor, loading, theme toggle
    ========================================================================== */
+
+
+/* ==========================================================================
+   Theme Toggle — Dark/Light mode
+   ========================================================================== */
+
+(function () {
+  // Apply saved theme immediately (before DOMContentLoaded to prevent flash)
+  var saved = localStorage.getItem('theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+  }
+})();
 
 
 /* ==========================================================================
@@ -12,75 +25,90 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroElements = document.querySelectorAll('.hero [data-animate]');
 
   // After a brief loading animation, hide loader and reveal hero
-  setTimeout(() => {
-    loader.classList.add('loaded');
+  if (loader) {
+    setTimeout(() => {
+      loader.classList.add('loaded');
 
-    // Stagger reveal hero elements based on their data-delay attribute
-    heroElements.forEach((el) => {
-      const delay = parseFloat(el.dataset.delay || 0);
-      setTimeout(() => {
-        el.classList.add('revealed');
-      }, 300 + delay * 1000); // 300ms base delay after loader starts leaving
+      heroElements.forEach((el) => {
+        const delay = parseFloat(el.dataset.delay || 0);
+        setTimeout(() => {
+          el.classList.add('revealed');
+        }, 300 + delay * 1000);
+      });
+    }, 1800);
+
+    loader.addEventListener('transitionend', () => {
+      loader.style.display = 'none';
     });
-  }, 1800); // Loader shows for 1.8 seconds
-
-  // Remove loader from DOM after transition completes
-  loader.addEventListener('transitionend', () => {
-    loader.style.display = 'none';
-  });
+  }
 
 
   /* ========================================================================
-     Floating Nav — Scroll Tracking & Smooth Scroll
+     Site Nav — Scroll direction detection, compact/expand
      ======================================================================== */
 
-  const floatingNav = document.querySelector('.floating-nav');
-  const navDots = document.querySelectorAll('.nav-dot');
-  const sections = document.querySelectorAll('section[id]');
+  const siteNav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.site-nav__link:not(.site-nav__link--cta)');
 
-  // Show / hide nav based on hero section visibility
-  const heroSection = document.getElementById('hero');
+  if (siteNav) {
+    let lastScrollY = 0;
+    let ticking = false;
 
-  if (floatingNav && heroSection) {
-    const heroObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          floatingNav.classList.remove('visible');
-        } else {
-          floatingNav.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.5 });
+    function updateNav() {
+      const currentScrollY = window.scrollY;
 
-    heroObserver.observe(heroSection);
+      if (currentScrollY > 100) {
+        siteNav.classList.add('site-nav--compact');
+      } else {
+        siteNav.classList.remove('site-nav--compact');
+      }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 300) {
+        // Scrolling down — hide
+        siteNav.classList.add('site-nav--hidden');
+      } else {
+        // Scrolling up — show
+        siteNav.classList.remove('site-nav--hidden');
+      }
+
+      lastScrollY = currentScrollY;
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(updateNav);
+        ticking = true;
+      }
+    });
   }
 
-  // Track active section and update nav dots
-  if (sections.length && navDots.length) {
-    const sectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navDots.forEach(dot => {
-            dot.classList.toggle('active', dot.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    }, { threshold: 0.3, rootMargin: '-20% 0px -20% 0px' });
-
-    sections.forEach(section => sectionObserver.observe(section));
-  }
-
-  // Smooth scroll on dot click
-  navDots.forEach(dot => {
-    dot.addEventListener('click', (e) => {
+  // Smooth scroll on nav link click
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
       e.preventDefault();
-      const target = document.querySelector(dot.getAttribute('href'));
+      const target = document.querySelector(link.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
+
+
+  /* ========================================================================
+     Theme Toggle
+     ======================================================================== */
+
+  const themeToggles = document.querySelectorAll('.theme-toggle');
+  themeToggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  });
+
 
   /* ========================================================================
      Custom Cursor (Desktop Only)
@@ -114,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     animateRing();
 
-    const interactives = document.querySelectorAll('a, button, .project-card, .nav-dot');
+    const interactives = document.querySelectorAll('a, button, .theme-toggle');
     interactives.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));

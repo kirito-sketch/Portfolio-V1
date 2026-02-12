@@ -1,28 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Arun Peri — Senior UX Designer portfolio showcasing product design, interaction design, and strategic impact">
-
   <title>Arun Peri — Senior UX Designer</title>
 
-  <!-- Open Graph / Social Sharing -->
   <meta property="og:title" content="Arun Peri — Senior UX Designer">
   <meta property="og:description" content="Portfolio showcasing product design, interaction design, and strategic impact.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/images/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
 
-  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
 
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
 </head>
@@ -30,8 +24,7 @@
 
   <div class="site-wrapper">
 
-    <!-- Skip to content (accessibility) -->
-    <a href="#projects" class="skip-link">Skip to content</a>
+    <a href="#work" class="skip-link">Skip to content</a>
 
     <!-- Loading Screen -->
     <div class="loader">
@@ -44,30 +37,32 @@
       <div class="cursor__ring"></div>
     </div>
 
-    <!-- Floating Nav (right side vertical stepper) -->
-    <nav class="floating-nav" aria-label="Section navigation">
-      <a href="#hero" class="nav-dot active" data-label="Intro"><span></span></a>
-      <a href="#projects" class="nav-dot" data-label="Projects"><span></span></a>
-      <a href="#case-study-1" class="nav-dot" data-label="Mood Discovery"><span></span></a>
-      <a href="#case-study-2" class="nav-dot" data-label="Case Study 2"><span></span></a>
-      <a href="#about" class="nav-dot" data-label="About"><span></span></a>
-    </nav>
+    <!-- Top Navigation — Floating pill -->
+    <header class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a href="#hero" class="site-nav__logo">Arun Peri</a>
+        <nav class="site-nav__links">
+          <a href="#work" class="site-nav__link">Work</a>
+          <a href="#about" class="site-nav__link">About</a>
+        </nav>
+        <button class="theme-toggle" aria-label="Toggle theme">
+          <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
 
-    <!-- Main Content -->
     <main>
 
       <!-- ================================================================
-           Section 1: Hero
+           HERO
            ================================================================ -->
       <section id="hero" class="section hero">
-        <div class="hero__bg">
-          <div class="hero__gradient"></div>
-        </div>
-        <div class="hero__content">
-          <h1 class="hero__name" data-animate="fade-up">Arun Peri</h1>
-          <p class="hero__tagline" data-animate="fade-up" data-delay="0.2">Just when you thought it was safe to ship without a designer...</p>
-          <p class="hero__role" data-animate="fade-up" data-delay="0.4">Senior UX Designer</p>
-        </div>
+        <canvas class="hero__canvas" aria-label="Interactive Pong game with pixel text: Arun Peri, Sr Designer"></canvas>
         <div class="hero__scroll-cue" data-animate="fade-up" data-delay="0.8">
           <span>Scroll</span>
           <div class="hero__scroll-arrow"></div>
@@ -75,242 +70,107 @@
       </section>
 
       <!-- ================================================================
-           Section 2: Project Overview
+           INTRO — Brief positioning
            ================================================================ -->
-      <section id="projects" class="section projects-overview">
+      <section class="section intro">
+        <div class="intro__ambient"></div>
+        <div class="container container--narrow">
+          <p class="intro__text" data-animate="fade-up">I design products that respect people's time. My work sits at the intersection of research-driven insight and interaction craft — turning complex problems into experiences that feel effortless.</p>
+        </div>
+      </section>
+
+      <!-- ================================================================
+           WORK SHOWCASE — Large card gallery
+           ================================================================ -->
+      <section id="work" class="section work-showcase">
+        <div class="work-ambient"></div>
         <div class="container">
-          <h2 class="projects-overview__label" data-animate="fade-up">Selected Work</h2>
-          <div class="projects-overview__grid">
+          <h2 class="work-showcase__title" data-animate="fade-up">Selected Work</h2>
+          <p class="work-showcase__subtitle" data-animate="fade-up" data-delay="0.1">Deep dives into products that mattered</p>
+        </div>
 
-            <!-- Project Card 1 -->
-            <a href="#case-study-1" class="project-card" data-animate="fade-up">
-              <div class="project-card__image">
-                <img src="assets/images/cs1-hero.jpg" alt="Mood-Based Discovery app showing content recommendations based on user mood" loading="lazy">
-              </div>
-              <div class="project-card__info">
-                <h3 class="project-card__title">Mood-Based Discovery</h3>
-                <p class="project-card__subtitle">Streaming Platform — Lead Designer</p>
-                <div class="project-card__tags">
-                  <span class="tag">Mobile App</span>
-                  <span class="tag">0 → 1</span>
-                </div>
-              </div>
-            </a>
+        <div class="work-gallery" data-animate="fade-up" data-delay="0.2">
 
-            <!-- Project Card 2 (placeholder) -->
-            <a href="#case-study-2" class="project-card" data-animate="fade-up" data-delay="0.15">
-              <div class="project-card__image">
-                <img src="assets/images/cs2-hero.jpg" alt="Case study 2 preview" loading="lazy">
-              </div>
-              <div class="project-card__info">
-                <h3 class="project-card__title">Project Two</h3>
-                <p class="project-card__subtitle">Company — Role</p>
-                <div class="project-card__tags">
-                  <span class="tag">Design System</span>
-                  <span class="tag">Enterprise</span>
-                </div>
-              </div>
-            </a>
+          <!-- Card 1 — Reimagining Search -->
+          <a href="cs1.html" class="work-card">
+            <div class="work-card__image">
+              <img src="assets/images/final-confidence-card.png" alt="Search redesign — mood-based discovery with high confidence card">
+            </div>
+            <div class="work-card__content">
+              <span class="work-card__number">01</span>
+              <h3 class="work-card__title">Reimagining Search</h3>
+              <p class="work-card__tagline">Reducing decision fatigue on a streaming platform through mood-based discovery</p>
+              <span class="hover-btn">
+                <span class="hover-btn__text">View Case Study</span>
+                <span class="hover-btn__hover-content">
+                  <span>View Case Study</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </span>
+                <span class="hover-btn__circle"></span>
+              </span>
+            </div>
+          </a>
 
+          <!-- Card 2 — Placeholder -->
+          <div class="work-card work-card--placeholder">
+            <div class="work-card__image work-card__image--empty">
+              <div class="work-card__image-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+            </div>
+            <div class="work-card__content">
+              <span class="work-card__number">02</span>
+              <h3 class="work-card__title">Coming Soon</h3>
+              <p class="work-card__tagline">A deep dive into product strategy and interaction design</p>
+              <span class="work-card__badge">In Progress</span>
+            </div>
           </div>
+
+          <!-- Card 3 — Placeholder -->
+          <div class="work-card work-card--placeholder">
+            <div class="work-card__image work-card__image--empty">
+              <div class="work-card__image-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              </div>
+            </div>
+            <div class="work-card__content">
+              <span class="work-card__number">03</span>
+              <h3 class="work-card__title">Coming Soon</h3>
+              <p class="work-card__tagline">More work to be shared</p>
+              <span class="work-card__badge">In Progress</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
       <!-- ================================================================
-           Section 3: Case Study 1 — Mood-Based Discovery
-           ================================================================ -->
-      <section id="case-study-1" class="section case-study">
-
-        <!-- CS Hero: Full-bleed opening image -->
-        <div class="cs-hero">
-          <img src="assets/images/cs1-hero-full.jpg" alt="Mood-Based Discovery final design — mood selection interface" data-animate="scale-in">
-        </div>
-
-        <!-- CS Hook: The relatable one-liner -->
-        <div class="cs-hook container container--narrow">
-          <p class="cs-hook__text" data-animate="fade-up">Ever spent 30 minutes choosing what to watch...<br>then watched nothing?</p>
-        </div>
-
-        <!-- CS Setup: Brief context -->
-        <div class="cs-setup container container--narrow">
-          <p class="cs-setup__text" data-animate="fade-up">Decision fatigue is killing streaming engagement. Users are overwhelmed by choice, endlessly scrolling through content libraries without committing.</p>
-          <div class="cs-setup__meta" data-animate="fade-up">
-            <span class="meta-item"><strong>Role</strong> Lead Designer</span>
-            <span class="meta-item"><strong>Duration</strong> 8 weeks</span>
-            <span class="meta-item"><strong>Team</strong> 2 designers, 3 engineers</span>
-            <span class="meta-item"><strong>Year</strong> 2024</span>
-          </div>
-        </div>
-
-        <!-- CS Problem: Visual demonstration -->
-        <div class="cs-problem container">
-          <div class="cs-problem__visual" data-animate="fade-up">
-            <img src="assets/images/cs1-problem.gif" alt="User endlessly scrolling through content library without selecting anything" loading="lazy">
-          </div>
-          <div class="cs-problem__metric" data-animate="fade-up">
-            <span class="metric__number" data-target="68">0</span>
-            <span class="metric__unit">%</span>
-            <p class="metric__label">of users browse for 10+ minutes before selecting content</p>
-          </div>
-        </div>
-
-        <!-- CS Research: Key findings as cards -->
-        <div class="cs-research container">
-          <h3 class="cs-section-label" data-animate="fade-up">What we discovered</h3>
-          <div class="cs-research__cards">
-            <div class="research-card" data-animate="fade-up">
-              <div class="research-card__image">
-                <img src="assets/images/cs1-research-1.jpg" alt="User interview insight about content overwhelm" loading="lazy">
-              </div>
-              <p class="research-card__text">Users don't know <em>what</em> they want — they know <em>how</em> they feel</p>
-            </div>
-            <div class="research-card" data-animate="fade-up" data-delay="0.1">
-              <div class="research-card__image">
-                <img src="assets/images/cs1-research-2.jpg" alt="Analytics showing browse-to-play conversion rates" loading="lazy">
-              </div>
-              <p class="research-card__text">Browse-to-play conversion drops 40% after 5 minutes of scrolling</p>
-            </div>
-            <div class="research-card" data-animate="fade-up" data-delay="0.2">
-              <div class="research-card__image">
-                <img src="assets/images/cs1-research-3.jpg" alt="Competitive analysis of existing discovery methods" loading="lazy">
-              </div>
-              <p class="research-card__text">Existing filters (genre, year, rating) don't match how people actually decide</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CS Aha: The pivot moment -->
-        <div class="cs-aha container">
-          <h3 class="cs-section-label" data-animate="fade-up">The shift</h3>
-          <div class="cs-aha__comparison">
-            <div class="cs-aha__before" data-animate="fade-right">
-              <span class="cs-aha__label">Before</span>
-              <img src="assets/images/cs1-before.jpg" alt="Original content discovery with traditional category browsing" loading="lazy">
-            </div>
-            <div class="cs-aha__after" data-animate="fade-left">
-              <span class="cs-aha__label">After</span>
-              <img src="assets/images/cs1-after.jpg" alt="New mood-based discovery interface" loading="lazy">
-            </div>
-          </div>
-          <p class="cs-aha__insight" data-animate="fade-up">What if we asked how you <em>feel</em>, not what you want?</p>
-        </div>
-
-        <!-- CS Iteration: Design evolution -->
-        <div class="cs-iteration container">
-          <h3 class="cs-section-label" data-animate="fade-up">Refining the experience</h3>
-          <div class="cs-iteration__sequence">
-            <div class="iteration-step" data-animate="fade-up">
-              <span class="iteration-step__version">V1</span>
-              <div class="iteration-step__image">
-                <img src="assets/images/cs1-v1.jpg" alt="First version of mood selection interface" loading="lazy">
-              </div>
-              <p class="iteration-step__note">Started with a text-based mood picker. Users hesitated — too many labels.</p>
-            </div>
-            <div class="iteration-step" data-animate="fade-up" data-delay="0.1">
-              <span class="iteration-step__version">V2</span>
-              <div class="iteration-step__image">
-                <img src="assets/images/cs1-v2.jpg" alt="Second iteration with visual mood cards" loading="lazy">
-              </div>
-              <p class="iteration-step__note">Switched to visual mood cards with color and imagery. Engagement jumped.</p>
-            </div>
-            <div class="iteration-step" data-animate="fade-up" data-delay="0.2">
-              <span class="iteration-step__version">Final</span>
-              <div class="iteration-step__image">
-                <img src="assets/images/cs1-final.jpg" alt="Final swipeable mood-based discovery design" loading="lazy">
-              </div>
-              <p class="iteration-step__note">Made it swipeable. Selection time dropped from 12 seconds to 3.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- CS Feedback: User quotes -->
-        <div class="cs-feedback container container--narrow">
-          <div class="feedback-quote" data-animate="fade-up">
-            <span class="feedback-quote__mark">"</span>
-            <blockquote class="feedback-quote__text">I finally stopped doom-scrolling. I just pick a mood and it gets me.</blockquote>
-            <cite class="feedback-quote__source">— Beta tester, usability study</cite>
-          </div>
-        </div>
-
-        <!-- CS Finals: Showcase the final product -->
-        <div class="cs-finals container">
-          <h3 class="cs-section-label" data-animate="fade-up">The final product</h3>
-          <div class="cs-finals__gallery">
-            <div class="cs-finals__mockup" data-animate="fade-up">
-              <img src="assets/images/cs1-final-1.jpg" alt="Final design — mood selection screen" loading="lazy">
-            </div>
-            <div class="cs-finals__mockup" data-animate="fade-up" data-delay="0.1">
-              <img src="assets/images/cs1-final-2.jpg" alt="Final design — curated results based on mood" loading="lazy">
-            </div>
-            <div class="cs-finals__mockup" data-animate="fade-up" data-delay="0.2">
-              <img src="assets/images/cs1-final-3.jpg" alt="Final design — content detail view" loading="lazy">
-            </div>
-          </div>
-        </div>
-
-        <!-- CS Impact: Big metrics -->
-        <div class="cs-impact container">
-          <h3 class="cs-section-label" data-animate="fade-up">Impact</h3>
-          <div class="cs-impact__metrics">
-            <div class="impact-metric" data-animate="fade-up">
-              <span class="impact-metric__number" data-target="40">0</span>
-              <span class="impact-metric__unit">%</span>
-              <p class="impact-metric__label">faster content selection</p>
-            </div>
-            <div class="impact-metric" data-animate="fade-up" data-delay="0.15">
-              <span class="impact-metric__number" data-target="25">0</span>
-              <span class="impact-metric__unit">%</span>
-              <p class="impact-metric__label">increase in browse-to-play conversion</p>
-            </div>
-            <div class="impact-metric" data-animate="fade-up" data-delay="0.3">
-              <span class="impact-metric__number" data-target="4.6">0</span>
-              <span class="impact-metric__unit">/5</span>
-              <p class="impact-metric__label">user satisfaction score</p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ================================================================
-           Interstitial
-           ================================================================ -->
-      <section class="section interstitial">
-        <div class="interstitial__content container container--narrow">
-          <p class="interstitial__quote" data-animate="fade-up">"If the user needs a tutorial, the design failed."</p>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           Section 4: Case Study 2 (Placeholder)
-           ================================================================ -->
-      <section id="case-study-2" class="section case-study">
-        <div class="cs-hero">
-          <img src="assets/images/cs2-hero-full.jpg" alt="Case study 2 — coming soon" data-animate="scale-in">
-        </div>
-        <div class="cs-hook container container--narrow">
-          <p class="cs-hook__text" data-animate="fade-up">Case study coming soon.</p>
-        </div>
-      </section>
-
-      <!-- ================================================================
-           Section 5: About / Closing
+           ABOUT
            ================================================================ -->
       <section id="about" class="section about">
+        <div class="about__ambient"></div>
         <div class="container">
+          <div class="about__intro" data-animate="fade-up">
+            <span class="about__label">About</span>
+            <h2 class="about__headline">Product designer with a bias for craft, clarity, and the kind of details most people don't notice.</h2>
+          </div>
           <div class="about__grid">
-            <div class="about__card" data-animate="fade-up">
-              <h2 class="about__name">Arun Peri</h2>
-              <p class="about__location">Senior UX Designer</p>
-              <p class="about__focus">Currently focused on product design that removes friction and respects people's time.</p>
-              <p class="about__fun">When not designing, probably arguing about film color grading.</p>
+            <div class="about__bio" data-animate="fade-up" data-delay="0.1">
+              <p>I'm Arun — a Senior UX Designer focused on turning complex problems into experiences that feel effortless. My work spans product strategy, interaction design, and design systems.</p>
+              <p>When I'm not designing, I'm probably arguing about film color grading or hunting down the perfect espresso.</p>
             </div>
-            <div class="about__contact" data-animate="fade-up" data-delay="0.2">
-              <p class="about__looking">Open to full-time roles and select freelance projects.</p>
-              <a href="mailto:hello@arunperi.com?subject=Let's%20work%20together" class="about__cta">Let's talk</a>
-              <div class="about__links">
-                <a href="https://linkedin.com/in/arunperi" class="about__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="mailto:hello@arunperi.com" class="about__link">Email</a>
+            <div class="about__details" data-animate="fade-up" data-delay="0.2">
+              <div class="about__detail-group">
+                <span class="about__detail-label">Currently</span>
+                <span class="about__detail-value">Open to opportunities</span>
+              </div>
+              <div class="about__detail-group">
+                <span class="about__detail-label">Focus</span>
+                <span class="about__detail-value">Product Design, Interaction Design, Design Systems</span>
+              </div>
+              <div class="about__detail-group">
+                <span class="about__detail-label">Experience</span>
+                <span class="about__detail-value">5+ years in UX</span>
               </div>
             </div>
           </div>
@@ -318,23 +178,59 @@
       </section>
 
       <!-- ================================================================
-           Footer
+           FOOTER
            ================================================================ -->
       <footer class="footer">
-        <div class="container">
-          <p class="footer__text">"That's a wrap." — Every director, eventually</p>
+        <!-- Retro Grid Background -->
+        <div class="retro-grid" aria-hidden="true">
+          <div class="retro-grid__plane">
+            <div class="retro-grid__lines"></div>
+          </div>
+          <div class="retro-grid__fade"></div>
+        </div>
+
+        <div class="footer__content">
+          <!-- Big CTA heading -->
+          <div class="footer__cta" data-animate="fade-up">
+            <h2 class="footer__heading">Let's work<br><em>together</em></h2>
+            <p class="footer__subtext">Have a project in mind? I'd love to hear about it.</p>
+          </div>
+
+          <!-- Action links -->
+          <div class="footer__links" data-animate="fade-up" data-delay="0.1">
+            <a href="mailto:arunperi0595@gmail.com?subject=Let's%20work%20together" class="hover-btn hover-btn--lg">
+              <span class="hover-btn__text">Say Hello</span>
+              <span class="hover-btn__hover-content">
+                <span>Say Hello</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
+              <span class="hover-btn__circle"></span>
+            </a>
+            <div class="footer__link-row">
+              <a href="https://www.linkedin.com/in/arun-peri" class="footer__pill-link" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
+              <a href="https://drive.google.com/file/d/1d6sdSgatPEo8nzZvmmsVC5wih_VXbyLr/view?usp=sharing" class="footer__pill-link" target="_blank" rel="noopener noreferrer">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Resume
+              </a>
+            </div>
+          </div>
+
+          <!-- Bottom credit -->
+          <div class="footer__bottom">
+            <p class="footer__credit">Designed & built by Arun Peri</p>
+          </div>
         </div>
       </footer>
 
     </main>
-
   </div>
 
-  <!-- GSAP 3 + ScrollTrigger -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-  <!-- App Scripts -->
+  <script src="js/pong-hero.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/animations.js" defer></script>
 

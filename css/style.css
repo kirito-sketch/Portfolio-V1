@@ -1,44 +1,54 @@
 /* ==========================================================================
-   style.css — Design tokens, CSS reset, base typography, utilities
+   style.css — Design tokens, layout, typography, everything
    ========================================================================== */
 
 
 /* ==========================================================================
-   1. DESIGN TOKENS (Custom Properties)
+   1. DESIGN TOKENS
    ========================================================================== */
 
 :root {
-  /* ── Colors ── Dark cinematic palette ─────────────────────────────────── */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-surface: #18181f;
-  --text-primary: #f0ede6;
-  --text-secondary: #a8a4a0;
-  --text-muted: #5c5956;
+  /* ── Colors ── Warm cream palette (light theme) ────────────────────────── */
+  --bg-primary: #FAF7F2;
+  --bg-secondary: #F0EBE3;
+  --bg-surface: #FFFFFF;
+  --bg-elevated: #FFFFFF;
+  --bg-contrast: #1C1917;
+  --text-primary: #1C1917;
+  --text-secondary: #57534E;
+  --text-muted: #A8A29E;
   --accent: #c9834e;
-  --accent-hover: #dda06e;
+  --accent-hover: #B87A3D;
   --accent-glow: rgba(201, 131, 78, 0.15);
+  --accent-deep: rgba(201, 131, 78, 0.06);
+
+  /* ── Theme-adaptive borders & glass ─────────────────────────────────── */
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --border-light: rgba(0, 0, 0, 0.08);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.05);
 
   /* ── Typography ────────────────────────────────────────────────────────── */
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-  --font-weight-light: 200;
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-weight-light: 300;
   --font-weight-regular: 400;
-  --font-weight-bold: 800;
+  --font-weight-bold: 400; /* Instrument Serif only has 400, relies on serif weight */
 
-  /* ── Spacing scale ─────────────────────────────────────────────────────── */
-  --space-xs: 0.5rem;   /* 8px  */
-  --space-sm: 1rem;     /* 16px */
-  --space-md: 1.5rem;   /* 24px */
-  --space-lg: 3rem;     /* 48px */
-  --space-xl: 5rem;     /* 80px */
-  --space-2xl: 8rem;    /* 128px */
-  --space-3xl: 12rem;   /* 192px */
-  --section-padding: clamp(4rem, 10vh, 8rem);
+  /* ── Spacing ────────────────────────────────────────────────────────────── */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --space-xl: 5rem;
+  --space-2xl: 8rem;
+  --space-3xl: 12rem;
+  --section-padding: clamp(5rem, 12vh, 10rem);
   --content-width: 1200px;
   --content-narrow: 800px;
 
-  /* ── Transitions ───────────────────────────────────────────────────────── */
+  /* ── Transitions ────────────────────────────────────────────────────────── */
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration-fast: 0.3s;
@@ -46,18 +56,34 @@
   --duration-slow: 1s;
 }
 
+/* ── Dark Theme ─────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #141414;
+  --bg-surface: #1a1a1a;
+  --bg-elevated: #222222;
+  --bg-contrast: #141414;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A3A3A3;
+  --text-muted: #666666;
+  --accent: #c9834e;
+  --accent-hover: #d99560;
+  --accent-glow: rgba(201, 131, 78, 0.25);
+  --accent-deep: rgba(201, 131, 78, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --glass-bg: rgba(20, 20, 20, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.06);
+}
+
 
 /* ==========================================================================
-   2. CSS RESET & BASE STYLES
+   2. CSS RESET & BASE
    ========================================================================== */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
@@ -72,80 +98,57 @@ body {
   font-weight: var(--font-weight-regular);
   line-height: 1.6;
   overflow-x: hidden;
+  transition: background-color 0.4s var(--ease-smooth), color 0.4s var(--ease-smooth);
 }
+
+.site-wrapper { overflow-x: hidden; }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--text-primary);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.1;
+  font-weight: 400;
+  line-height: 1.15;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
+img, video { max-width: 100%; display: block; }
+button { font: inherit; cursor: pointer; border: none; background: none; }
+::selection { background: var(--accent); color: #FFFFFF; }
 
-img,
-video {
-  max-width: 100%;
-  display: block;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
-  border: none;
-  background: none;
-}
-
-::selection {
-  background: var(--accent);
-  color: var(--bg-primary);
-}
-
-
-/* ── Custom scrollbar (webkit) ───────────────────────────────────────────── */
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(201, 131, 78, 0.25);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(201, 131, 78, 0.4);
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-secondary); }
+::-webkit-scrollbar-thumb { background: rgba(201, 131, 78, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 131, 78, 0.5); }
 
 
 /* ==========================================================================
-   3. UTILITY CLASSES
+   3. UTILITIES
    ========================================================================== */
 
-.container {
-  max-width: var(--content-width);
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-}
+.container { max-width: var(--content-width); margin: 0 auto; padding: 0 var(--space-md); }
+.container--narrow { max-width: var(--content-narrow); }
+.section { padding: var(--section-padding) 0; position: relative; }
 
-.container--narrow {
-  max-width: var(--content-narrow);
-}
 
-.section {
-  padding: var(--section-padding) 0;
+/* ==========================================================================
+   4. GRAIN OVERLAY (site-wide film texture)
+   ========================================================================== */
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
 }
 
 
 /* ==========================================================================
-   4. LOADER
+   5. LOADER
    ========================================================================== */
 
 .loader {
@@ -156,25 +159,23 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.8s var(--ease-smooth), opacity 0.8s var(--ease-smooth);
+  transition: transform 0.8s var(--ease-smooth), opacity 0.8s var(--ease-smooth),
+              background-color 0.4s var(--ease-smooth);
 }
 
 .loader__text {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4rem);
   color: var(--text-primary);
-  font-weight: var(--font-weight-bold);
+  font-style: italic;
   animation: loaderPulse 1.5s ease-in-out infinite;
 }
 
-.loader.loaded {
-  transform: translateY(-100%);
-  opacity: 0;
-}
+.loader.loaded { transform: translateY(-100%); opacity: 0; }
 
 
 /* ==========================================================================
-   5. HERO SECTION
+   6. HERO — Pong canvas game
    ========================================================================== */
 
 .hero {
@@ -187,59 +188,12 @@ button {
   overflow: hidden;
 }
 
-.hero__bg {
+.hero__canvas {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero__gradient {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 20% 50%, rgba(201, 131, 78, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(201, 131, 78, 0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(140, 90, 50, 0.1) 0%, transparent 50%),
-    radial-gradient(ellipse at 70% 60%, rgba(201, 131, 78, 0.05) 0%, transparent 40%);
-  animation: gradientFloat 25s ease-in-out infinite alternate;
-}
-
-.hero__content {
-  position: relative;
-  z-index: 1;
-  text-align: center;
-  max-width: 900px;
-  padding: 0 var(--space-md);
-}
-
-.hero__name {
-  font-size: clamp(3.5rem, 10vw, 9rem);
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-bold);
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
-  line-height: 1.1;
-  margin-bottom: var(--space-sm);
-}
-
-.hero__tagline {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
-  font-weight: var(--font-weight-light);
-  color: var(--text-secondary);
-  letter-spacing: 0.02em;
-  margin-bottom: var(--space-md);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  line-height: 1.5;
-}
-
-.hero__role {
-  font-size: clamp(0.75rem, 1.5vw, 1rem);
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  font-weight: var(--font-weight-regular);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .hero__scroll-cue {
@@ -256,21 +210,20 @@ button {
 
 .hero__scroll-cue span {
   color: var(--text-muted);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.2em;
 }
 
 .hero__scroll-arrow {
   width: 1px;
   height: 40px;
-  background-color: var(--accent);
+  background: linear-gradient(to bottom, var(--accent), transparent);
   transform-origin: top;
   animation: scrollBounce 2s ease-in-out infinite;
 }
 
-
-/* ── Hero animation states ────────────────────────────────────────────────── */
+/* ── Hero animation states ─────────────────────────────────────────────── */
 
 .hero [data-animate] {
   opacity: 0;
@@ -285,292 +238,546 @@ button {
 }
 
 
+
+
 /* ==========================================================================
-   6. GRAIN / NOISE TEXTURE OVERLAY
+   7. SITE NAV — Floating pill navigation
    ========================================================================== */
 
-body::after {
-  content: '';
+.site-nav {
   position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.04;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+  top: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: all 0.4s var(--ease-smooth);
 }
 
-
-/* ==========================================================================
-   7. FLOATING NAV (Vertical Scroll Dots)
-   ========================================================================== */
-
-.floating-nav {
-  position: fixed;
-  right: 2rem;
-  top: 50%;
-  transform: translateY(-50%);
+.site-nav__inner {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  z-index: 100;
+  gap: 2rem;
+  padding: 0.7rem 1.25rem;
+}
+
+.site-nav--compact {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.site-nav--compact .site-nav__inner {
+  padding: 0.55rem 1.1rem;
+}
+
+.site-nav--hidden {
+  transform: translateX(-50%) translateY(-120%);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--duration-normal) var(--ease-smooth);
 }
 
-.floating-nav.visible {
-  opacity: 1;
-  pointer-events: auto;
+.site-nav__logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  transition: color var(--duration-fast);
+  white-space: nowrap;
 }
 
-/* ── Connecting line between dots ────────────────────────────────────────── */
+.site-nav__logo:hover {
+  color: var(--accent);
+}
 
-.floating-nav::before {
+.site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.site-nav__link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  transition: color var(--duration-fast);
+  position: relative;
+  white-space: nowrap;
+}
+
+.site-nav__link::after {
   content: '';
   position: absolute;
-  top: 18px;
-  bottom: 18px;
-  left: 50%;
-  width: 1px;
-  background: rgba(92, 89, 86, 0.2);
-  transform: translateX(-50%);
-  pointer-events: none;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform var(--duration-fast);
+  transform-origin: right;
 }
 
-/* ── Nav dot (clickable area) ────────────────────────────────────────────── */
+.site-nav__link:hover { color: var(--text-primary); }
+.site-nav__link:hover::after { transform: scaleX(1); transform-origin: left; }
 
-.nav-dot {
-  position: relative;
+/* ── Theme Toggle ──────────────────────────────────────────────────────── */
+
+.theme-toggle {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* ── Visible dot ─────────────────────────────────────────────────────────── */
-
-.nav-dot span {
-  width: 8px;
-  height: 8px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--text-muted);
-  transition: all var(--duration-fast) var(--ease-smooth);
-}
-
-/* ── Active state ────────────────────────────────────────────────────────── */
-
-.nav-dot.active span {
-  background: var(--accent);
-  width: 10px;
-  height: 10px;
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-
-/* ── Hover state ─────────────────────────────────────────────────────────── */
-
-.nav-dot:hover span {
-  background: var(--accent-hover);
-  transform: scale(1.3);
-}
-
-/* ── Label tooltip (appears on hover) ────────────────────────────────────── */
-
-.nav-dot::before {
-  content: attr(data-label);
-  position: absolute;
-  right: 100%;
-  margin-right: 12px;
-  font-size: 0.75rem;
-  white-space: nowrap;
+  background: transparent;
   color: var(--text-secondary);
-  background: var(--bg-surface);
-  padding: 4px 10px;
-  border-radius: 4px;
-  opacity: 0;
-  transform: translateX(5px);
-  transition: all var(--duration-fast) var(--ease-smooth);
-  pointer-events: none;
+  transition: all var(--duration-fast);
+  cursor: pointer;
+  padding: 0;
+  border: none;
 }
 
-.nav-dot:hover::before {
-  opacity: 1;
-  transform: translateX(0);
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--accent-deep);
 }
+
+/* Show sun in dark mode, moon in light mode */
+.theme-toggle__sun { display: none; }
+.theme-toggle__moon { display: block; }
+
+[data-theme="dark"] .theme-toggle__sun { display: block; }
+[data-theme="dark"] .theme-toggle__moon { display: none; }
 
 
 /* ==========================================================================
-   8. PROJECT OVERVIEW SECTION (Movie-poster cards)
+   8. CASE STUDY — Chapter styling
    ========================================================================== */
 
-/* ── Section label ─────────────────────────────────────────────────────────── */
-
-.projects-overview__label {
-  font-family: var(--font-display);
-  color: var(--text-muted);
-  font-size: clamp(0.8rem, 1.5vw, 1rem);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: var(--space-xl);
-}
-
-/* ── Grid layout ───────────────────────────────────────────────────────────── */
-
-.projects-overview__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-lg);
-}
-
-/* ── Project card — base ───────────────────────────────────────────────────── */
-
-.project-card {
-  display: block;
+.case-study {
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--bg-surface);
-  transition: all var(--duration-normal) var(--ease-smooth);
-  text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: var(--space-3xl);
 }
 
-/* ── Card image ────────────────────────────────────────────────────────────── */
+/* ── Ambient background glow for case study ─────────────────────────────── */
 
-.project-card__image {
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: var(--bg-secondary);
+.cs-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(201, 131, 78, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 30%, rgba(160, 100, 60, 0.04) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 60%, rgba(201, 131, 78, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 100%, rgba(140, 90, 50, 0.05) 0%, transparent 40%);
 }
 
-.project-card__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-normal) var(--ease-smooth);
-}
+.case-study > div { margin-bottom: var(--space-2xl); }
 
-/* ── Card hover effects (premium feel) ─────────────────────────────────────── */
+/* ── Chapter marker ─────────────────────────────────────────────────────── */
 
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.4),
-    0 0 0 1px var(--accent-glow);
-  border-color: rgba(201, 131, 78, 0.15);
-}
-
-.project-card:hover .project-card__image img {
-  transform: scale(1.05);
-}
-
-.project-card:hover .project-card__title {
-  color: var(--accent);
-}
-
-/* ── Card info ─────────────────────────────────────────────────────────────── */
-
-.project-card__info {
-  padding: var(--space-md);
-}
-
-.project-card__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.2rem, 2vw, 1.5rem);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-  transition: color var(--duration-fast);
-}
-
-.project-card__subtitle {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-sm);
-}
-
-/* ── Tags ──────────────────────────────────────────────────────────────────── */
-
-.project-card__tags {
+.cs-chapter {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  padding: 4px 12px;
-  border-radius: 50px;
-  background: rgba(201, 131, 78, 0.1);
-  color: var(--accent);
-  border: 1px solid rgba(201, 131, 78, 0.2);
-  font-weight: 500;
-}
-
-
-/* ==========================================================================
-   9. CASE STUDY SECTIONS
-   ========================================================================== */
-
-/* ── General case study spacing ───────────────────────────────────────────── */
-
-.case-study > div {
+  align-items: baseline;
+  gap: var(--space-lg);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid var(--border-light);
   margin-bottom: var(--space-2xl);
 }
 
-.cs-section-label {
+.cs-chapter__number {
   font-family: var(--font-display);
+  font-size: clamp(4rem, 8vw, 7rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--accent);
+  opacity: 0.2;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.cs-chapter__title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 0.5rem;
+}
+
+.cs-chapter__desc {
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+/* ── CS Section label (reused) ─────────────────────────────────────────── */
+
+.cs-section-label {
+  font-family: var(--font-body);
   color: var(--text-muted);
   font-size: clamp(0.8rem, 1.5vw, 1rem);
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  font-weight: 500;
   margin-bottom: var(--space-lg);
 }
 
 
-/* ── 1. CS Hero (full-bleed) ──────────────────────────────────────────────── */
+/* ==========================================================================
+   8b. INTRO — Brief positioning statement
+   ========================================================================== */
 
-.cs-hero {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  min-height: 60vh;
+.intro {
   position: relative;
   overflow: hidden;
-  margin-bottom: var(--space-3xl);
 }
 
-.cs-hero img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  min-height: 60vh;
-}
-
-.cs-hero::after {
-  content: '';
+.intro__ambient {
   position: absolute;
-  bottom: 0;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(201, 131, 78, 0.04) 0%, transparent 60%);
+}
+
+.intro__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   8c. WORK SHOWCASE — Large card gallery
+   ========================================================================== */
+
+.work-showcase {
+  position: relative;
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-3xl);
+}
+
+.work-ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 30% 0%, rgba(201, 131, 78, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 100%, rgba(160, 100, 60, 0.04) 0%, transparent 40%);
+}
+
+.work-showcase__title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+.work-showcase__subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+/* ── Work Gallery — Large vertical card list ───────────────────────────── */
+
+.work-gallery {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ── Work Card — Large horizontal layout ─────────────────────────────── */
+
+.work-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-smooth);
+  cursor: pointer;
+}
+
+/* Hover focus effect: dim siblings, highlight active */
+.work-gallery:hover .work-card {
+  opacity: 0.55;
+  filter: blur(1px);
+}
+
+.work-gallery:hover .work-card:hover {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1.015);
+  border-color: rgba(201, 131, 78, 0.25);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.1), 0 8px 24px rgba(201, 131, 78, 0.08);
+}
+
+.work-card:not(:hover) {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Card image area ─────────────────────────────────────────────────── */
+
+.work-card__image {
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  min-height: 380px;
+}
+
+.work-card__image img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.12));
+  transition: transform 0.5s var(--ease-smooth);
+}
+
+.work-card:hover .work-card__image img {
+  transform: scale(1.05) translateY(-6px);
+}
+
+.work-card__image--empty {
+  background: var(--bg-secondary);
+}
+
+.work-card__image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+}
+
+/* ── Card text content ───────────────────────────────────────────────── */
+
+.work-card__content {
+  padding: var(--space-xl) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.work-card__number {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4rem);
+  font-weight: var(--font-weight-bold);
+  color: var(--accent);
+  opacity: 0.15;
+  line-height: 1;
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+.work-card__title {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  margin-bottom: var(--space-sm);
+}
+
+.work-card__tagline {
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+  max-width: 460px;
+}
+
+.work-card__badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 5px 14px;
+  border-radius: 50px;
+  background: rgba(201, 131, 78, 0.08);
+  border: 1px solid rgba(201, 131, 78, 0.15);
+  color: var(--accent);
+  width: fit-content;
+}
+
+/* ── Placeholder card adjustments ────────────────────────────────────── */
+
+.work-card--placeholder {
+  cursor: default;
+}
+
+.work-gallery:hover .work-card--placeholder {
+  opacity: 0.4;
+  filter: blur(1px);
+}
+
+.work-gallery:hover .work-card--placeholder:hover {
+  opacity: 0.6;
+  filter: blur(0);
+  transform: none;
+  border-color: var(--border-light);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ==========================================================================
+   INTERACTIVE HOVER BUTTON — Expanding circle effect
+   ========================================================================== */
+
+.hover-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 50px;
+  border: 1px solid var(--border-medium);
+  background: var(--bg-surface);
+  padding: 0.65rem 1.6rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  text-decoration: none;
+  min-width: 160px;
+  height: 42px;
+}
+
+.hover-btn__text {
+  display: inline-block;
+  transform: translateX(2px);
+  transition: all 0.3s var(--ease-smooth);
+  position: relative;
+  z-index: 2;
+}
+
+.hover-btn:hover .hover-btn__text {
+  transform: translateX(3rem);
+  opacity: 0;
+}
+
+.hover-btn__hover-content {
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  height: 30%;
-  background: linear-gradient(to top, var(--bg-primary), transparent);
-  pointer-events: none;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transform: translateX(3rem);
+  opacity: 0;
+  transition: all 0.3s var(--ease-smooth);
+  color: #FFFFFF;
+  z-index: 2;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.hover-btn:hover .hover-btn__hover-content {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.hover-btn__circle {
+  position: absolute;
+  left: 20%;
+  top: 40%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  transition: all 0.35s var(--ease-smooth);
+  z-index: 1;
+}
+
+.hover-btn:hover .hover-btn__circle {
+  left: -10%;
+  top: -10%;
+  width: 120%;
+  height: 120%;
+  border-radius: 50px;
+}
+
+/* ── Footer variant ──────────────────────────────────────────────────── */
+
+.hover-btn--footer {
+  min-width: auto;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.85rem;
+  height: auto;
 }
 
 
-/* ── 2. CS Hook ───────────────────────────────────────────────────────────── */
+/* ── Responsive — work gallery ───────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .work-card {
+    grid-template-columns: 1fr;
+  }
+  .work-card__image { min-height: 240px; padding: var(--space-lg); }
+  .work-card__image img { max-width: 100%; }
+  .work-card__content { padding: var(--space-lg); }
+  .work-gallery:hover .work-card { opacity: 1; filter: none; }
+  .work-gallery:hover .work-card--placeholder { opacity: 0.7; }
+}
+
+
+/* ==========================================================================
+   9. CS SHOWCASE — 3 large phones side by side
+   ========================================================================== */
+
+.cs-showcase {
+  overflow: hidden;
+  padding: var(--space-xl) 0;
+}
+
+.cs-showcase__track {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: 0 var(--space-md);
+}
+
+.cs-showcase__phone {
+  flex: 0 0 auto;
+  width: clamp(200px, 25vw, 320px);
+  transition: transform var(--duration-normal) var(--ease-smooth);
+}
+
+.cs-showcase__phone img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+}
+
+.cs-showcase__phone--hero {
+  width: clamp(240px, 30vw, 380px);
+  transform: translateY(-20px);
+}
+
+.cs-showcase__phone--hero img {
+  filter: drop-shadow(0 30px 60px rgba(201, 131, 78, 0.12)) drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+}
+
+
+/* ==========================================================================
+   10. CS HOOK
+   ========================================================================== */
 
 .cs-hook {
   text-align: center;
-  padding: var(--space-3xl) 0;
-  margin-bottom: var(--space-xl);
+  padding: var(--space-2xl) 0;
 }
 
 .cs-hook__text {
@@ -582,11 +789,9 @@ body::after {
 }
 
 
-/* ── 3. CS Setup ──────────────────────────────────────────────────────────── */
-
-.cs-setup {
-  margin-bottom: var(--space-2xl);
-}
+/* ==========================================================================
+   11. CS SETUP
+   ========================================================================== */
 
 .cs-setup__text {
   font-size: clamp(1rem, 1.5vw, 1.2rem);
@@ -600,13 +805,10 @@ body::after {
   flex-wrap: wrap;
   gap: var(--space-md) var(--space-xl);
   padding-top: var(--space-md);
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--border-light);
 }
 
-.meta-item {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
+.meta-item { font-size: 0.85rem; color: var(--text-muted); }
 
 .meta-item strong {
   display: block;
@@ -618,28 +820,35 @@ body::after {
 }
 
 
-/* ── 4. CS Problem ────────────────────────────────────────────────────────── */
+/* ==========================================================================
+   12. CS PROBLEM
+   ========================================================================== */
 
-.cs-problem {
-  margin-bottom: var(--space-3xl);
-  text-align: center;
+.cs-problem__content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xl);
 }
 
-.cs-problem__visual {
-  margin-bottom: var(--space-xl);
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--bg-secondary);
+.cs-problem__phone {
+  flex: 0 0 auto;
+  width: clamp(260px, 30vw, 380px);
 }
 
-.cs-problem__visual img {
+.cs-problem__phone img {
   width: 100%;
+  height: auto;
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.12));
+}
+
+.cs-problem__info {
+  flex: 1;
+  text-align: left;
 }
 
 .cs-problem__metric {
   display: flex;
   align-items: baseline;
-  justify-content: center;
   flex-wrap: wrap;
   gap: 0.25rem;
 }
@@ -647,7 +856,6 @@ body::after {
 .metric__number {
   font-family: var(--font-display);
   font-size: clamp(4rem, 8vw, 7rem);
-  font-weight: var(--font-weight-bold);
   color: var(--accent);
   line-height: 1;
 }
@@ -655,9 +863,7 @@ body::after {
 .metric__unit {
   font-family: var(--font-display);
   font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: var(--font-weight-light);
   color: var(--accent);
-  line-height: 1;
 }
 
 .metric__label {
@@ -668,59 +874,79 @@ body::after {
 }
 
 
-/* ── 5. CS Research ───────────────────────────────────────────────────────── */
+/* ==========================================================================
+   13. CS SCROLL — Horizontal scroll gallery for research & iteration
+   ========================================================================== */
 
-.cs-research {
-  margin-bottom: var(--space-3xl);
+.cs-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(201, 131, 78, 0.25) transparent;
+  padding-bottom: var(--space-md);
 }
 
-.cs-research__cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
+.cs-scroll::-webkit-scrollbar { height: 4px; }
+.cs-scroll::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.03); }
+.cs-scroll::-webkit-scrollbar-thumb { background: rgba(201, 131, 78, 0.3); border-radius: 2px; }
+
+.cs-scroll__track {
+  display: flex;
+  gap: var(--space-lg);
+  padding: var(--space-md) var(--space-md) var(--space-sm);
+  width: max-content;
 }
 
-.research-card {
-  background: var(--bg-surface);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: transform var(--duration-fast) var(--ease-smooth);
+.cs-scroll__card {
+  scroll-snap-align: center;
+  flex: 0 0 auto;
+  width: clamp(280px, 35vw, 400px);
+  text-align: center;
 }
 
-.research-card:hover {
-  transform: translateY(-4px);
+.cs-scroll__version {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  background: rgba(201, 131, 78, 0.08);
+  padding: 4px 16px;
+  border-radius: 50px;
+  margin-bottom: var(--space-sm);
+  border: 1px solid rgba(201, 131, 78, 0.15);
 }
 
-.research-card__image {
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: var(--bg-secondary);
+.cs-scroll__phone {
+  margin-bottom: var(--space-md);
 }
 
-.research-card__image img {
+.cs-scroll__phone img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.12));
 }
 
-.research-card__text {
-  padding: var(--space-md);
+.cs-scroll__caption {
   font-size: 0.95rem;
+  color: var(--text-secondary);
   line-height: 1.5;
+  max-width: 340px;
+  margin: 0 auto;
 }
 
-.research-card__text em {
+.cs-scroll__caption em {
   color: var(--accent);
   font-style: italic;
 }
 
 
-/* ── 6. CS Aha ────────────────────────────────────────────────────────────── */
-
-.cs-aha {
-  margin-bottom: var(--space-3xl);
-}
+/* ==========================================================================
+   14. CS AHA — Before / After
+   ========================================================================== */
 
 .cs-aha__comparison {
   display: grid;
@@ -729,40 +955,37 @@ body::after {
   margin-bottom: var(--space-lg);
 }
 
-.cs-aha__before,
-.cs-aha__after {
+.cs-aha__side {
   position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--bg-secondary);
+  text-align: center;
 }
 
 .cs-aha__label {
-  position: absolute;
-  top: var(--space-sm);
-  left: var(--space-sm);
+  display: inline-block;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   padding: 4px 12px;
   border-radius: 50px;
-  z-index: 1;
-}
-
-.cs-aha__before .cs-aha__label {
-  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: var(--space-md);
+  background: var(--border-light);
   color: var(--text-secondary);
 }
 
-.cs-aha__after .cs-aha__label {
+.cs-aha__label--accent {
   background: var(--accent);
-  color: var(--bg-primary);
+  color: #FFFFFF;
 }
 
-.cs-aha__before img,
-.cs-aha__after img {
+.cs-aha__phone {
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.cs-aha__phone img {
   width: 100%;
-  display: block;
+  height: auto;
+  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.12));
 }
 
 .cs-aha__insight {
@@ -773,84 +996,25 @@ body::after {
   color: var(--text-primary);
 }
 
-.cs-aha__insight em {
-  color: var(--accent);
-  font-style: italic;
-}
+.cs-aha__insight em { color: var(--accent); font-style: italic; }
 
 
-/* ── 7. CS Iteration ──────────────────────────────────────────────────────── */
-
-.cs-iteration {
-  margin-bottom: var(--space-3xl);
-}
-
-.cs-iteration__sequence {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  position: relative;
-}
-
-.iteration-step {
-  position: relative;
-  text-align: center;
-}
-
-.iteration-step__version {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--accent);
-  background: rgba(201, 131, 78, 0.1);
-  padding: 4px 16px;
-  border-radius: 50px;
-  margin-bottom: var(--space-sm);
-  border: 1px solid rgba(201, 131, 78, 0.2);
-}
-
-.iteration-step__image {
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: var(--space-sm);
-  background: var(--bg-secondary);
-  aspect-ratio: 9 / 16;
-}
-
-.iteration-step__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.iteration-step__note {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  max-width: 280px;
-  margin: 0 auto;
-}
+/* Section 15 removed — iteration now uses cs-scroll system */
 
 
-/* ── 8. CS Feedback ───────────────────────────────────────────────────────── */
+/* ==========================================================================
+   16. CS FEEDBACK
+   ========================================================================== */
 
-.cs-feedback {
-  margin-bottom: var(--space-3xl);
-  padding: var(--space-2xl) 0;
-}
+.cs-feedback { padding: var(--space-2xl) 0; }
 
-.feedback-quote {
-  text-align: center;
-  position: relative;
-}
+.feedback-quote { text-align: center; position: relative; }
 
 .feedback-quote__mark {
   font-family: var(--font-display);
   font-size: clamp(5rem, 10vw, 8rem);
   color: var(--accent);
-  opacity: 0.2;
+  opacity: 0.15;
   line-height: 1;
   display: block;
   margin-bottom: -2rem;
@@ -873,41 +1037,9 @@ body::after {
 }
 
 
-/* ── 9. CS Finals ─────────────────────────────────────────────────────────── */
-
-.cs-finals {
-  margin-bottom: var(--space-3xl);
-}
-
-.cs-finals__gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-}
-
-.cs-finals__mockup {
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--bg-secondary);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  transition: transform var(--duration-normal) var(--ease-smooth);
-}
-
-.cs-finals__mockup:hover {
-  transform: translateY(-8px) scale(1.02);
-}
-
-.cs-finals__mockup img {
-  width: 100%;
-  display: block;
-}
-
-
-/* ── 10. CS Impact ────────────────────────────────────────────────────────── */
-
-.cs-impact {
-  margin-bottom: var(--space-xl);
-}
+/* ==========================================================================
+   17. CS IMPACT
+   ========================================================================== */
 
 .cs-impact__metrics {
   display: grid;
@@ -916,14 +1048,11 @@ body::after {
   text-align: center;
 }
 
-.impact-metric {
-  padding: var(--space-lg) 0;
-}
+.impact-metric { padding: var(--space-lg) 0; }
 
 .impact-metric__number {
   font-family: var(--font-display);
   font-size: clamp(3.5rem, 7vw, 6rem);
-  font-weight: var(--font-weight-bold);
   color: var(--accent);
   line-height: 1;
   display: inline;
@@ -932,9 +1061,7 @@ body::after {
 .impact-metric__unit {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 3vw, 2.5rem);
-  font-weight: var(--font-weight-light);
   color: var(--accent);
-  line-height: 1;
 }
 
 .impact-metric__label {
@@ -947,40 +1074,26 @@ body::after {
 }
 
 
-/* ==========================================================================
-   11. INTERSTITIAL QUOTE SECTION
-   ========================================================================== */
-
-.interstitial {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background:
-    radial-gradient(ellipse at 50% 50%, rgba(201, 131, 78, 0.04) 0%, transparent 60%),
-    var(--bg-secondary);
-}
-
-.interstitial__quote {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
-  font-weight: var(--font-weight-bold);
-  color: var(--text-primary);
-  text-align: center;
-  line-height: 1.3;
-  max-width: 700px;
-  margin: 0 auto;
-}
+/* Section 18 removed — interstitial no longer used */
 
 
 /* ==========================================================================
-   12. ABOUT / CONTACT SECTION
+   19. ABOUT SECTION
    ========================================================================== */
 
 .about {
-  background: var(--bg-secondary);
   position: relative;
+  overflow: hidden;
+}
+
+.about__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(201, 131, 78, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(160, 100, 60, 0.04) 0%, transparent 40%),
+    var(--bg-secondary);
 }
 
 .about::before {
@@ -990,175 +1103,269 @@ body::after {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.06) 50%,
-    transparent
-  );
+  background: linear-gradient(to right, transparent, var(--accent-glow) 50%, transparent);
 }
+
+/* ── About intro — large statement heading ───────────────────────────── */
+
+.about__label {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  margin-bottom: var(--space-lg);
+}
+
+.about__headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  max-width: 800px;
+  margin-bottom: var(--space-2xl);
+}
+
+/* ── About grid — bio + details side by side ─────────────────────────── */
 
 .about__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   gap: var(--space-2xl);
   align-items: start;
 }
 
-
-/* ── About card (left side) ────────────────────────────────────────────────── */
-
-.about__name {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3.5rem);
-  font-weight: var(--font-weight-bold);
-  margin-bottom: var(--space-xs);
-}
-
-.about__location {
-  font-size: 1.1rem;
-  color: var(--accent);
-  margin-bottom: var(--space-lg);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
-}
-
-.about__focus {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
+.about__bio p {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   color: var(--text-secondary);
   line-height: 1.7;
   margin-bottom: var(--space-md);
 }
 
-.about__fun {
-  font-size: 0.9rem;
+.about__bio p:last-child {
   color: var(--text-muted);
   font-style: italic;
+  font-size: 0.95rem;
+  margin-bottom: 0;
 }
 
+/* ── About details — structured info blocks ──────────────────────────── */
 
-/* ── Contact side (right side) ─────────────────────────────────────────────── */
-
-.about__contact {
-  padding-top: var(--space-md);
-}
-
-.about__looking {
-  font-size: clamp(1rem, 1.5vw, 1.15rem);
-  color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: var(--space-lg);
-}
-
-
-/* ── CTA Button (premium feel) ─────────────────────────────────────────────── */
-
-.about__cta {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--bg-primary);
-  background: var(--accent);
-  padding: 1rem 2.5rem;
-  border-radius: 50px;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: all var(--duration-fast) var(--ease-smooth);
-  box-shadow: 0 8px 24px var(--accent-glow);
-  margin-bottom: var(--space-lg);
-}
-
-.about__cta::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.5s ease, height 0.5s ease;
-}
-
-.about__cta:hover {
-  background: var(--accent-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(201, 131, 78, 0.25);
-}
-
-.about__cta:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-
-/* ── Social links ──────────────────────────────────────────────────────────── */
-
-.about__links {
+.about__details {
   display: flex;
+  flex-direction: column;
   gap: var(--space-md);
+  padding-top: 0.25rem;
 }
 
-.about__link {
-  font-size: 0.9rem;
+.about__detail-group {
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.about__detail-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.about__detail-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--text-muted);
-  position: relative;
-  transition: color var(--duration-fast);
+  margin-bottom: 0.35rem;
 }
 
-.about__link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 100%;
-  height: 1px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transition: transform var(--duration-fast);
-  transform-origin: right;
-}
-
-.about__link:hover {
-  color: var(--accent);
-}
-
-.about__link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.about__detail-value {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.5;
 }
 
 
 /* ==========================================================================
-   13. FOOTER
+   20. FOOTER — Floating rounded rectangle with retro grid
    ========================================================================== */
 
 .footer {
-  padding: var(--space-lg) 0;
-  text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  margin: var(--space-xl) var(--space-md) 0;
+  padding: clamp(4rem, 8vh, 6rem) var(--space-lg) var(--space-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 32px 32px 0 0;
+  overflow: hidden;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.06), 0 -2px 12px rgba(0, 0, 0, 0.03);
 }
 
-.footer__text {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+.footer__content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-lg);
+}
+
+/* ── Footer CTA heading ──────────────────────────────────────────────── */
+
+.footer__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.footer__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.footer__heading em {
+  color: var(--accent);
   font-style: italic;
+}
+
+.footer__subtext {
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 400px;
+}
+
+/* ── Footer action links ─────────────────────────────────────────────── */
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.footer__link-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.footer__pill-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  border-radius: 50px;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.footer__pill-link:hover {
+  color: var(--accent);
+  border-color: rgba(201, 131, 78, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Larger hover button variant */
+.hover-btn--lg {
+  min-width: 180px;
+  height: 48px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+}
+
+/* ── Footer bottom — credit ──────────────────────────────────────────── */
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border-subtle);
+  width: 100%;
+}
+
+.footer__credit {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
 
 /* ==========================================================================
-   14. CUSTOM CURSOR
+   RETRO GRID — Animated perspective grid background
+   ========================================================================== */
+
+.retro-grid {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0.75;
+  perspective: 200px;
+  z-index: 1;
+}
+
+.retro-grid__plane {
+  position: absolute;
+  inset: 0;
+  transform: rotateX(65deg);
+}
+
+.retro-grid__lines {
+  background-repeat: repeat;
+  background-size: 60px 60px;
+  height: 300vh;
+  inset: 0% 0px;
+  margin-left: -50%;
+  transform-origin: 100% 0 0;
+  width: 600vw;
+  animation: retroGridScroll 20s linear infinite;
+  background-image:
+    linear-gradient(to right, rgba(0, 0, 0, 0.15) 1px, transparent 0),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 1px, transparent 0);
+}
+
+[data-theme="dark"] .retro-grid__lines {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.12) 1px, transparent 0),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.12) 1px, transparent 0);
+}
+
+.retro-grid__fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg-surface) 0%, transparent 80%);
+}
+
+@keyframes retroGridScroll {
+  0% { transform: translateY(-50%); }
+  100% { transform: translateY(0); }
+}
+
+
+/* ==========================================================================
+   21. CUSTOM CURSOR
    ========================================================================== */
 
 body.has-custom-cursor,
 body.has-custom-cursor a,
-body.has-custom-cursor button {
-  cursor: none;
-}
+body.has-custom-cursor button { cursor: none; }
 
 .cursor {
   position: fixed;
@@ -1169,9 +1376,7 @@ body.has-custom-cursor button {
   display: none;
 }
 
-body.has-custom-cursor .cursor {
-  display: block;
-}
+body.has-custom-cursor .cursor { display: block; }
 
 .cursor__dot {
   width: 8px;
@@ -1187,114 +1392,29 @@ body.has-custom-cursor .cursor {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  border: 1px solid rgba(201, 131, 78, 0.4);
+  border: 1px solid rgba(201, 131, 78, 0.5);
   position: absolute;
   transform: translate(-50%, -50%);
   transition: width var(--duration-fast), height var(--duration-fast),
               border-color var(--duration-fast), opacity var(--duration-fast);
 }
 
-.cursor--hover .cursor__dot {
-  width: 4px;
-  height: 4px;
-  background: var(--accent-hover);
-}
-
-.cursor--hover .cursor__ring {
-  width: 50px;
-  height: 50px;
-  border-color: rgba(201, 131, 78, 0.6);
-}
-
-.cursor--click .cursor__ring {
-  width: 30px;
-  height: 30px;
-  opacity: 0.8;
-}
+.cursor--hover .cursor__dot { width: 4px; height: 4px; background: var(--accent-hover); }
+.cursor--hover .cursor__ring { width: 50px; height: 50px; border-color: rgba(201, 131, 78, 0.7); }
+.cursor--click .cursor__ring { width: 30px; height: 30px; opacity: 0.8; }
 
 
 /* ==========================================================================
-   15. RESPONSIVE DESIGN
+   22. ACCESSIBILITY
    ========================================================================== */
 
-/* ── Tablet (768px and below) ───────────────────────────────────────────── */
-
-@media (max-width: 768px) {
-
-  /* Project overview: single column */
-  .projects-overview__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-
-  /* Research cards: 1 column */
-  .cs-research__cards {
-    grid-template-columns: 1fr;
-  }
-
-  /* Aha: stack before/after */
-  .cs-aha__comparison {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-
-  /* Iteration: single column */
-  .cs-iteration__sequence {
-    grid-template-columns: 1fr;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Finals gallery: single column */
-  .cs-finals__gallery {
-    grid-template-columns: 1fr;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Impact metrics: single column */
-  .cs-impact__metrics {
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-
-  /* About: stack to single column */
-  .about__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-xl);
-  }
-
-  /* Floating nav: hide on tablet/mobile */
-  .floating-nav {
-    display: none;
-  }
-
-  /* Reduce section spacing */
-  .case-study > div {
-    margin-bottom: var(--space-xl);
-  }
-
-  /* Setup meta: stack */
-  .cs-setup__meta {
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-}
-
-/* ==========================================================================
-   16. ACCESSIBILITY
-   ========================================================================== */
-
-/* Skip to content link — hidden until focused */
 .skip-link {
   position: fixed;
   top: -100%;
   left: var(--space-md);
   z-index: 10002;
   background: var(--accent);
-  color: var(--bg-primary);
+  color: #FFFFFF;
   padding: 0.75rem 1.5rem;
   border-radius: 0 0 8px 8px;
   font-family: var(--font-body);
@@ -1303,83 +1423,52 @@ body.has-custom-cursor .cursor {
   transition: top var(--duration-fast) var(--ease-smooth);
 }
 
-.skip-link:focus {
-  top: 0;
-  outline: none;
+.skip-link:focus { top: 0; outline: none; }
+
+*:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+*:focus:not(:focus-visible) { outline: none; }
+
+.site-nav__link:focus-visible { color: var(--accent); }
+
+
+/* ==========================================================================
+   23. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .about__grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+
+  /* Pill nav — smaller on mobile */
+  .site-nav__inner { gap: 1rem; padding: 0.5rem 1rem; }
+  .site-nav__links { gap: 1rem; }
+  .site-nav__link { font-size: 0.8rem; }
+  .site-nav__logo { font-size: 1rem; }
+
+  .footer {
+    margin: var(--space-lg) var(--space-sm) 0;
+    padding: var(--space-xl) var(--space-md) var(--space-md);
+    border-radius: 24px 24px 0 0;
+  }
+  .footer__heading { font-size: clamp(2rem, 8vw, 3rem); }
+  .footer__link-row { flex-wrap: wrap; justify-content: center; }
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
 }
-
-/* Focus outlines for keyboard navigation */
-*:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* Remove outline for mouse users */
-*:focus:not(:focus-visible) {
-  outline: none;
-}
-
-/* Nav dot focus */
-.nav-dot:focus-visible span {
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-
-/* Project card focus */
-.project-card:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 4px;
-  transform: translateY(-4px);
-}
-
-/* CTA button focus */
-.about__cta:focus-visible {
-  outline: 2px solid var(--text-primary);
-  outline-offset: 4px;
-}
-
-
-/* ── Mobile (480px and below) ───────────────────────────────────────────── */
 
 @media (max-width: 480px) {
+  .container { padding: 0 var(--space-sm); }
+  .hero__scroll-cue { bottom: 1.5rem; }
+  .hero__scroll-arrow { height: 30px; }
+  .footer__heading { font-size: clamp(2.5rem, 10vw, 4rem); }
 
-  /* Tighter container padding */
-  .container {
-    padding: 0 var(--space-sm);
-  }
+  /* Pill nav — even smaller on very small screens */
+  .site-nav { top: 0.75rem; }
+  .site-nav__inner { gap: 0.6rem; padding: 0.4rem 0.75rem; }
+  .site-nav__links { gap: 0.6rem; }
+  .site-nav__link { font-size: 0.75rem; }
+  .site-nav__logo { font-size: 0.9rem; }
 
-  /* Hero adjustments */
-  .hero__content {
-    padding: 0 var(--space-sm);
-  }
-
-  /* Scroll cue smaller */
-  .hero__scroll-cue {
-    bottom: 1.5rem;
-  }
-
-  .hero__scroll-arrow {
-    height: 30px;
-  }
-
-  /* Hook text smaller */
-  .cs-hook {
-    padding: var(--space-xl) 0;
-  }
-
-  /* Feedback quote: reduce mark size */
-  .feedback-quote__mark {
-    font-size: clamp(3rem, 8vw, 5rem);
-  }
-
-  /* About CTA: full width */
-  .about__cta {
-    display: block;
-    text-align: center;
-  }
-
-  /* Reduce overall section spacing */
-  .case-study > div {
-    margin-bottom: var(--space-lg);
-  }
+  .hover-btn { min-width: 140px; font-size: 0.8rem; padding: 0.5rem 1.2rem; height: 38px; }
 }

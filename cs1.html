@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Reimagining Search — Reducing decision fatigue on a streaming platform through mood-based discovery">
+  <title>Reimagining Search — Arun Peri</title>
+
+  <meta property="og:title" content="Reimagining Search — Arun Peri">
+  <meta property="og:description" content="Deep dive into reducing decision fatigue through mood-based discovery">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/case-study.css">
+</head>
+<body>
+
+  <div class="site-wrapper">
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"></div>
+    </div>
+
+    <!-- Back Navigation + Theme Toggle -->
+    <nav class="cs-nav">
+      <a href="index.html" class="cs-nav__back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back</span>
+      </a>
+      <button class="theme-toggle cs-nav__theme" aria-label="Toggle theme">
+        <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="cs-progress">
+      <div class="cs-progress__bar"></div>
+    </div>
+
+    <main>
+
+      <!-- ================================================================
+           HERO — Full viewport, massive phone reveal
+           ================================================================ -->
+      <section class="cs-hero">
+        <div class="cs-hero__bg">
+          <div class="cs-hero__gradient"></div>
+        </div>
+        <div class="cs-hero__content">
+          <div class="cs-hero__meta">
+            <span class="cs-hero__tag">Case Study</span>
+            <span class="cs-hero__tag">2024</span>
+            <span class="cs-hero__tag">Lead Designer</span>
+          </div>
+          <h1 class="cs-hero__title" data-animate="fade-up">Reimagining<br><em>Search</em></h1>
+          <p class="cs-hero__subtitle" data-animate="fade-up" data-delay="0.2">Reducing decision fatigue on a streaming platform<br>through mood-based discovery</p>
+        </div>
+        <div class="cs-hero__phone-wrapper">
+          <div class="cs-hero__phone">
+            <img src="assets/images/final-confidence-card.png" alt="Final search redesign — high confidence card">
+          </div>
+        </div>
+        <div class="cs-hero__scroll">
+          <span>Scroll to explore</span>
+          <div class="cs-hero__scroll-line"></div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           THE HOOK — Full viewport dramatic question
+           ================================================================ -->
+      <section class="cs-block cs-block--centered">
+        <div class="cs-block__inner">
+          <p class="cs-big-text" data-animate="fade-up">Ever spent 30 minutes<br>choosing what to watch...<br><em>then watched nothing?</em></p>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           CONTEXT — Problem + project details
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner cs-context">
+          <div class="cs-context__text" data-animate="fade-up">
+            <span class="cs-label">The Problem</span>
+            <h2 class="cs-heading">Decision fatigue is killing streaming engagement</h2>
+            <p class="cs-body">Users are overwhelmed by choice, endlessly scrolling through content libraries without committing. The search experience was a dead end — cluttered, passive, and unhelpful.</p>
+          </div>
+          <div class="cs-context__details" data-animate="fade-up" data-delay="0.2">
+            <div class="cs-detail">
+              <span class="cs-detail__label">Role</span>
+              <span class="cs-detail__value">Lead Designer</span>
+            </div>
+            <div class="cs-detail">
+              <span class="cs-detail__label">Duration</span>
+              <span class="cs-detail__value">8 weeks</span>
+            </div>
+            <div class="cs-detail">
+              <span class="cs-detail__label">Team</span>
+              <span class="cs-detail__value">2 designers, 3 engineers</span>
+            </div>
+            <div class="cs-detail">
+              <span class="cs-detail__label">Platform</span>
+              <span class="cs-detail__value">iOS & Android</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           THE PROBLEM — Big stat + massive before screen
+           ================================================================ -->
+      <section class="cs-block cs-block--dark">
+        <div class="cs-block__inner cs-stat-hero">
+          <div class="cs-stat-hero__number" data-animate="fade-up">
+            <span class="cs-stat-hero__value" data-target="68">0</span>
+            <span class="cs-stat-hero__unit">%</span>
+          </div>
+          <p class="cs-stat-hero__label" data-animate="fade-up" data-delay="0.1">of users browse for 10+ minutes<br>before selecting content</p>
+          <div class="cs-stat-hero__phone" data-animate="scale-in" data-delay="0.2">
+            <img src="assets/images/before-landing.png" alt="Original cluttered search landing page">
+            <span class="cs-phone-caption">The old search landing</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           DISCOVERY — Centered vertical flow, huge phones
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Research</span>
+            <h2 class="cs-heading">What we discovered</h2>
+          </div>
+        </div>
+
+        <div class="cs-findings">
+          <!-- Finding 1 -->
+          <div class="cs-finding" data-animate="fade-up">
+            <div class="cs-finding__header">
+              <h3 class="cs-finding__title">Search Landing</h3>
+              <p class="cs-finding__desc">This is the primary entry point for search and serves as the central discovery hub for all content.</p>
+            </div>
+            <div class="cs-finding__phone">
+              <img src="assets/images/before-landing.png" alt="Old search landing with cluttered categories">
+            </div>
+            <div class="cs-finding__callout">
+              <p>Categories and content competed for attention. Users didn't know where to start — the experience was <em>passive</em>, not guiding.</p>
+            </div>
+          </div>
+
+          <!-- Finding 2 -->
+          <div class="cs-finding" data-animate="fade-up">
+            <div class="cs-finding__header">
+              <h3 class="cs-finding__title">Search Input</h3>
+              <p class="cs-finding__desc">Once a user taps on search, they're met with a blank canvas and their own search history.</p>
+            </div>
+            <div class="cs-finding__phone">
+              <img src="assets/images/before-input.png" alt="Old search input with no guidance">
+            </div>
+            <div class="cs-finding__callout">
+              <p>Just a blinking cursor and old queries. No guidance, no inspiration. Users had to <em>already know</em> what they wanted.</p>
+            </div>
+          </div>
+
+          <!-- Finding 3 -->
+          <div class="cs-finding" data-animate="fade-up">
+            <div class="cs-finding__header">
+              <h3 class="cs-finding__title">Search Results</h3>
+              <p class="cs-finding__desc">After typing a query, users are shown a flat list of matching content with minimal context.</p>
+            </div>
+            <div class="cs-finding__phone">
+              <img src="assets/images/before-results.png" alt="Old search results with generic listings">
+            </div>
+            <div class="cs-finding__callout">
+              <p>Results were flat listings with no confidence signal. Users couldn't tell <em>which result was best</em> — so they scrolled endlessly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           THE SHIFT — Dramatic insight moment
+           ================================================================ -->
+      <section class="cs-block cs-block--centered cs-block--accent">
+        <div class="cs-block__inner">
+          <span class="cs-label cs-label--light" data-animate="fade-up">The Insight</span>
+          <p class="cs-big-text cs-big-text--white" data-animate="fade-up" data-delay="0.1">What if we asked<br>how you <em>feel</em>,<br>not what you want?</p>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           BEFORE / AFTER — Massive side-by-side comparison
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Transformation</span>
+            <h2 class="cs-heading">The shift in experience</h2>
+          </div>
+
+          <div class="cs-comparison" data-animate="fade-up">
+            <div class="cs-comparison__side">
+              <span class="cs-comparison__label">Before</span>
+              <div class="cs-comparison__phone">
+                <img src="assets/images/before-landing.png" alt="Original search landing">
+              </div>
+              <p class="cs-comparison__caption">Cluttered. Passive. Overwhelming.</p>
+            </div>
+            <div class="cs-comparison__divider">
+              <div class="cs-comparison__divider-line"></div>
+              <span class="cs-comparison__divider-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12H19M19 12L14 7M19 12L14 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <div class="cs-comparison__divider-line"></div>
+            </div>
+            <div class="cs-comparison__side cs-comparison__side--after">
+              <span class="cs-comparison__label cs-comparison__label--accent">After</span>
+              <div class="cs-comparison__phone">
+                <img src="assets/images/final-mood-chips.png" alt="Redesigned mood-based discovery">
+              </div>
+              <p class="cs-comparison__caption">Guided. Emotional. Intentional.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           EVOLUTION — Design iteration, centered vertical, huge phones
+           ================================================================ -->
+      <section class="cs-block cs-block--alt">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Iteration</span>
+            <h2 class="cs-heading">Refining the experience</h2>
+          </div>
+        </div>
+
+        <div class="cs-evolution">
+          <!-- V1 -->
+          <div class="cs-evolution__step" data-animate="fade-up">
+            <div class="cs-evolution__header">
+              <span class="cs-evolution__version">V1</span>
+              <h3 class="cs-evolution__title">Reorganized by context</h3>
+              <p class="cs-evolution__desc">Sorted by language, sports, moods. Cleaner hierarchy, but the experience was still passive — users browsed, they didn't choose.</p>
+            </div>
+            <div class="cs-evolution__phone">
+              <img src="assets/images/iteration-v1.png" alt="First iteration — organized categories">
+            </div>
+            <div class="cs-evolution__callout">
+              <p>While the hierarchy improved, the core interaction remained <em>browse-and-hope</em>. Users still lacked a reason to commit.</p>
+            </div>
+          </div>
+
+          <!-- V2 -->
+          <div class="cs-evolution__step" data-animate="fade-up">
+            <div class="cs-evolution__header">
+              <span class="cs-evolution__version">V2</span>
+              <h3 class="cs-evolution__title">Mood-first discovery</h3>
+              <p class="cs-evolution__desc">"What do you feel like watching?" became the opening question. Mood chips drove immediate action and emotional connection to content.</p>
+            </div>
+            <div class="cs-evolution__phone">
+              <img src="assets/images/final-mood-chips.png" alt="Second iteration — mood chips">
+            </div>
+            <div class="cs-evolution__callout">
+              <p>Engagement spiked. Users felt <em>understood</em> — the interface was finally asking the right question.</p>
+            </div>
+          </div>
+
+          <!-- Final -->
+          <div class="cs-evolution__step" data-animate="fade-up">
+            <div class="cs-evolution__header">
+              <span class="cs-evolution__version cs-evolution__version--final">Final</span>
+              <h3 class="cs-evolution__title">The confidence card</h3>
+              <p class="cs-evolution__desc">One best match. Instant play. The high-confidence card removed the last friction point — users no longer had to decide from a list.</p>
+            </div>
+            <div class="cs-evolution__phone">
+              <img src="assets/images/final-confidence-card.png" alt="Final — high confidence card">
+            </div>
+            <div class="cs-evolution__callout cs-evolution__callout--accent">
+              <p>This was the breakthrough. By showing <em>one confident recommendation</em>, we eliminated decision fatigue entirely.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           FINAL SHOWCASE — Massive phone gallery
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Final Design</span>
+            <h2 class="cs-heading">The complete experience</h2>
+          </div>
+        </div>
+        <div class="cs-showcase-full" data-animate="fade-up">
+          <div class="cs-showcase-full__track">
+            <div class="cs-showcase-full__phone">
+              <img src="assets/images/final-mood-chips.png" alt="Mood-based discovery with dynamic chips">
+              <span class="cs-showcase-full__caption">Mood discovery</span>
+            </div>
+            <div class="cs-showcase-full__phone cs-showcase-full__phone--hero">
+              <img src="assets/images/final-confidence-card.png" alt="High confidence search result card">
+              <span class="cs-showcase-full__caption">Confidence card</span>
+            </div>
+            <div class="cs-showcase-full__phone">
+              <img src="assets/images/final-episodic.png" alt="Episodic and clip discovery">
+              <span class="cs-showcase-full__caption">Episodic discovery</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           USER VOICE — Big dramatic quote
+           ================================================================ -->
+      <section class="cs-block cs-block--centered">
+        <div class="cs-block__inner cs-quote-block">
+          <span class="cs-quote-block__mark" data-animate="fade-up">&ldquo;</span>
+          <blockquote class="cs-quote-block__text" data-animate="fade-up" data-delay="0.1">I finally stopped doom-scrolling.<br>I just pick a mood and it <em>gets</em> me.</blockquote>
+          <cite class="cs-quote-block__source" data-animate="fade-up" data-delay="0.2">Beta tester, usability study</cite>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           IMPACT — Big animated metrics
+           ================================================================ -->
+      <section class="cs-block cs-block--dark">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--light cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label cs-label--light">Impact</span>
+            <h2 class="cs-heading cs-heading--light">The numbers tell the story</h2>
+          </div>
+
+          <div class="cs-metrics">
+            <div class="cs-metric" data-animate="fade-up">
+              <div class="cs-metric__number">
+                <span data-target="40">0</span>
+                <span class="cs-metric__unit">%</span>
+              </div>
+              <p class="cs-metric__label">faster content selection</p>
+              <p class="cs-metric__context">Average time from search to play dropped from 8.5 min to 5.1 min</p>
+            </div>
+            <div class="cs-metric" data-animate="fade-up" data-delay="0.15">
+              <div class="cs-metric__number">
+                <span data-target="25">0</span>
+                <span class="cs-metric__unit">%</span>
+              </div>
+              <p class="cs-metric__label">increase in browse-to-play</p>
+              <p class="cs-metric__context">Users who searched were more likely to actually start watching</p>
+            </div>
+            <div class="cs-metric" data-animate="fade-up" data-delay="0.3">
+              <div class="cs-metric__number">
+                <span data-target="4.6">0</span>
+                <span class="cs-metric__unit">/5</span>
+              </div>
+              <p class="cs-metric__label">user satisfaction</p>
+              <p class="cs-metric__context">Up from 3.2 — the highest rated feature in the app</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           REFLECTION
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner cs-reflection">
+          <div class="cs-reflection__text" data-animate="fade-up">
+            <span class="cs-label">Reflection</span>
+            <h2 class="cs-heading">What I learned</h2>
+            <p class="cs-body">The biggest shift wasn't in the interface — it was in the question we asked. By reframing search from "what do you want?" to "how do you feel?", we turned a utility into an experience. Sometimes the best design isn't about giving more options — it's about removing the burden of choice.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <div class="cs-footer">
+      <a href="index.html" class="cs-footer__back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to All Projects
+      </a>
+      <button class="cs-footer__top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to Top</span>
+      </button>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

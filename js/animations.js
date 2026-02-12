@@ -8,16 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ========================================================================
      1. Scroll-Triggered Fade-Up Animations
-     For all [data-animate] elements NOT inside .hero
+     For all [data-animate] elements NOT inside .hero or .cs-hero
      ======================================================================== */
 
-  const animateElements = document.querySelectorAll('[data-animate]:not(.hero [data-animate])');
+  const animateElements = document.querySelectorAll('[data-animate]:not(.hero [data-animate]):not(.cs-hero [data-animate])');
 
   animateElements.forEach(el => {
     const animationType = el.getAttribute('data-animate');
     const delay = parseFloat(el.dataset.delay || 0);
 
-    // Determine starting properties based on animation type
     let fromProps = { opacity: 0 };
     let toProps = { opacity: 1, duration: 0.8, ease: 'power2.out' };
 
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toProps.delay = delay;
     toProps.scrollTrigger = {
       trigger: el,
-      start: 'top 85%',
+      start: 'top 88%',
       toggleActions: 'play none none none',
     };
 
@@ -60,25 +59,113 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
-     2. Parallax on Case Study Hero Images
+     2. CS Hero — Reveal animation + ContainerScroll 3D effect
      ======================================================================== */
 
-  document.querySelectorAll('.cs-hero img').forEach(img => {
-    gsap.to(img, {
-      y: '15%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: img.parentElement,
-        start: 'top bottom',
-        end: 'bottom top',
-        scrub: 1,
-      }
+  const csHero = document.querySelector('.cs-hero');
+  if (csHero) {
+    // Reveal hero elements with staggered delay
+    const csHeroElements = csHero.querySelectorAll('[data-animate]');
+    csHeroElements.forEach((el) => {
+      const delay = parseFloat(el.dataset.delay || 0);
+      setTimeout(() => {
+        el.classList.add('revealed');
+      }, 300 + delay * 1000);
     });
+
+    // ContainerScroll — 3D perspective tilt that flattens on scroll
+    const phoneWrapper = csHero.querySelector('.cs-hero__phone-wrapper');
+    const phone = csHero.querySelector('.cs-hero__phone');
+    const heroContent = csHero.querySelector('.cs-hero__content');
+
+    if (phone && phoneWrapper) {
+      // Reveal phone after hero text (delayed entrance)
+      gsap.to(phone, {
+        opacity: 1,
+        duration: 0.8,
+        delay: 0.7,
+        ease: 'power2.out',
+      });
+
+      // Scroll-linked: flatten the 3D tilt as user scrolls
+      gsap.to(phone, {
+        rotateX: 0,
+        scale: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: csHero,
+          start: 'top top',
+          end: '80% top',
+          scrub: 0.5,
+        }
+      });
+
+      // Float the title up as user scrolls
+      if (heroContent) {
+        gsap.to(heroContent, {
+          y: -80,
+          opacity: 0,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: csHero,
+            start: '20% top',
+            end: '60% top',
+            scrub: 0.5,
+          }
+        });
+      }
+    }
+  }
+
+
+  /* ========================================================================
+     2b. Case Study Showcase Phones
+     ======================================================================== */
+
+  const showcaseFullPhones = document.querySelectorAll('.cs-showcase-full__phone');
+  if (showcaseFullPhones.length) {
+    gsap.fromTo(showcaseFullPhones,
+      { opacity: 0, y: 60 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: '.cs-showcase-full',
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        }
+      }
+    );
+  }
+
+
+  /* ========================================================================
+     3. Phone Parallax — Subtle vertical shift on scroll
+     Applies to finding phones and evolution phones
+     ======================================================================== */
+
+  document.querySelectorAll('.cs-finding__phone, .cs-evolution__phone').forEach(phone => {
+    gsap.fromTo(phone,
+      { y: 40 },
+      {
+        y: -40,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: phone,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        }
+      }
+    );
   });
 
 
   /* ========================================================================
-     3. Number Counter Animation
+     4. Number Counter Animation
      For elements with [data-target] attribute (big metric numbers)
      ======================================================================== */
 
@@ -109,153 +196,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
-     4. Staggered Reveals — Research Cards
-     ======================================================================== */
-
-  const researchCards = document.querySelectorAll('.research-card');
-  if (researchCards.length) {
-    gsap.fromTo(researchCards,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.cs-research__cards',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        }
-      }
-    );
-  }
-
-
-  /* ========================================================================
-     5. Staggered Reveals — Iteration Steps
-     ======================================================================== */
-
-  const iterationSteps = document.querySelectorAll('.iteration-step');
-  if (iterationSteps.length) {
-    gsap.fromTo(iterationSteps,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.cs-iteration__sequence',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        }
-      }
-    );
-  }
-
-
-  /* ========================================================================
-     6. Staggered Reveals — Final Mockups
-     ======================================================================== */
-
-  const finalMockups = document.querySelectorAll('.cs-finals__mockup');
-  if (finalMockups.length) {
-    gsap.fromTo(finalMockups,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.cs-finals__gallery',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        }
-      }
-    );
-  }
-
-
-  /* ========================================================================
-     7. Staggered Reveals — Impact Metrics
-     ======================================================================== */
-
-  const impactMetrics = document.querySelectorAll('.impact-metric');
-  if (impactMetrics.length) {
-    gsap.fromTo(impactMetrics,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.cs-impact__metrics',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        }
-      }
-    );
-  }
-
-
-  /* ========================================================================
-     8. Staggered Reveals — Project Cards
-     ======================================================================== */
-
-  const projectCards = document.querySelectorAll('.project-card');
-  if (projectCards.length) {
-    gsap.fromTo(projectCards,
-      { opacity: 0, y: 40 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.projects-overview__grid',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        }
-      }
-    );
-  }
-
-
-  /* ========================================================================
-     9. Interstitial Quote Animation
-     Subtle scale + fade for cinematic feel
-     ======================================================================== */
-
-  document.querySelectorAll('.interstitial__quote').forEach(quote => {
-    gsap.fromTo(quote,
-      { opacity: 0, scale: 0.95 },
-      {
-        opacity: 1,
-        scale: 1,
-        duration: 1,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: quote,
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-        }
-      }
-    );
-  });
-
-
-  /* ========================================================================
-     10. Feedback Quote Animation
+     5. Quote Block Animation
      Staggered timeline: quotation mark, text, source
      ======================================================================== */
 
+  document.querySelectorAll('.cs-quote-block').forEach(quote => {
+    const mark = quote.querySelector('.cs-quote-block__mark');
+    const text = quote.querySelector('.cs-quote-block__text');
+    const source = quote.querySelector('.cs-quote-block__source');
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: quote,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+      }
+    });
+
+    if (mark) {
+      tl.fromTo(mark,
+        { opacity: 0, scale: 0.5 },
+        { opacity: 0.12, scale: 1, duration: 0.6, ease: 'back.out(1.7)' }
+      );
+    }
+
+    if (text) {
+      tl.fromTo(text,
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
+        mark ? '-=0.3' : 0
+      );
+    }
+
+    if (source) {
+      tl.fromTo(source,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 },
+        '-=0.3'
+      );
+    }
+  });
+
+  // Legacy: old feedback-quote support
   document.querySelectorAll('.feedback-quote').forEach(quote => {
     const mark = quote.querySelector('.feedback-quote__mark');
     const text = quote.querySelector('.feedback-quote__text');
@@ -291,6 +273,30 @@ document.addEventListener('DOMContentLoaded', () => {
         '-=0.3'
       );
     }
+  });
+
+
+  /* ========================================================================
+     6. Reading Progress Bar (case study page)
+     ======================================================================== */
+
+  const progressBar = document.querySelector('.cs-progress__bar');
+  if (progressBar) {
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      progressBar.style.width = progress + '%';
+    });
+  }
+
+
+  /* ========================================================================
+     7. Refresh ScrollTrigger after all images load
+     ======================================================================== */
+
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
   });
 
 });
