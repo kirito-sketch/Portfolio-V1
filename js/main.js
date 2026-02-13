@@ -311,14 +311,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (href === '#about') sectionMap['about'] = link;
     });
 
+    const activeSections = new Set();
+
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('site-nav__link--active'));
-          const id = entry.target.id;
-          if (sectionMap[id]) sectionMap[id].classList.add('site-nav__link--active');
+          activeSections.add(entry.target.id);
+        } else {
+          activeSections.delete(entry.target.id);
         }
       });
+
+      navLinks.forEach(l => l.classList.remove('site-nav__link--active'));
+
+      // Highlight the last visible section (About takes priority if both visible)
+      if (activeSections.has('about')) {
+        if (sectionMap['about']) sectionMap['about'].classList.add('site-nav__link--active');
+      } else if (activeSections.has('work')) {
+        if (sectionMap['work']) sectionMap['work'].classList.add('site-nav__link--active');
+      }
     }, { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' });
 
     sectionObserver.observe(workSection);
