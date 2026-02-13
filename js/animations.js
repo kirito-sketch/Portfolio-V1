@@ -222,44 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Legacy: old feedback-quote support
-  document.querySelectorAll('.feedback-quote').forEach(quote => {
-    const mark = quote.querySelector('.feedback-quote__mark');
-    const text = quote.querySelector('.feedback-quote__text');
-    const source = quote.querySelector('.feedback-quote__source');
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: quote,
-        start: 'top 80%',
-        toggleActions: 'play none none none',
-      }
-    });
-
-    if (mark) {
-      tl.fromTo(mark,
-        { opacity: 0, scale: 0.5 },
-        { opacity: 0.2, scale: 1, duration: 0.6, ease: 'back.out(1.7)' }
-      );
-    }
-
-    if (text) {
-      tl.fromTo(text,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' },
-        mark ? '-=0.3' : 0
-      );
-    }
-
-    if (source) {
-      tl.fromTo(source,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5 },
-        '-=0.3'
-      );
-    }
-  });
-
 
   /* ========================================================================
      6. Reading Progress Bar (case study page)
