@@ -468,14 +468,51 @@ body::after {
   max-width: 460px;
 }
 
-/* ── "More case studies" note ─────────────────────────────────────────── */
+/* ── Coming Soon Card State ────────────────────────────────────────── */
 
-.work-showcase__coming {
-  text-align: center;
-  font-size: 0.9rem;
+.work-card--soon {
+  cursor: default;
+  opacity: 0.6;
+  transition: opacity 0.5s var(--ease-smooth);
+}
+
+.work-card--soon:hover {
+  transform: none;
+  border-color: var(--border-light);
+  box-shadow: none;
+  opacity: 0.75;
+}
+
+.work-card__image--soon {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      var(--border-subtle) 10px,
+      var(--border-subtle) 11px
+    ),
+    var(--bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.work-card__soon-icon {
   color: var(--text-muted);
-  margin-top: var(--space-lg);
-  letter-spacing: 0.02em;
+  opacity: 0.5;
+}
+
+.work-card__pill-soon {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  border: 1px dashed var(--border-medium);
+  border-radius: 50px;
 }
 
 

@@ -578,7 +578,7 @@
 
 .cs-showcase-full__phone {
   flex: 0 0 auto;
-  width: clamp(280px, 36vw, 600px);
+  width: clamp(300px, 40vw, 680px);
   text-align: center;
   transition: transform var(--duration-normal) var(--ease-smooth);
 }
@@ -594,7 +594,7 @@
 }
 
 .cs-showcase-full__phone--hero {
-  width: clamp(300px, 44vw, 720px);
+  width: clamp(360px, 50vw, 840px);
   transform: translateY(-16px);
 }
 
@@ -614,6 +614,14 @@
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.cs-showcase-full__desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  max-width: 300px;
+  margin: 0.5rem auto 0;
 }
 
 
@@ -905,8 +913,8 @@
     justify-content: center;
   }
 
-  .cs-showcase-full__phone { width: clamp(260px, 40vw, 380px); }
-  .cs-showcase-full__phone--hero { width: clamp(300px, 48vw, 440px); }
+  .cs-showcase-full__phone { width: clamp(280px, 42vw, 400px); }
+  .cs-showcase-full__phone--hero { width: clamp(320px, 50vw, 460px); }
 
   .cs-footer {
     flex-direction: column;
