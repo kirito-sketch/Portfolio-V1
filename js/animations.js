@@ -123,23 +123,22 @@ document.addEventListener('DOMContentLoaded', () => {
      ======================================================================== */
 
   const showcaseFullPhones = document.querySelectorAll('.cs-showcase-full__phone');
-  if (showcaseFullPhones.length) {
-    gsap.fromTo(showcaseFullPhones,
+  showcaseFullPhones.forEach((phone) => {
+    gsap.fromTo(phone,
       { opacity: 0, y: 60 },
       {
         opacity: 1,
         y: 0,
         duration: 0.8,
-        stagger: 0.15,
         ease: 'power2.out',
         scrollTrigger: {
-          trigger: '.cs-showcase-full',
-          start: 'top 80%',
+          trigger: phone,
+          start: 'top 85%',
           toggleActions: 'play none none none',
         }
       }
     );
-  }
+  });
 
 
   /* ========================================================================
