@@ -125,7 +125,8 @@
       var widthLarge = calculateLineWidth(line1, LARGE_PIXEL_SIZE);
       var widthSmall = calculateLineWidth(line2, SMALL_PIXEL_SIZE);
       var maxWidth = Math.max(widthLarge, widthSmall);
-      var scaleFactor = (canvas.width * 0.75) / maxWidth;
+      var fillRatio = canvas.width < 768 ? 0.92 : 0.75;
+      var scaleFactor = (canvas.width * fillRatio) / maxWidth;
 
       var adjLarge = LARGE_PIXEL_SIZE * scaleFactor;
       var adjSmall = SMALL_PIXEL_SIZE * scaleFactor;
