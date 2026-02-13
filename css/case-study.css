@@ -880,7 +880,8 @@
   .cs-block__inner { padding: 0 var(--space-sm); }
 
   /* Findings stack to single column on tablet */
-  .cs-finding {
+  .cs-finding,
+  .cs-finding:nth-child(even) {
     grid-template-columns: 1fr;
     gap: var(--space-md);
     text-align: center;
@@ -891,10 +892,12 @@
     margin: 0;
   }
 
-  /* Reset alternating order on mobile */
-  .cs-finding:nth-child(even) .cs-finding__phone,
-  .cs-finding:nth-child(even) .cs-finding__content {
-    order: unset;
+  /* Reset alternating order — show content first, phone second */
+  .cs-finding .cs-finding__phone {
+    order: 2;
+  }
+  .cs-finding .cs-finding__content {
+    order: 1;
   }
 
   .cs-finding__content {
