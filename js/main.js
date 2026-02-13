@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.site-nav__link:not(.site-nav__link--cta)');
 
   if (siteNav) {
-    let lastScrollY = 0;
     let ticking = false;
 
     function updateNav() {
@@ -63,23 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
         siteNav.classList.remove('site-nav--compact');
       }
 
-      // Don't hide nav while mobile menu is open
-      if (document.body.classList.contains('menu-open')) {
-        siteNav.classList.remove('site-nav--hidden');
-        lastScrollY = currentScrollY;
-        ticking = false;
-        return;
-      }
-
-      if (currentScrollY > lastScrollY && currentScrollY > 300) {
-        // Scrolling down — hide
-        siteNav.classList.add('site-nav--hidden');
-      } else {
-        // Scrolling up — show
-        siteNav.classList.remove('site-nav--hidden');
-      }
-
-      lastScrollY = currentScrollY;
       ticking = false;
     }
 
