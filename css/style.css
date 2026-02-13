@@ -16,7 +16,7 @@
   --bg-contrast: #1C1917;
   --text-primary: #1C1917;
   --text-secondary: #57534E;
-  --text-muted: #A8A29E;
+  --text-muted: #8A8580;
   --accent: #c9834e;
   --accent-hover: #B87A3D;
   --accent-glow: rgba(201, 131, 78, 0.15);
@@ -66,7 +66,7 @@
   --bg-contrast: #141414;
   --text-primary: #F5F5F5;
   --text-secondary: #A3A3A3;
-  --text-muted: #666666;
+  --text-muted: #888888;
   --accent: #c9834e;
   --accent-hover: #d99560;
   --accent-glow: rgba(201, 131, 78, 0.25);
@@ -693,7 +693,7 @@ body::after {
 
 
 /* ==========================================================================
-   20. FOOTER — Floating rounded rectangle with retro grid
+   10. FOOTER — Floating rounded rectangle with retro grid
    ========================================================================== */
 
 .site-footer {
@@ -858,7 +858,7 @@ body::after {
 
 
 /* ==========================================================================
-   21. CUSTOM CURSOR
+   11. CUSTOM CURSOR
    ========================================================================== */
 
 body.has-custom-cursor,
@@ -903,7 +903,7 @@ body.has-custom-cursor .cursor { display: block; }
 
 
 /* ==========================================================================
-   22. ACCESSIBILITY
+   12. ACCESSIBILITY
    ========================================================================== */
 
 .skip-link {
@@ -930,7 +930,7 @@ body.has-custom-cursor .cursor { display: block; }
 
 
 /* ==========================================================================
-   23. RESPONSIVE
+   13. RESPONSIVE
    ========================================================================== */
 
 @media (max-width: 768px) {
