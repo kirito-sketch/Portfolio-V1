@@ -420,7 +420,11 @@
   align-items: center;
 }
 
-/* Alternate layout — swap phone to right */
+/* Alternate layout — swap phone to right, keep phone in wider column */
+.cs-finding:nth-child(even) {
+  grid-template-columns: 1fr 1.5fr;
+}
+
 .cs-finding:nth-child(even) .cs-finding__phone {
   order: 2;
 }
@@ -579,7 +583,7 @@
 }
 
 .cs-showcase-full__phone {
-  flex: 0 1 30%;
+  flex: 0 0 30%;
   min-width: 0;
   text-align: center;
   transition: transform var(--duration-normal) var(--ease-smooth);
@@ -596,7 +600,7 @@
 }
 
 .cs-showcase-full__phone--hero {
-  flex: 0 1 38%;
+  flex: 0 0 30%;
   transform: translateY(-16px);
 }
 
@@ -915,8 +919,8 @@
     justify-content: center;
   }
 
-  .cs-showcase-full__phone { flex: 0 1 38%; }
-  .cs-showcase-full__phone--hero { flex: 0 1 44%; }
+  .cs-showcase-full__phone { flex: 0 0 38%; }
+  .cs-showcase-full__phone--hero { flex: 0 0 38%; }
 
   .cs-footer {
     flex-direction: column;
