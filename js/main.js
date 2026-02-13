@@ -63,6 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
         siteNav.classList.remove('site-nav--compact');
       }
 
+      // Don't hide nav while mobile menu is open
+      if (document.body.classList.contains('menu-open')) {
+        siteNav.classList.remove('site-nav--hidden');
+        lastScrollY = currentScrollY;
+        ticking = false;
+        return;
+      }
+
       if (currentScrollY > lastScrollY && currentScrollY > 300) {
         // Scrolling down — hide
         siteNav.classList.add('site-nav--hidden');
@@ -89,9 +97,63 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const target = document.querySelector(link.getAttribute('href'));
       if (target) {
+        closeMenu();
         target.scrollIntoView({ behavior: 'smooth' });
       }
     });
+  });
+
+
+  /* ========================================================================
+     Mobile Hamburger Menu
+     ======================================================================== */
+
+  const burger = document.querySelector('.site-nav__burger');
+  const navMenu = document.querySelector('.site-nav__menu');
+  const backdrop = document.querySelector('.site-nav__backdrop');
+
+  function openMenu() {
+    burger.classList.add('site-nav__burger--open');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Close menu');
+    navMenu.classList.add('site-nav__menu--open');
+    backdrop.classList.add('site-nav__backdrop--visible');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    burger.classList.remove('site-nav__burger--open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
+    navMenu.classList.remove('site-nav__menu--open');
+    backdrop.classList.remove('site-nav__backdrop--visible');
+    document.body.classList.remove('menu-open');
+  }
+
+  if (burger) {
+    burger.addEventListener('click', () => {
+      const isOpen = burger.classList.contains('site-nav__burger--open');
+      isOpen ? closeMenu() : openMenu();
+    });
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeMenu);
+  }
+
+  // Escape key closes menu
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) {
+      closeMenu();
+      burger.focus();
+    }
+  });
+
+  // Close menu if window resizes past mobile breakpoint
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && document.body.classList.contains('menu-open')) {
+      closeMenu();
+    }
   });
 
 
