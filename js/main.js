@@ -157,6 +157,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
+     Back to Top (case study page)
+     ======================================================================== */
+
+  const backToTopBtn = document.querySelector('.cs-footer__top');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+
+  /* ========================================================================
      Video Autoplay Management
      ======================================================================== */
 

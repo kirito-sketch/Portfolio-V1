@@ -143,14 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
-     3. Phone Parallax — Subtle vertical shift on scroll
-     Only applies to showcase phones (finding/evolution phones are now
-     compact side-by-side / grid layouts where parallax would be jarring)
-     ======================================================================== */
-
-
-  /* ========================================================================
-     4. Number Counter Animation
+     3. Number Counter Animation
      For elements with [data-target] attribute (big metric numbers)
      ======================================================================== */
 
@@ -181,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
-     5. Quote Block Animation
+     4. Quote Block Animation
      Staggered timeline: quotation mark, text, source
      ======================================================================== */
 
@@ -224,22 +217,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
-     6. Reading Progress Bar (case study page)
+     5. Reading Progress Bar (case study page)
      ======================================================================== */
 
   const progressBar = document.querySelector('.cs-progress__bar');
+  const progressContainer = document.querySelector('.cs-progress');
   if (progressBar) {
+    let progressTicking = false;
     window.addEventListener('scroll', () => {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (scrollTop / docHeight) * 100;
-      progressBar.style.width = progress + '%';
+      if (!progressTicking) {
+        requestAnimationFrame(() => {
+          const scrollTop = window.scrollY;
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const progress = Math.round((scrollTop / docHeight) * 100);
+          progressBar.style.width = progress + '%';
+          if (progressContainer) {
+            progressContainer.setAttribute('aria-valuenow', progress);
+          }
+          progressTicking = false;
+        });
+        progressTicking = true;
+      }
     });
   }
 
 
   /* ========================================================================
-     7. Refresh ScrollTrigger after all images load
+     6. Refresh ScrollTrigger after all images load
      ======================================================================== */
 
   window.addEventListener('load', () => {
