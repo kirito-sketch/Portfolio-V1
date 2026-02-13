@@ -415,7 +415,7 @@
 
 .cs-finding {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.5fr 1fr;
   gap: var(--space-xl);
   align-items: center;
 }
@@ -495,6 +495,8 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-xl);
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 .cs-evolution__step {
@@ -565,8 +567,8 @@
    ========================================================================== */
 
 .cs-showcase-full {
-  overflow: hidden;
-  padding: 0;
+  overflow: visible;
+  padding: 0 var(--space-md);
 }
 
 .cs-showcase-full__track {
@@ -577,8 +579,8 @@
 }
 
 .cs-showcase-full__phone {
-  flex: 0 0 auto;
-  width: clamp(300px, 40vw, 680px);
+  flex: 0 1 30%;
+  min-width: 0;
   text-align: center;
   transition: transform var(--duration-normal) var(--ease-smooth);
 }
@@ -594,7 +596,7 @@
 }
 
 .cs-showcase-full__phone--hero {
-  width: clamp(360px, 50vw, 840px);
+  flex: 0 1 38%;
   transform: translateY(-16px);
 }
 
@@ -877,7 +879,7 @@
   }
 
   .cs-finding__phone {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
   }
 
@@ -898,7 +900,7 @@
   }
 
   .cs-evolution__phone {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto var(--space-md);
   }
 
@@ -913,8 +915,8 @@
     justify-content: center;
   }
 
-  .cs-showcase-full__phone { width: clamp(280px, 42vw, 400px); }
-  .cs-showcase-full__phone--hero { width: clamp(320px, 50vw, 460px); }
+  .cs-showcase-full__phone { flex: 0 1 38%; }
+  .cs-showcase-full__phone--hero { flex: 0 1 44%; }
 
   .cs-footer {
     flex-direction: column;
@@ -938,8 +940,8 @@
   .cs-evolution__phone { max-width: 100%; }
 
   .cs-showcase-full__track { flex-wrap: wrap; justify-content: center; gap: var(--space-sm); }
-  .cs-showcase-full__phone { width: min(280px, 85vw); }
-  .cs-showcase-full__phone--hero { width: min(320px, 92vw); transform: none; }
+  .cs-showcase-full__phone { flex: 0 0 min(280px, 85vw); }
+  .cs-showcase-full__phone--hero { flex: 0 0 min(320px, 92vw); transform: none; }
 
   .cs-context__details { grid-template-columns: 1fr; }
 
