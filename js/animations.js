@@ -247,6 +247,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('load', () => {
     ScrollTrigger.refresh();
+
+    // Safety fallback: if any elements are still invisible after 4s, force-reveal them.
+    // This handles edge cases where ScrollTrigger doesn't fire on mobile
+    // (lazy loading delays, layout shifts, or viewport timing).
+    setTimeout(() => {
+      document.querySelectorAll('.cs-showcase-full__phone, .cs-quote-block__mark, .cs-quote-block__text, .cs-quote-block__source').forEach(el => {
+        if (getComputedStyle(el).opacity === '0') {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+        }
+      });
+    }, 4000);
   });
 
 });

@@ -76,6 +76,7 @@
 
 .cs-hero {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -844,6 +845,18 @@
   opacity: 0;
 }
 
+/* Reduced motion: show everything immediately */
+@media (prefers-reduced-motion: reduce) {
+  .cs-quote-block__mark,
+  .cs-quote-block__text,
+  .cs-quote-block__source,
+  .cs-showcase-full__phone,
+  .cs-hero__phone {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 
 /* ==========================================================================
    RESPONSIVE
@@ -888,8 +901,8 @@
   }
 
   .cs-finding__phone {
-    max-width: 100%;
-    margin: 0;
+    max-width: 85%;
+    margin: 0 auto;
   }
 
   /* Reset alternating order — show content first, phone second */
@@ -911,7 +924,7 @@
   }
 
   .cs-evolution__phone {
-    max-width: 100%;
+    max-width: 85%;
     margin: 0 auto var(--space-md);
   }
 
@@ -921,6 +934,10 @@
   }
 
   .cs-showcase-full { padding: 0 var(--space-sm); }
+
+  .cs-showcase-full__phone {
+    max-width: 85%;
+  }
 
   .cs-footer {
     flex-direction: column;
@@ -942,22 +959,25 @@
 
   .cs-block__inner { padding: 0 0.75rem; }
 
-  /* Findings: full-bleed images on small screens */
+  /* Findings: full-width, centered */
   .cs-finding__phone {
     max-width: 100%;
-    margin: 0 -0.75rem;
-    width: calc(100% + 1.5rem);
-    border-radius: 0;
+    margin: 0 auto;
+    border-radius: 12px;
   }
-  .cs-finding__phone img { border-radius: 0; }
+  .cs-finding__phone img { border-radius: 12px; }
 
   .cs-evolution__phone { max-width: 100%; }
 
   /* Showcase: near edge-to-edge */
-  .cs-showcase-full { padding: 0 0.5rem; }
+  .cs-showcase-full { padding: 0 0.75rem; }
   .cs-showcase-full__phone { max-width: 100%; }
   .cs-showcase-full__phone--hero { max-width: 100%; transform: none; }
   .cs-showcase-full__phone img { border-radius: 8px; }
+
+  /* Ensure text below showcase images is visible */
+  .cs-showcase-full__caption { margin-top: 0.75rem; }
+  .cs-showcase-full__desc { font-size: 0.85rem; margin-top: 0.35rem; }
 
   .cs-context__details { grid-template-columns: 1fr; }
 
