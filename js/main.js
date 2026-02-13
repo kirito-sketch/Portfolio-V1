@@ -164,10 +164,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggles = document.querySelectorAll('.theme-toggle');
   themeToggles.forEach(toggle => {
     toggle.addEventListener('click', () => {
+      if (toggle.classList.contains('theme-toggle--flipping')) return;
+
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
+
+      if (typeof gsap !== 'undefined') {
+        toggle.classList.add('theme-toggle--flipping');
+        gsap.to(toggle, {
+          rotateY: 90,
+          duration: 0.2,
+          ease: 'power2.in',
+          onComplete: () => {
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            gsap.to(toggle, {
+              rotateY: 0,
+              duration: 0.2,
+              ease: 'power2.out',
+              onComplete: () => {
+                toggle.classList.remove('theme-toggle--flipping');
+              }
+            });
+          }
+        });
+      } else {
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      }
     });
   });
 
@@ -185,26 +209,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const dot = document.querySelector('.cursor__dot');
     const ring = document.querySelector('.cursor__ring');
 
+    const interactives = document.querySelectorAll('a, button, .theme-toggle');
+
     let mouseX = 0, mouseY = 0;
+    let magnetX = 0, magnetY = 0;
     let ringX = 0, ringY = 0;
 
     document.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      dot.style.left = mouseX + 'px';
-      dot.style.top = mouseY + 'px';
+
+      // Magnetic pull toward nearby interactive elements
+      magnetX = mouseX;
+      magnetY = mouseY;
+      let closest = 80;
+      interactives.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const elCX = rect.left + rect.width / 2;
+        const elCY = rect.top + rect.height / 2;
+        const dist = Math.hypot(mouseX - elCX, mouseY - elCY);
+        if (dist < closest) {
+          const strength = 1 - dist / 80;
+          magnetX = mouseX + (elCX - mouseX) * strength * 0.4;
+          magnetY = mouseY + (elCY - mouseY) * strength * 0.4;
+          closest = dist;
+        }
+      });
+
+      dot.style.left = magnetX + 'px';
+      dot.style.top = magnetY + 'px';
     });
 
     function animateRing() {
-      ringX += (mouseX - ringX) * 0.15;
-      ringY += (mouseY - ringY) * 0.15;
+      ringX += (magnetX - ringX) * 0.15;
+      ringY += (magnetY - ringY) * 0.15;
       ring.style.left = ringX + 'px';
       ring.style.top = ringY + 'px';
       requestAnimationFrame(animateRing);
     }
     animateRing();
-
-    const interactives = document.querySelectorAll('a, button, .theme-toggle');
     interactives.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('cursor--hover'));
       el.addEventListener('mouseleave', () => cursor.classList.remove('cursor--hover'));
@@ -250,5 +293,53 @@ document.addEventListener('DOMContentLoaded', () => {
       video.pause();
       videoObserver.observe(video);
     });
+  }
+
+
+  /* ========================================================================
+     Active Section Nav Indicator
+     ======================================================================== */
+
+  const workSection = document.getElementById('work');
+  const aboutSection = document.getElementById('about');
+
+  if (workSection && aboutSection && navLinks.length) {
+    const sectionMap = {};
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === '#work') sectionMap['work'] = link;
+      if (href === '#about') sectionMap['about'] = link;
+    });
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(l => l.classList.remove('site-nav__link--active'));
+          const id = entry.target.id;
+          if (sectionMap[id]) sectionMap[id].classList.add('site-nav__link--active');
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-10% 0px -10% 0px' });
+
+    sectionObserver.observe(workSection);
+    sectionObserver.observe(aboutSection);
+  }
+
+
+  /* ========================================================================
+     Retro Grid Speed-Up on Footer Scroll
+     ======================================================================== */
+
+  const siteFooter = document.querySelector('.site-footer');
+  const gridLines = document.querySelector('.retro-grid__lines');
+
+  if (siteFooter && gridLines) {
+    const footerObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        gridLines.classList.toggle('retro-grid__lines--fast', entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+
+    footerObserver.observe(siteFooter);
   }
 });

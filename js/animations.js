@@ -114,6 +114,26 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       }
+
+      // Mouse parallax on phone wrapper (desktop only)
+      const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if (!isTouchDevice && phoneWrapper) {
+        const rotateYTo = gsap.quickTo(phoneWrapper, 'rotateY', { duration: 0.4, ease: 'power2.out' });
+        const rotateXTo = gsap.quickTo(phoneWrapper, 'rotateX', { duration: 0.4, ease: 'power2.out' });
+
+        csHero.addEventListener('mousemove', (e) => {
+          const rect = csHero.getBoundingClientRect();
+          const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;  // -1 to 1
+          const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+          rotateYTo(nx * 5);
+          rotateXTo(-ny * 3);
+        });
+
+        csHero.addEventListener('mouseleave', () => {
+          rotateYTo(0);
+          rotateXTo(0);
+        });
+      }
     }
   }
 

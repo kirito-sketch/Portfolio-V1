@@ -29,7 +29,48 @@
 
 
 /* ==========================================================================
-   3. ACCESSIBILITY
+   3. MICRO-INTERACTION KEYFRAMES
+   ========================================================================== */
+
+@keyframes grainShift {
+  0%   { background-position: 0 0; }
+  25%  { background-position: -128px 64px; }
+  50%  { background-position: 64px -128px; }
+  75%  { background-position: -64px 128px; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes arrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(4px); }
+}
+
+@keyframes clockSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes stripeSlide {
+  from { background-position: 0 0; }
+  to   { background-position: 30px 30px; }
+}
+
+.hover-btn:hover .hover-btn__hover-content svg {
+  animation: arrowBounce 0.8s ease-in-out infinite;
+}
+
+.work-card__soon-icon {
+  animation: clockSpin 8s linear infinite;
+  display: inline-block;
+}
+
+.work-card__image--soon {
+  animation: stripeSlide 3s linear infinite;
+}
+
+
+/* ==========================================================================
+   4. ACCESSIBILITY
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {

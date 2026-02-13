@@ -103,6 +103,9 @@
     var isVisible = true;
     var animFrameId;
     var resetting = false;
+    var particles = [];
+    var trail = [];
+    var TRAIL_LENGTH = 8;
 
     function resizeCanvas() {
       canvas.width = heroSection.offsetWidth;
@@ -117,6 +120,8 @@
       var BALL_SPEED = 5 * scale;
 
       pixels = [];
+      particles = [];
+      trail = [];
       resetting = false;
 
       var line1 = 'ARUN PERI';
@@ -171,6 +176,10 @@
     }
 
     function updateGame() {
+      // Trail: record position before movement
+      trail.push({ x: ball.x, y: ball.y });
+      if (trail.length > TRAIL_LENGTH) trail.shift();
+
       ball.x += ball.dx;
       ball.y += ball.dy;
 
@@ -214,6 +223,21 @@
             ball.y + ball.radius > pixel.y &&
             ball.y - ball.radius < pixel.y + pixel.size) {
           pixel.hit = true;
+          // Spawn particles at impact
+          var px = pixel.x + pixel.size / 2;
+          var py = pixel.y + pixel.size / 2;
+          var count = 3 + Math.floor(Math.random() * 3); // 3-5
+          for (var p = 0; p < count; p++) {
+            var angle = Math.random() * Math.PI * 2;
+            var speed = 1 + Math.random() * 3;
+            particles.push({
+              x: px, y: py,
+              vx: Math.cos(angle) * speed * scale,
+              vy: Math.sin(angle) * speed * scale,
+              alpha: 1,
+              radius: (1.5 + Math.random() * 2) * scale
+            });
+          }
           var cx = pixel.x + pixel.size / 2;
           var cy = pixel.y + pixel.size / 2;
           if (Math.abs(ball.x - cx) > Math.abs(ball.y - cy)) {
@@ -223,6 +247,15 @@
           }
         }
       });
+
+      // Update particles
+      for (var i = particles.length - 1; i >= 0; i--) {
+        var pt = particles[i];
+        pt.x += pt.vx;
+        pt.y += pt.vy;
+        pt.alpha -= 0.02;
+        if (pt.alpha <= 0) particles.splice(i, 1);
+      }
 
       // Reset pixels after all are hit
       var allHit = pixels.length > 0 && pixels.every(function (p) { return p.hit; });
@@ -247,6 +280,17 @@
         ctx.fillRect(pixel.x, pixel.y, pixel.size, pixel.size);
       });
 
+      // Ball trail
+      trail.forEach(function (pos, idx) {
+        var progress = (idx + 1) / trail.length;
+        ctx.globalAlpha = progress * 0.3;
+        ctx.fillStyle = colors.ballColor;
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, ball.radius * progress * 0.8, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+
       // Ball
       ctx.fillStyle = colors.ballColor;
       ctx.beginPath();
@@ -258,6 +302,16 @@
       paddles.forEach(function (p) {
         ctx.fillRect(p.x, p.y, p.width, p.height);
       });
+
+      // Particles
+      particles.forEach(function (pt) {
+        ctx.globalAlpha = pt.alpha;
+        ctx.fillStyle = colors.ballColor;
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, pt.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
     }
 
     function gameLoop() {
