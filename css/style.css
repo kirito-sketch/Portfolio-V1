@@ -616,6 +616,53 @@ body.menu-open {
   border-radius: 50px;
 }
 
+/* ── Scratch-to-reveal hidden message ─────────────────────────────── */
+
+.work-card__reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+}
+
+.work-card__reveal-text {
+  font-family: monospace;
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+.work-card__scratch {
+  z-index: 1;
+}
+
+/* ── Easter egg toast notification ────────────────────────────────── */
+
+.easter-toast {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  z-index: 100000;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid #c9834e;
+  border-radius: 6px;
+  padding: 0.6rem 1.4rem;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.3s;
+  pointer-events: none;
+}
+
+.easter-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
 
 /* ==========================================================================
    INTERACTIVE HOVER BUTTON — Expanding circle effect

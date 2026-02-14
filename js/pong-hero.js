@@ -117,7 +117,8 @@
     function initializeGame() {
       var LARGE_PIXEL_SIZE = 8 * scale;
       var SMALL_PIXEL_SIZE = 4 * scale;
-      var BALL_SPEED = 5 * scale;
+      var hardMode = typeof window.isPongHardMode === 'function' && window.isPongHardMode();
+      var BALL_SPEED = (hardMode ? 9 : 5) * scale;
 
       pixels = [];
       particles = [];
@@ -165,7 +166,7 @@
 
       // Paddles (4 edges)
       var pw = adjLarge;
-      var pl = 10 * adjLarge;
+      var pl = (hardMode ? 6 : 10) * adjLarge;
 
       paddles = [
         { x: 0, y: canvas.height / 2 - pl / 2, width: pw, height: pl, targetPos: canvas.height / 2 - pl / 2, isVertical: true },
@@ -331,5 +332,8 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     gameLoop();
+
+    // Expose reinit for hard mode toggle
+    window.pongReinit = initializeGame;
   });
 })();
