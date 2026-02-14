@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (pieChart) {
     const pieDonut = pieChart.querySelector('.cs2-pie-chart__donut');
 
-    // Fade up the container
+    // Container fade-in stays play-once
     gsap.fromTo(pieChart,
       { opacity: 0, y: 40 },
       {
@@ -252,26 +252,26 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: pieChart,
-          start: 'top 80%',
+          start: 'top 85%',
           toggleActions: 'play none none none',
         }
       }
     );
 
-    // Animate the donut slice via proxy
+    // Donut fill is now scrub-driven
     if (pieDonut) {
       const pieProxy = { angle: 0 };
       gsap.to(pieProxy, {
         angle: 223.2,
-        duration: 1.4,
-        ease: 'power2.out',
+        ease: 'none',
         onUpdate() {
           pieDonut.style.setProperty('--pie-angle', pieProxy.angle + 'deg');
         },
         scrollTrigger: {
           trigger: pieChart,
           start: 'top 80%',
-          toggleActions: 'play none none none',
+          end: 'top 30%',
+          scrub: 0.5,
         }
       });
     }
@@ -356,11 +356,8 @@ document.addEventListener('DOMContentLoaded', () => {
           el.style.transform = 'none';
         }
       });
-      // Also ensure pie chart donut is fully drawn
-      const fallbackDonut = document.querySelector('.cs2-pie-chart__donut');
-      if (fallbackDonut) {
-        fallbackDonut.style.setProperty('--pie-angle', '223.2deg');
-      }
+      // Note: pie chart donut is scrub-driven, so no fallback needed —
+      // it fills as the user scrolls through the section.
     }, 4000);
   });
 

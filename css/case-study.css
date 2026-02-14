@@ -1076,6 +1076,7 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .cs2-impacts__arrow {
@@ -1186,8 +1187,8 @@
 
 .cs2-pie-chart__visual {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 240px;
+  height: 240px;
   flex-shrink: 0;
 }
 
@@ -1287,18 +1288,27 @@
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: box-shadow var(--duration-fast) var(--ease-smooth),
+              transform var(--duration-fast) var(--ease-smooth);
+}
+
+.cs2-method:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
 }
 
 .cs2-method__icon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--accent-deep);
-  border-radius: 12px;
+  border-radius: 14px;
   color: var(--accent);
   margin-bottom: var(--space-sm);
+  box-shadow: 0 4px 12px rgba(201, 131, 78, 0.15);
 }
 
 .cs2-method__title {
@@ -1326,6 +1336,11 @@
 
 .cs2-findings__col {
   min-width: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: var(--space-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .cs2-findings__header {
@@ -1428,6 +1443,7 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: var(--accent);
+  box-shadow: 0 1px 4px rgba(201, 131, 78, 0.1);
 }
 
 
@@ -1548,11 +1564,12 @@
   color: var(--text-primary);
   width: 100%;
   max-width: 280px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .cs2-arch__node--end {
   background: var(--bg-contrast);
-  color: var(--text-primary);
+  color: #FFFFFF;
   border-color: var(--border-light);
 }
 
@@ -1965,6 +1982,7 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.06);
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .cs2-adoption__label {
