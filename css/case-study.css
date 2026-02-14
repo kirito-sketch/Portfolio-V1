@@ -1184,7 +1184,6 @@
   margin-left: auto;
   margin-right: auto;
   opacity: 0;
-  perspective: 800px;
 }
 
 .cs2-pie-chart__visual {
@@ -1192,22 +1191,59 @@
   width: 260px;
   height: 260px;
   flex-shrink: 0;
-  transform: rotateX(50deg);
-  filter: drop-shadow(0 24px 16px rgba(0, 0, 0, 0.15));
+}
+
+/* Puck thickness — warm shadow ring offset behind the donut */
+.cs2-pie-chart__visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(140, 95, 50, 0.18);
+  mask: radial-gradient(circle at center, transparent 54%, black 55%);
+  -webkit-mask: radial-gradient(circle at center, transparent 54%, black 55%);
+  transform: translateY(6px);
+  filter: blur(2px);
+}
+
+/* Floating shadow beneath the puck */
+.cs2-pie-chart__visual::after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 12%;
+  right: 12%;
+  height: 24px;
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.10) 0%, transparent 70%);
+  z-index: -1;
 }
 
 .cs2-pie-chart__donut {
   --pie-angle: 0deg;
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   background: conic-gradient(var(--accent) 0deg var(--pie-angle), #B8B0A8 var(--pie-angle) 360deg);
   mask: radial-gradient(circle at center, transparent 55%, black 56%);
   -webkit-mask: radial-gradient(circle at center, transparent 55%, black 56%);
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.07))
+          drop-shadow(0 10px 12px rgba(0, 0, 0, 0.05));
 }
 
 [data-theme="dark"] .cs2-pie-chart__donut {
   background: conic-gradient(var(--accent) 0deg var(--pie-angle), #4A4540 var(--pie-angle) 360deg);
+  filter: drop-shadow(0 4px 3px rgba(0, 0, 0, 0.15))
+          drop-shadow(0 10px 12px rgba(0, 0, 0, 0.12));
+}
+
+[data-theme="dark"] .cs2-pie-chart__visual::before {
+  background: rgba(100, 70, 30, 0.3);
+}
+
+[data-theme="dark"] .cs2-pie-chart__visual::after {
+  background: radial-gradient(ellipse, rgba(0, 0, 0, 0.25) 0%, transparent 70%);
 }
 
 .cs2-pie-chart__center {
@@ -1217,6 +1253,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .cs2-pie-chart__center-value {
@@ -2043,9 +2080,6 @@
   background: rgba(201, 131, 78, 0.15);
 }
 
-[data-theme="dark"] .cs2-pie-chart__visual {
-  filter: drop-shadow(0 24px 20px rgba(0, 0, 0, 0.35));
-}
 
 
 /* ==========================================================================
@@ -2087,9 +2121,8 @@
   }
 
   .cs2-pie-chart__visual {
-    transform: rotateX(40deg);
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
   }
 
   .cs2-methods {
