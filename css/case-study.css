@@ -731,6 +731,21 @@
   line-height: 1.5;
 }
 
+/* Hero-sized impact numbers */
+.cs-metrics--hero .cs-metric {
+  background: none;
+  border: none;
+  padding: var(--space-md);
+}
+
+.cs-metrics--hero .cs-metric__number span:first-child {
+  font-size: clamp(5rem, 12vw, 9rem);
+}
+
+.cs-metrics--hero .cs-metric__unit {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+}
+
 
 /* ==========================================================================
    REFLECTION — Closing thoughts
@@ -1108,6 +1123,49 @@
 }
 
 .cs2-role-grid__text strong {
+  color: var(--text-primary);
+}
+
+
+/* ── Compact Metadata Row ────────────────────────────────────────────── */
+
+.cs2-meta-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.cs2-meta-row__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+}
+
+.cs2-meta-row__item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: calc(var(--space-lg) / -2);
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-subtle);
+}
+
+.cs2-meta-row__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.cs2-meta-row__value {
+  font-size: 0.9rem;
+  font-weight: 500;
   color: var(--text-primary);
 }
 
@@ -1785,6 +1843,16 @@
   background: var(--accent);
 }
 
+/* Stacked variant — full-width before/after */
+.cs2-compare--stacked {
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+}
+
+.cs2-compare--stacked .cs2-compare__image img {
+  border-radius: 16px;
+}
+
 
 /* ── Status Legend ────────────────────────────────────────────────────── */
 
@@ -1964,6 +2032,15 @@
 @media (max-width: 768px) {
   .cs2-impacts__cards {
     grid-template-columns: 1fr;
+  }
+
+  .cs2-meta-row {
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  .cs2-meta-row__item::after {
+    display: none;
   }
 
   .cs2-role-grid {
