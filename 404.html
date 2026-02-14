@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="404 - Page not found | Arun Peri">
+  <title>404 | Arun Peri</title>
+
+  <meta property="og:title" content="404 | Arun Peri">
+  <meta property="og:description" content="Page not found. But here's a game.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --text: #FFFFFF;
+      --text-muted: rgba(255, 255, 255, 0.5);
+      --accent: #c9834e;
+      --surface: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme="light"] {
+      --bg: #FAF7F2;
+      --text: #1C1917;
+      --text-muted: rgba(28, 25, 23, 0.5);
+      --surface: rgba(28, 25, 23, 0.04);
+      --border: rgba(28, 25, 23, 0.1);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .heading-404 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 400;
+      line-height: 1;
+      color: var(--accent);
+      margin-bottom: 0.25em;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.6em 1.6em;
+      border: 1px solid var(--accent);
+      border-radius: 100px;
+      transition: background 0.25s ease, color 0.25s ease;
+      margin-bottom: 2.5rem;
+    }
+
+    .back-link:hover {
+      background: var(--accent);
+      color: #0a0a0a;
+    }
+
+    .canvas-wrapper {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--surface);
+      margin-bottom: 1rem;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .instructions {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading-404">404</h1>
+    <p class="subtitle">Page not found. But here's a game.</p>
+    <a href="/" class="back-link">Back to Home</a>
+
+    <div class="canvas-wrapper">
+      <canvas id="game"></canvas>
+    </div>
+    <p class="instructions">Press SPACE or tap to jump</p>
+  </div>
+
+  <script>
+  (function () {
+    // ── Theme ──────────────────────────────────────────────
+    const saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+    const isDark = () => document.documentElement.getAttribute('data-theme') !== 'light';
+
+    // ── Canvas setup ──────────────────────────────────────
+    const canvas = document.getElementById('game');
+    const ctx = canvas.getContext('2d');
+
+    const BASE_W = 800;
+    const BASE_H = 300;
+    canvas.width = BASE_W;
+    canvas.height = BASE_H;
+
+    // ── Colors (read each frame for live theme switching) ─
+    function colors() {
+      const dark = isDark();
+      return {
+        bg: dark ? '#0a0a0a' : '#FAF7F2',
+        fg: dark ? '#FFFFFF' : '#1C1917',
+        accent: '#c9834e',
+        muted: dark ? 'rgba(255,255,255,0.15)' : 'rgba(28,25,23,0.1)',
+        ground: dark ? 'rgba(255,255,255,0.2)' : 'rgba(28,25,23,0.15)',
+      };
+    }
+
+    // ── Game constants ────────────────────────────────────
+    const GROUND_Y = BASE_H - 40;
+    const GRAVITY = 0.65;
+    const JUMP_FORCE = -12;
+    const PADDLE_W = 18;
+    const PADDLE_H = 50;
+    const MIN_OBS_H = 30;
+    const MAX_OBS_H = 70;
+    const OBS_W = 20;
+    const INITIAL_SPEED = 5;
+    const SPEED_INC = 0.001; // per frame
+
+    // ── State ─────────────────────────────────────────────
+    let state = 'idle'; // idle | running | dead
+    let paddle, obstacles, speed, score, frameCount;
+
+    function resetGame() {
+      paddle = {
+        x: 80,
+        y: GROUND_Y - PADDLE_H,
+        w: PADDLE_W,
+        h: PADDLE_H,
+        vy: 0,
+        grounded: true,
+      };
+      obstacles = [];
+      speed = INITIAL_SPEED;
+      score = 0;
+      frameCount = 0;
+    }
+
+    resetGame();
+
+    // ── Obstacle spawning ─────────────────────────────────
+    function spawnObstacle() {
+      const h = MIN_OBS_H + Math.random() * (MAX_OBS_H - MIN_OBS_H);
+      // Occasionally spawn a double-block (two stacked)
+      const isDouble = Math.random() < 0.2 && speed > 6;
+      const totalH = isDouble ? h + 25 : h;
+      obstacles.push({
+        x: BASE_W + 10,
+        y: GROUND_Y - totalH,
+        w: OBS_W,
+        h: totalH,
+        passed: false,
+      });
+    }
+
+    // ── Input ─────────────────────────────────────────────
+    function jump() {
+      if (state === 'idle') {
+        state = 'running';
+        resetGame();
+      }
+      if (state === 'dead') {
+        state = 'running';
+        resetGame();
+        return;
+      }
+      if (state === 'running' && paddle.grounded) {
+        paddle.vy = JUMP_FORCE;
+        paddle.grounded = false;
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        jump();
+      }
+    });
+
+    canvas.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      jump();
+    });
+
+    // prevent scroll on space
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') e.preventDefault();
+    });
+
+    // ── Collision ──────────────────────────────────────────
+    function collides(a, b) {
+      return (
+        a.x < b.x + b.w &&
+        a.x + a.w > b.x &&
+        a.y < b.y + b.h &&
+        a.y + a.h > b.y
+      );
+    }
+
+    // ── Draw helpers ──────────────────────────────────────
+    function drawPixelRect(x, y, w, h, color) {
+      ctx.fillStyle = color;
+      // draw as pixel blocks (4px grid)
+      const g = 4;
+      for (let bx = 0; bx < w; bx += g) {
+        for (let by = 0; by < h; by += g) {
+          ctx.fillRect(
+            Math.round(x + bx),
+            Math.round(y + by),
+            g - 1,
+            g - 1
+          );
+        }
+      }
+    }
+
+    // ── Update ────────────────────────────────────────────
+    function update() {
+      if (state !== 'running') return;
+
+      frameCount++;
+      speed = INITIAL_SPEED + frameCount * SPEED_INC;
+      score = Math.floor(frameCount / 6);
+
+      // paddle physics
+      paddle.vy += GRAVITY;
+      paddle.y += paddle.vy;
+
+      if (paddle.y >= GROUND_Y - paddle.h) {
+        paddle.y = GROUND_Y - paddle.h;
+        paddle.vy = 0;
+        paddle.grounded = true;
+      }
+
+      // spawn obstacles
+      const minGap = Math.max(90, 160 - speed * 5);
+      const last = obstacles[obstacles.length - 1];
+      if (!last || last.x < BASE_W - minGap - Math.random() * 120) {
+        spawnObstacle();
+      }
+
+      // move obstacles
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obs = obstacles[i];
+        obs.x -= speed;
+
+        // score
+        if (!obs.passed && obs.x + obs.w < paddle.x) {
+          obs.passed = true;
+        }
+
+        // remove off-screen
+        if (obs.x + obs.w < -10) {
+          obstacles.splice(i, 1);
+        }
+
+        // collision
+        if (collides(paddle, obs)) {
+          state = 'dead';
+        }
+      }
+    }
+
+    // ── Render ─────────────────────────────────────────────
+    function render() {
+      const c = colors();
+
+      // clear
+      ctx.fillStyle = c.bg;
+      ctx.fillRect(0, 0, BASE_W, BASE_H);
+
+      // ground line
+      ctx.strokeStyle = c.ground;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 6]);
+      ctx.beginPath();
+      ctx.moveTo(0, GROUND_Y);
+      ctx.lineTo(BASE_W, GROUND_Y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // ground hash marks (moving)
+      if (state === 'running' || state === 'dead') {
+        ctx.fillStyle = c.muted;
+        const hashSpacing = 40;
+        const offset = state === 'running' ? (frameCount * speed) % hashSpacing : 0;
+        for (let x = -offset; x < BASE_W; x += hashSpacing) {
+          ctx.fillRect(Math.round(x), GROUND_Y + 6, 12, 2);
+        }
+      }
+
+      // paddle (player)
+      drawPixelRect(paddle.x, paddle.y, paddle.w, paddle.h, c.accent);
+
+      // obstacles
+      for (const obs of obstacles) {
+        drawPixelRect(obs.x, obs.y, obs.w, obs.h, c.fg);
+      }
+
+      // score
+      if (state === 'running' || state === 'dead') {
+        ctx.fillStyle = c.fg;
+        ctx.font = '600 16px "Inter", monospace';
+        ctx.textAlign = 'right';
+        const scoreStr = String(score).padStart(5, '0');
+        ctx.fillText(scoreStr, BASE_W - 24, 36);
+      }
+
+      // idle screen
+      if (state === 'idle') {
+        ctx.fillStyle = c.muted;
+        ctx.font = '400 16px "Inter", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('Press SPACE or tap to start', BASE_W / 2, BASE_H / 2 - 10);
+      }
+
+      // game over
+      if (state === 'dead') {
+        // dim overlay
+        ctx.fillStyle = c.bg + (isDark() ? 'cc' : 'cc');
+        ctx.fillRect(0, 0, BASE_W, BASE_H);
+
+        ctx.textAlign = 'center';
+
+        ctx.fillStyle = c.accent;
+        ctx.font = '400 42px "Instrument Serif", serif';
+        ctx.fillText('GAME OVER', BASE_W / 2, BASE_H / 2 - 24);
+
+        ctx.fillStyle = c.fg;
+        ctx.font = '600 20px "Inter", monospace';
+        ctx.fillText(String(score).padStart(5, '0'), BASE_W / 2, BASE_H / 2 + 14);
+
+        ctx.fillStyle = c.muted;
+        ctx.font = '400 14px "Inter", sans-serif';
+        ctx.fillText('Press SPACE to restart', BASE_W / 2, BASE_H / 2 + 46);
+      }
+    }
+
+    // ── Loop ──────────────────────────────────────────────
+    function loop() {
+      update();
+      render();
+      requestAnimationFrame(loop);
+    }
+
+    loop();
+  })();
+  </script>
+</body>
+</html>

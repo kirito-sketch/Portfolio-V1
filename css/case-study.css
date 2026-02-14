@@ -1475,6 +1475,10 @@
 
 .cs2-findings__col {
   min-width: 0;
+  padding: var(--space-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
 }
 
 .cs2-findings__header {
