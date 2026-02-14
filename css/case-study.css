@@ -403,6 +403,14 @@
   line-height: 1.5;
 }
 
+.cs-stat-hero__source {
+  font-family: monospace;
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-top: var(--space-sm);
+  letter-spacing: 0.03em;
+}
+
 
 /* ==========================================================================
    FINDINGS — Side-by-side: phone + content, alternating layout
@@ -682,6 +690,15 @@
 /* ==========================================================================
    METRICS — Impact numbers
    ========================================================================== */
+
+.cs-metrics__note {
+  font-family: monospace;
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  margin-bottom: var(--space-md);
+  letter-spacing: 0.03em;
+}
 
 .cs-metrics {
   display: grid;

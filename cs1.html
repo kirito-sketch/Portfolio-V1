@@ -139,6 +139,7 @@
             <span class="cs-stat-hero__unit">%</span>
           </div>
           <p class="cs-stat-hero__label" data-animate="fade-up" data-delay="0.1">of users browse for 10+ minutes<br>before selecting content</p>
+          <p class="cs-stat-hero__source" data-animate="fade-up" data-delay="0.15">Internal analytics, Q3 2024</p>
         </div>
       </section>
 
@@ -269,7 +270,7 @@
             <div class="cs-showcase-full__phone">
               <img src="assets/images/final-episodic.png" alt="Episodic and clip discovery" width="1714" height="1260" loading="lazy">
               <span class="cs-showcase-full__caption">Episodic discovery</span>
-              <p class="cs-showcase-full__desc">Related episodes and clips surface automatically for returning viewers, keeping the momentum going.</p>
+              <p class="cs-showcase-full__desc">Once mood matching gets users watching, episodic discovery keeps them watching. Related episodes and clips surface automatically for returning viewers.</p>
             </div>
           </div>
         </div>
@@ -298,6 +299,7 @@
             <h2 class="cs-heading cs-heading--light">The numbers tell the story</h2>
           </div>
 
+          <p class="cs-metrics__note" data-animate="fade-up" data-delay="0.05">Projected from usability testing (n=18, moderated sessions)</p>
           <div class="cs-metrics">
             <div class="cs-metric" data-animate="fade-up">
               <div class="cs-metric__number">
@@ -305,7 +307,7 @@
                 <span class="cs-metric__unit">%</span>
               </div>
               <p class="cs-metric__label">faster content selection</p>
-              <p class="cs-metric__context">Average time from search to play dropped from 8.5 min to 5.1 min</p>
+              <p class="cs-metric__context">Median time from search to play dropped from 8.5 min to 5.1 min across test sessions</p>
             </div>
             <div class="cs-metric" data-animate="fade-up" data-delay="0.15">
               <div class="cs-metric__number">
@@ -313,7 +315,7 @@
                 <span class="cs-metric__unit">%</span>
               </div>
               <p class="cs-metric__label">increase in browse-to-play</p>
-              <p class="cs-metric__context">Users who searched were more likely to actually start watching</p>
+              <p class="cs-metric__context">More participants completed the search-to-watch flow in the redesign vs baseline</p>
             </div>
             <div class="cs-metric" data-animate="fade-up" data-delay="0.3">
               <div class="cs-metric__number">
@@ -321,7 +323,7 @@
                 <span class="cs-metric__unit">/5</span>
               </div>
               <p class="cs-metric__label">user satisfaction</p>
-              <p class="cs-metric__context">Up from 3.2. The highest rated feature in the app</p>
+              <p class="cs-metric__context">Post-task satisfaction score, up from 3.2 in the baseline experience</p>
             </div>
           </div>
         </div>
@@ -336,7 +338,9 @@
           <div class="cs-reflection__text" data-animate="fade-up">
             <span class="cs-label">Reflection</span>
             <h2 class="cs-heading">What I learned</h2>
-            <p class="cs-body">The biggest shift wasn't in the interface. It was in the question we asked. By reframing search from "what do you want?" to "how do you feel?", we turned a utility into an experience. Sometimes the best design isn't about giving more options. It's about removing the burden of choice.</p>
+            <p class="cs-body">The biggest shift wasn't in the interface — it was in the question we asked. Reframing search from "what do you want?" to "how do you feel?" changed everything downstream.</p>
+            <p class="cs-body">What surprised me was how much work went into edge cases: what happens when a mood has sparse content in a regional language? We built fallback logic that gracefully widens the results rather than showing an empty state. It's invisible when it works, but it took more iteration than the mood chips themselves.</p>
+            <p class="cs-body">If I did this again, I'd push for a longer testing period. 18 participants over 2 weeks gave us directional confidence, but I'd want to see how mood-based behavior changes once the novelty wears off.</p>
           </div>
         </div>
       </section>
