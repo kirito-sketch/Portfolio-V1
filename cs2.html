@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Statera: From Passive Reporting to Active Command Center | Transforming ad-tech monitoring through intelligent alerts and real-time performance scoring">
+  <title>Statera Case Study | Arun Peri</title>
+
+  <meta property="og:title" content="Statera Case Study | Arun Peri">
+  <meta property="og:description" content="How we transformed a retrospective reporting tool into an active command center for ad-tech operations">
+  <meta property="og:type" content="article">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image" content="assets/images/cs2/new-dashboard.png">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/case-study.css">
+</head>
+<body>
+
+  <div class="site-wrapper">
+
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"></div>
+    </div>
+
+    <!-- Back Navigation + Theme Toggle -->
+    <nav class="cs-nav">
+      <a href="index.html" class="cs-nav__back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back</span>
+      </a>
+      <button class="theme-toggle cs-nav__theme" aria-label="Toggle theme">
+        <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Progress Bar -->
+    <div class="cs-progress" role="progressbar" aria-label="Reading progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+      <div class="cs-progress__bar"></div>
+    </div>
+
+    <main id="main-content">
+
+      <!-- ================================================================
+           HERO
+           ================================================================ -->
+      <section class="cs-hero">
+        <div class="cs-hero__bg">
+          <div class="cs-hero__gradient"></div>
+        </div>
+        <div class="cs-hero__content">
+          <div class="cs-hero__meta">
+            <span class="cs-hero__tag">Case Study</span>
+            <span class="cs-hero__tag">2025</span>
+            <span class="cs-hero__tag">Product Designer</span>
+          </div>
+          <h1 class="cs-hero__title" data-animate="fade-up">Statera<br><em>Command Center</em></h1>
+          <p class="cs-hero__subtitle" data-animate="fade-up" data-delay="0.2">From passive reporting to active intelligence<br>for high-velocity ad campaigns</p>
+        </div>
+        <div class="cs-hero__phone-wrapper">
+          <div class="cs-hero__phone">
+            <img src="assets/images/cs2/new-dashboard.png" alt="Statera redesigned dashboard with real-time metrics and action center" width="1512" height="788">
+          </div>
+        </div>
+        <div class="cs-hero__scroll">
+          <span>Scroll to explore</span>
+          <div class="cs-hero__scroll-line"></div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 1: PROJECT OVERVIEW
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header" data-animate="fade-up">
+            <span class="cs-label">Project Overview</span>
+            <h2 class="cs-heading">Outline</h2>
+          </div>
+          <p class="cs-body cs-body--wide" data-animate="fade-up" data-delay="0.1">This project showcases how we identified critical gaps in the real-time monitoring and proactive management of high-velocity ad campaigns across Facebook, Google, and TikTok. By addressing Ad-Ops managers' inability to detect campaign anomalies before significant budget loss, through intelligent alerts, contextual performance scoring, and embedded action controls, we transformed Statera from a retrospective reporting tool into an active command center that drives measurable impact across key business metrics.</p>
+
+          <!-- Key Impacts -->
+          <div class="cs2-impacts" data-animate="fade-up" data-delay="0.2">
+            <h3 class="cs2-impacts__title">Key Impacts</h3>
+            <div class="cs2-impacts__cards">
+              <div class="cs2-impacts__card">
+                <svg class="cs2-impacts__arrow" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 6L16 26M16 26L8 18M16 26L24 18" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="cs2-impacts__value">-47%</span>
+                <span class="cs2-impacts__desc">Reduction in time to identify underperforming campaigns</span>
+              </div>
+              <div class="cs2-impacts__card">
+                <svg class="cs2-impacts__arrow cs2-impacts__arrow--up" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                  <path d="M16 26L16 6M16 6L8 14M16 6L24 14" stroke="#22C55E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="cs2-impacts__value">+3.2x</span>
+                <span class="cs2-impacts__desc">Increase in proactive campaign adjustments</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Role & Collaboration -->
+          <div class="cs2-role-grid" data-animate="fade-up" data-delay="0.3">
+            <div class="cs2-role-grid__item">
+              <h3 class="cs2-role-grid__label">My Role</h3>
+              <p class="cs2-role-grid__text"><strong>Owned end-to-end design:</strong> platform audit, user research, competitive analysis, information architecture, interaction design, prototyping, and design system evolution for real-time monitoring interfaces.</p>
+            </div>
+            <div class="cs2-role-grid__item">
+              <h3 class="cs2-role-grid__label">Collaboration With</h3>
+              <p class="cs2-role-grid__text"><strong>Product Managers:</strong> Assembly Platform Leadership<br><strong>UX Researcher:</strong> External Ad-Ops User Research Partner<br><strong>Engineering:</strong> Real-Time Data Pipeline Team, Frontend Infrastructure</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 2: JOURNEY TO PROBLEM STATEMENT
+           ================================================================ -->
+      <section class="cs-block cs-block--alt">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Discovery</span>
+            <h2 class="cs-heading">Journey to problem statement</h2>
+          </div>
+          <p class="cs-body cs-body--centered" data-animate="fade-up" data-delay="0.1">What started as a routine quarterly business review led us to closely examine the escalation ticket patterns across the Ad-Tech operations domain.</p>
+
+          <!-- CSS Pie Chart -->
+          <div class="cs2-pie-chart" data-animate="fade-up" data-delay="0.2">
+            <div class="cs2-pie-chart__visual">
+              <div class="cs2-pie-chart__donut"></div>
+              <div class="cs2-pie-chart__center">
+                <span class="cs2-pie-chart__center-value">62%</span>
+                <span class="cs2-pie-chart__center-label">Campaign Loss</span>
+              </div>
+            </div>
+            <div class="cs2-pie-chart__legend">
+              <div class="cs2-pie-chart__legend-item">
+                <span class="cs2-pie-chart__legend-dot cs2-pie-chart__legend-dot--primary"></span>
+                <div>
+                  <span class="cs2-pie-chart__legend-value">62%</span>
+                  <span class="cs2-pie-chart__legend-label">Campaign Loss Escalations</span>
+                  <span class="cs2-pie-chart__legend-sub">Major contributor in ad-ops support tickets</span>
+                </div>
+              </div>
+              <div class="cs2-pie-chart__legend-item">
+                <span class="cs2-pie-chart__legend-dot cs2-pie-chart__legend-dot--secondary"></span>
+                <div>
+                  <span class="cs2-pie-chart__legend-value">38%</span>
+                  <span class="cs2-pie-chart__legend-label">Other Tickets</span>
+                  <span class="cs2-pie-chart__legend-sub">(Billing, Access, Integrations, Reporting bugs)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 3: DIGGING DEEPER — Problem Identification Methods
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Research</span>
+            <h2 class="cs-heading">Digging deeper: Problem identification methods</h2>
+          </div>
+
+          <div class="cs2-methods" data-animate="fade-up" data-delay="0.1">
+            <div class="cs2-method">
+              <div class="cs2-method__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/>
+                </svg>
+              </div>
+              <h3 class="cs2-method__title">Platform usage analytics</h3>
+              <p class="cs2-method__desc">Analyzing 6 months of user interaction data across 120+ enterprise accounts, tracking session frequency and feature utilization patterns.</p>
+            </div>
+
+            <div class="cs2-method">
+              <div class="cs2-method__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <h3 class="cs2-method__title">Ad-Ops manager shadowing</h3>
+              <p class="cs2-method__desc">Embedded with 8 Ad-Ops teams during high-stakes campaign launches and live optimization sessions over 3-week sprints.</p>
+            </div>
+
+            <div class="cs2-method">
+              <div class="cs2-method__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/>
+                </svg>
+              </div>
+              <h3 class="cs2-method__title">Support ticket pattern analysis</h3>
+              <p class="cs2-method__desc">Deep-diving into 2,400+ support tickets categorized as "campaign performance," identifying themes in delayed discovery.</p>
+            </div>
+
+            <div class="cs2-method">
+              <div class="cs2-method__icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+                </svg>
+              </div>
+              <h3 class="cs2-method__title">Competitive benchmarking</h3>
+              <p class="cs2-method__desc">Evaluating real-time monitoring in trading platforms, NOC dashboards, and DevOps tools to understand "active monitoring" patterns.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 4: FINDINGS
+           ================================================================ -->
+      <section class="cs-block cs-block--alt">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Insights</span>
+            <h2 class="cs-heading">Findings</h2>
+          </div>
+
+          <div class="cs2-findings" data-animate="fade-up" data-delay="0.1">
+            <!-- Left column: User quotes -->
+            <div class="cs2-findings__col">
+              <div class="cs2-findings__header cs2-findings__header--dark">What our users said:</div>
+              <div class="cs2-findings__quotes">
+                <blockquote class="cs2-findings__quote">
+                  <p>"By the time I see the problem in my weekly review, I've already burned through $15K in wasted spend."</p>
+                  <cite>— Senior Media Buyer, E-commerce Brand</cite>
+                </blockquote>
+                <blockquote class="cs2-findings__quote">
+                  <p>"I have to manually check 40+ campaigns every morning. If I miss one, it could cost us a fortune."</p>
+                  <cite>— Ad-Ops Manager, Mobile Gaming Studio</cite>
+                </blockquote>
+                <blockquote class="cs2-findings__quote">
+                  <p>"The dashboard shows me beautiful charts, but I need it to scream at me when something's wrong."</p>
+                  <cite>— Performance Marketing Director, SaaS Company</cite>
+                </blockquote>
+                <blockquote class="cs2-findings__quote">
+                  <p>"I spend more time in spreadsheets calculating ROI than optimizing campaigns. That's backwards."</p>
+                  <cite>— Campaign Strategist, Agency</cite>
+                </blockquote>
+              </div>
+            </div>
+
+            <!-- Arrow -->
+            <div class="cs2-findings__arrow">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <!-- Right column: Analysis -->
+            <div class="cs2-findings__col">
+              <div class="cs2-findings__header cs2-findings__header--accent">What we analyzed:</div>
+              <ul class="cs2-findings__list">
+                <li>Ad-Ops workflows are reactive, not proactive. Users logged in 2.1 times per day. Critical mid-day issues went unnoticed.</li>
+                <li>Context switching kills efficiency. Managers toggled between 5 platforms an average of 47 times per session.</li>
+                <li>"Normal" vs "Abnormal" required mental math. Users calculated ROI manually by cross-referencing spend and revenue.</li>
+                <li>Alert fatigue from external tools. One user had 127 unread "campaign update" emails without context.</li>
+                <li>The "In Progress" status created uncertainty. Users couldn't distinguish "processing" vs "stuck for 3 days."</li>
+                <li>No prioritization framework. All campaigns presented equally — which needs attention RIGHT NOW?</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Problem Theme Pills -->
+          <div class="cs2-pills" data-animate="fade-up" data-delay="0.2">
+            <span class="cs2-pill">Delayed anomaly detection</span>
+            <span class="cs2-pill">Lack of actionable alerts</span>
+            <span class="cs2-pill">Fragmented workflow</span>
+            <span class="cs2-pill">Manual ROI calculations</span>
+            <span class="cs2-pill">Ambiguous status indicators</span>
+            <span class="cs2-pill">No campaign prioritization</span>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 5: PLATFORM LIMITATION (Yellow Callout)
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs2-callout" data-animate="fade-up">
+            <span class="cs2-callout__label">Platform Limitation</span>
+            <p class="cs2-callout__text">Statera's data pipeline operated on a <strong>4-hour batch processing cycle</strong>, pulling metrics from Facebook, Google, and TikTok APIs at scheduled intervals. For high-velocity campaigns — especially mobile app installs running $500+/hour budgets — this architecture meant:</p>
+            <ul class="cs2-callout__list">
+              <li>A campaign could hemorrhage <strong>$2,000 in 4 hours</strong> before appearing in the dashboard</li>
+              <li>ROI calculations reflected <strong>6–8 hour old data</strong>, making optimization decisions based on stale information</li>
+              <li>Campaign status updates (paused, active, completed) had similar delays</li>
+              <li><strong>All analysis happened client-side</strong> — users manually filtered, segmented, and interpreted data with no intelligence layer</li>
+            </ul>
+            <p class="cs2-callout__text">This wasn't a design problem. This was an <strong>architectural constraint</strong> that made real-time decision-making impossible.</p>
+          </div>
+
+          <!-- Architecture Comparison -->
+          <div class="cs2-arch" data-animate="fade-up" data-delay="0.1">
+            <div class="cs2-arch__col">
+              <span class="cs2-arch__badge cs2-arch__badge--before">Before</span>
+              <div class="cs2-arch__flow">
+                <div class="cs2-arch__node">Facebook / Google / TikTok APIs</div>
+                <div class="cs2-arch__connector">
+                  <span class="cs2-arch__connector-label">4-hour batch</span>
+                </div>
+                <div class="cs2-arch__node">Statera Database</div>
+                <div class="cs2-arch__connector">
+                  <span class="cs2-arch__connector-label">Client-side processing</span>
+                </div>
+                <div class="cs2-arch__node cs2-arch__node--end">Static Dashboard</div>
+              </div>
+            </div>
+            <div class="cs2-arch__col">
+              <span class="cs2-arch__badge cs2-arch__badge--after">After</span>
+              <div class="cs2-arch__flow">
+                <div class="cs2-arch__node">Facebook / Google / TikTok APIs</div>
+                <div class="cs2-arch__connector cs2-arch__connector--active">
+                  <span class="cs2-arch__connector-label">Real-time streaming</span>
+                </div>
+                <div class="cs2-arch__node">Intelligence Layer + Alerts</div>
+                <div class="cs2-arch__connector cs2-arch__connector--active">
+                  <span class="cs2-arch__connector-label">Contextual scoring</span>
+                </div>
+                <div class="cs2-arch__node cs2-arch__node--end cs2-arch__node--active">Active Command Center</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 6: WHAT'S WRONG WITH THE CURRENT FLOW
+           ================================================================ -->
+      <section class="cs-block cs-block--alt">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Audit</span>
+            <h2 class="cs-heading">What's wrong with the current flow</h2>
+          </div>
+
+          <div class="cs2-flow-cols" data-animate="fade-up" data-delay="0.1">
+            <!-- Column 1: Legacy Dashboard -->
+            <div class="cs2-flow-col">
+              <h3 class="cs2-flow-col__title">Legacy Reporting Dashboard</h3>
+              <p class="cs2-flow-col__desc">The primary interface for retrospective analysis — metrics without context or urgency signals.</p>
+              <div class="cs2-flow-col__image">
+                <img src="assets/images/cs2/legacy-dashboard.png" alt="Legacy Statera dashboard showing passive reporting interface" loading="lazy">
+              </div>
+              <div class="cs2-flow-col__gaps">
+                <div class="cs2-flow-col__gap"><span>1</span> Metric display without context — no benchmarks or health indicators</div>
+                <div class="cs2-flow-col__gap"><span>2</span> Passive visualization — dips and spikes demand manual investigation</div>
+                <div class="cs2-flow-col__gap"><span>3</span> Filter-first mental model — assumes users know what to look for</div>
+                <div class="cs2-flow-col__gap"><span>4</span> No hierarchy of urgency — all campaigns presented equally</div>
+              </div>
+            </div>
+
+            <!-- Column 2: Campaign List -->
+            <div class="cs2-flow-col">
+              <h3 class="cs2-flow-col__title">Generic Campaign List</h3>
+              <p class="cs2-flow-col__desc">Campaign names in a flat table. No visual hierarchy. All campaigns treated equally.</p>
+              <div class="cs2-flow-col__image cs2-flow-col__image--placeholder">
+                <div class="cs2-flow-col__placeholder">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/>
+                  </svg>
+                  <span>Flat table view</span>
+                </div>
+              </div>
+              <div class="cs2-flow-col__gaps">
+                <div class="cs2-flow-col__gap"><span>1</span> Metrics spread across columns with no visual cues</div>
+                <div class="cs2-flow-col__gap"><span>2</span> Users must scan everything manually to find issues</div>
+                <div class="cs2-flow-col__gap"><span>3</span> No status badges or health scoring system</div>
+              </div>
+            </div>
+
+            <!-- Column 3: External Dependency -->
+            <div class="cs2-flow-col">
+              <h3 class="cs2-flow-col__title">External Platform Dependency</h3>
+              <p class="cs2-flow-col__desc">All campaign adjustments required leaving Statera entirely.</p>
+              <div class="cs2-flow-col__image cs2-flow-col__image--placeholder">
+                <div class="cs2-flow-col__steps">
+                  <div class="cs2-flow-col__step"><span>1</span> Identify problem in dashboard</div>
+                  <div class="cs2-flow-col__step"><span>2</span> Copy campaign ID</div>
+                  <div class="cs2-flow-col__step"><span>3</span> Open Facebook / Google Ads</div>
+                  <div class="cs2-flow-col__step"><span>4</span> Find campaign by ID</div>
+                  <div class="cs2-flow-col__step"><span>5</span> Make adjustment</div>
+                  <div class="cs2-flow-col__step"><span>6</span> Return to Statera to verify</div>
+                </div>
+              </div>
+              <div class="cs2-flow-col__gaps">
+                <div class="cs2-flow-col__gap"><span>!</span> Context switching killed efficiency — 47 platform toggles per session</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           THE SHIFT — Dramatic insight moment
+           ================================================================ -->
+      <section class="cs-block cs-block--centered cs-block--accent">
+        <div class="cs-block__inner">
+          <span class="cs-label cs-label--light" data-animate="fade-up">The Solution</span>
+          <p class="cs-big-text cs-big-text--white" data-animate="fade-up" data-delay="0.1">From report generator<br>to <em>mission control</em><br>for ad spend.</p>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 7: CORE DESIGN PRINCIPLES
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Framework</span>
+            <h2 class="cs-heading">Core design principles</h2>
+          </div>
+
+          <div class="cs2-principles" data-animate="fade-up" data-delay="0.1">
+            <div class="cs2-principle">
+              <span class="cs2-principle__num">01</span>
+              <h3 class="cs2-principle__title">Alert Before It Hurts</h3>
+              <p class="cs2-principle__desc">Surface anomalies as they happen, not hours later.</p>
+            </div>
+            <div class="cs2-principle">
+              <span class="cs2-principle__num">02</span>
+              <h3 class="cs2-principle__title">Context Over Raw Numbers</h3>
+              <p class="cs2-principle__desc">Every metric needs a comparison point: vs yesterday, vs target, vs threshold.</p>
+            </div>
+            <div class="cs2-principle">
+              <span class="cs2-principle__num">03</span>
+              <h3 class="cs2-principle__title">Reduce to Next Action</h3>
+              <p class="cs2-principle__desc">Don't make users figure out what to do — suggest the action.</p>
+            </div>
+            <div class="cs2-principle">
+              <span class="cs2-principle__num">04</span>
+              <h3 class="cs2-principle__title">Visual Health Scoring</h3>
+              <p class="cs2-principle__desc">Status badges (LOSING, SCALING, PROFITABLE) replace ambiguous states.</p>
+            </div>
+            <div class="cs2-principle">
+              <span class="cs2-principle__num">05</span>
+              <h3 class="cs2-principle__title">Eliminate Platform Hopping</h3>
+              <p class="cs2-principle__desc">Embed controls directly in the interface.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 8: TRANSFORMATION 1 — Dashboard Evolution
+           ================================================================ -->
+      <section class="cs-block cs-block--alt">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Transformation</span>
+            <h2 class="cs-heading">Dashboard evolution</h2>
+          </div>
+
+          <div class="cs2-compare" data-animate="fade-up" data-delay="0.1">
+            <div class="cs2-compare__side">
+              <span class="cs2-compare__badge cs2-compare__badge--before">Before: Passive Reporting</span>
+              <div class="cs2-compare__image">
+                <img src="assets/images/cs2/legacy-dashboard.png" alt="Legacy Statera dashboard — single metric, generic chart, no alerts" loading="lazy">
+              </div>
+              <ul class="cs2-compare__points">
+                <li>Single metric card: "Estimated Earnings"</li>
+                <li>Generic line chart with no context</li>
+                <li>No real-time updates or alerts</li>
+                <li>Action happens elsewhere</li>
+              </ul>
+            </div>
+            <div class="cs2-compare__side">
+              <span class="cs2-compare__badge cs2-compare__badge--after">After: Active Monitoring</span>
+              <div class="cs2-compare__image">
+                <img src="assets/images/cs2/new-dashboard.png" alt="Redesigned Statera dashboard with three hero metrics, action center, and real-time performance chart" loading="lazy">
+              </div>
+              <ul class="cs2-compare__points">
+                <li>Three hero metrics with real-time deltas</li>
+                <li>Action Center with proactive alert cards</li>
+                <li>Consolidated Revenue vs Spend chart</li>
+                <li>"Updating in real-time" confidence badge</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 9: TRANSFORMATION 2 — Campaigns View
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Transformation</span>
+            <h2 class="cs-heading">Prioritized campaign management</h2>
+          </div>
+        </div>
+        <div class="cs-showcase-full" data-animate="fade-up" data-delay="0.1">
+          <div class="cs-showcase-full__track">
+            <div class="cs-showcase-full__phone">
+              <img src="assets/images/cs2/campaigns-view.png" alt="Redesigned campaigns view with KPI cards, smart filtering, and health-scored campaign cards" loading="lazy">
+              <span class="cs-showcase-full__caption">Campaigns Command</span>
+              <p class="cs-showcase-full__desc">Top-level KPI cards, smart filtering with automatic triage (Critical tab), and campaign cards with visual health scoring — LOSING, SCALING, PROFITABLE — replace the flat table.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status System Legend -->
+        <div class="cs-block__inner">
+          <div class="cs2-status-legend" data-animate="fade-up" data-delay="0.2">
+            <div class="cs2-status-legend__item cs2-status-legend__item--losing">
+              <span class="cs2-status-legend__dot"></span>
+              <strong>LOSING</strong>
+              <span>ROI &lt; 1.0x</span>
+            </div>
+            <div class="cs2-status-legend__item cs2-status-legend__item--scaling">
+              <span class="cs2-status-legend__dot"></span>
+              <strong>SCALING</strong>
+              <span>ROI &gt; 2.5x</span>
+            </div>
+            <div class="cs2-status-legend__item cs2-status-legend__item--profitable">
+              <span class="cs2-status-legend__dot"></span>
+              <strong>PROFITABLE</strong>
+              <span>ROI 1.2x–2.5x</span>
+            </div>
+            <div class="cs2-status-legend__item cs2-status-legend__item--paused">
+              <span class="cs2-status-legend__dot"></span>
+              <strong>PAUSED</strong>
+              <span>Inactive</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 10: TRANSFORMATION 3 — Campaign Creation
+           ================================================================ -->
+      <section class="cs-block cs-block--alt">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Transformation</span>
+            <h2 class="cs-heading">Integrated campaign builder</h2>
+          </div>
+        </div>
+        <div class="cs-showcase-full" data-animate="fade-up" data-delay="0.1">
+          <div class="cs-showcase-full__track">
+            <div class="cs-showcase-full__phone">
+              <img src="assets/images/cs2/campaign-creation.png" alt="Campaign creation wizard with three steps: Basics, Economics, and Guardrails" loading="lazy">
+              <span class="cs-showcase-full__caption">Campaign Wizard</span>
+              <p class="cs-showcase-full__desc">A multi-step wizard lets users create campaigns with built-in monitoring rules from within Statera — eliminating the need to set up tracking manually across platforms.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-block__inner">
+          <div class="cs2-wizard-steps" data-animate="fade-up" data-delay="0.2">
+            <div class="cs2-wizard-step">
+              <span class="cs2-wizard-step__num">1</span>
+              <h4 class="cs2-wizard-step__title">Basics</h4>
+              <p class="cs2-wizard-step__desc">Campaign Name + Platform Selection (Facebook, Google, TikTok)</p>
+            </div>
+            <div class="cs2-wizard-step">
+              <span class="cs2-wizard-step__num">2</span>
+              <h4 class="cs2-wizard-step__title">Economics</h4>
+              <p class="cs2-wizard-step__desc">Budget allocation, Target ROI thresholds, Auto-pause triggers</p>
+            </div>
+            <div class="cs2-wizard-step">
+              <span class="cs2-wizard-step__num">3</span>
+              <h4 class="cs2-wizard-step__title">Guardrails</h4>
+              <p class="cs2-wizard-step__desc">Min/max ROI bounds, Daily spend limits, Performance alerts</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 11: DESIGN SYSTEM EVOLUTION
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">System</span>
+            <h2 class="cs-heading">Design system evolution</h2>
+          </div>
+
+          <p class="cs-body cs-body--centered" data-animate="fade-up" data-delay="0.1">From decoration to communication — every visual element now carries meaning.</p>
+
+          <!-- Color System -->
+          <div class="cs2-design-colors" data-animate="fade-up" data-delay="0.15">
+            <h3 class="cs2-design-subtitle">Color Language</h3>
+            <div class="cs2-design-colors__grid">
+              <div class="cs2-color-card">
+                <div class="cs2-color-card__swatch" style="background: #22C55E;"></div>
+                <strong>Green</strong>
+                <span>Positive performance</span>
+              </div>
+              <div class="cs2-color-card">
+                <div class="cs2-color-card__swatch" style="background: #EF4444;"></div>
+                <strong>Red</strong>
+                <span>Urgent attention</span>
+              </div>
+              <div class="cs2-color-card">
+                <div class="cs2-color-card__swatch" style="background: #3B82F6;"></div>
+                <strong>Blue</strong>
+                <span>Informational</span>
+              </div>
+              <div class="cs2-color-card">
+                <div class="cs2-color-card__swatch" style="background: #F59E0B;"></div>
+                <strong>Amber</strong>
+                <span>Warning threshold</span>
+              </div>
+              <div class="cs2-color-card">
+                <div class="cs2-color-card__swatch" style="background: #8B5CF6;"></div>
+                <strong>Purple</strong>
+                <span>Primary accent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Typography -->
+          <div class="cs2-design-type" data-animate="fade-up" data-delay="0.2">
+            <h3 class="cs2-design-subtitle">Typography Hierarchy</h3>
+            <div class="cs2-design-type__grid">
+              <div class="cs2-type-sample">
+                <span class="cs2-type-sample__preview" style="font-size: 2.5rem; font-weight: 700;">$10,803</span>
+                <span class="cs2-type-sample__label">Hero Metrics — 48px Bold</span>
+              </div>
+              <div class="cs2-type-sample">
+                <span class="cs2-type-sample__preview" style="font-size: 1.125rem; font-weight: 600;">Campaign Name</span>
+                <span class="cs2-type-sample__label">Card Titles — 18px Semibold</span>
+              </div>
+              <div class="cs2-type-sample">
+                <span class="cs2-type-sample__preview" style="font-size: 0.875rem; font-weight: 500; color: #22C55E;">+$1,200 last hour</span>
+                <span class="cs2-type-sample__label">Delta Values — 14px Medium</span>
+              </div>
+              <div class="cs2-type-sample">
+                <span class="cs2-type-sample__preview" style="font-size: 0.875rem;">Body content text</span>
+                <span class="cs2-type-sample__label">Body Copy — 14px Regular</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           USER VOICE — Big dramatic quote
+           ================================================================ -->
+      <section class="cs-block cs-block--centered">
+        <div class="cs-block__inner cs-quote-block">
+          <span class="cs-quote-block__mark" data-animate="fade-up">&ldquo;</span>
+          <blockquote class="cs-quote-block__text" data-animate="fade-up" data-delay="0.1">It's like Statera went from showing me a map<br>to being my <em>co-pilot</em>.</blockquote>
+          <cite class="cs-quote-block__source" data-animate="fade-up" data-delay="0.2">Ad-Ops Manager, Post-Launch Interview</cite>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 12: IMPACT & VALIDATION
+           ================================================================ -->
+      <section class="cs-block cs-block--dark">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--light cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label cs-label--light">Impact</span>
+            <h2 class="cs-heading cs-heading--light">The numbers tell the story</h2>
+          </div>
+
+          <div class="cs-metrics">
+            <div class="cs-metric" data-animate="fade-up">
+              <div class="cs-metric__number">
+                <span data-target="47">0</span>
+                <span class="cs-metric__unit">%</span>
+              </div>
+              <p class="cs-metric__label">faster issue identification</p>
+              <p class="cs-metric__context">From 4.2 hours to 2.2 hours average detection time</p>
+            </div>
+            <div class="cs-metric" data-animate="fade-up" data-delay="0.15">
+              <div class="cs-metric__number">
+                <span data-target="3.2">0</span>
+                <span class="cs-metric__unit">x</span>
+              </div>
+              <p class="cs-metric__label">proactive adjustments</p>
+              <p class="cs-metric__context">Users now adjust campaigns before they hit critical thresholds</p>
+            </div>
+            <div class="cs-metric" data-animate="fade-up" data-delay="0.3">
+              <div class="cs-metric__number">
+                <span data-target="68">0</span>
+                <span class="cs-metric__unit">%</span>
+              </div>
+              <p class="cs-metric__label">fewer support tickets</p>
+              <p class="cs-metric__context">Decrease in "late discovery" campaign issue tickets</p>
+            </div>
+          </div>
+
+          <!-- Additional Impact: Adoption -->
+          <div class="cs2-adoption" data-animate="fade-up" data-delay="0.3">
+            <div class="cs2-adoption__item">
+              <span class="cs2-adoption__label">Daily Active Sessions</span>
+              <span class="cs2-adoption__change">2.1 &rarr; 5.8 per user</span>
+            </div>
+            <div class="cs2-adoption__item">
+              <span class="cs2-adoption__label">Alert Engagement</span>
+              <span class="cs2-adoption__change">84% acted within 15 min</span>
+            </div>
+            <div class="cs2-adoption__item">
+              <span class="cs2-adoption__label">Platform Consolidation</span>
+              <span class="cs2-adoption__change">39% less time outside Statera</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           SECTION 13: LEARNINGS & FUTURE
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Reflection</span>
+            <h2 class="cs-heading">Learnings & future opportunities</h2>
+          </div>
+
+          <div class="cs2-learnings" data-animate="fade-up" data-delay="0.1">
+            <div class="cs2-learnings__col">
+              <h3 class="cs2-learnings__heading">What Worked</h3>
+              <div class="cs2-learning">
+                <h4 class="cs2-learning__title">Co-Design with Power Users</h4>
+                <p class="cs2-learning__desc">Embedding with Ad-Ops teams during active campaigns gave us insights no interview could capture. Watching a user manually calculate ROI in a spreadsheet while sitting in front of our dashboard was the "aha moment."</p>
+              </div>
+              <div class="cs2-learning">
+                <h4 class="cs2-learning__title">Solving for "Unknown Unknowns"</h4>
+                <p class="cs2-learning__desc">The Action Center doesn't just answer questions users ask — it surfaces problems they didn't know to look for.</p>
+              </div>
+              <div class="cs2-learning">
+                <h4 class="cs2-learning__title">Real-Time as a Feature</h4>
+                <p class="cs2-learning__desc">Users valued the "Updating in real-time" badge as much as the data itself — it restored confidence that they weren't making decisions on stale information.</p>
+              </div>
+            </div>
+
+            <div class="cs2-learnings__col">
+              <h3 class="cs2-learnings__heading">What We'd Improve</h3>
+              <div class="cs2-learning">
+                <h4 class="cs2-learning__title">Predictive Alerts</h4>
+                <p class="cs2-learning__desc">Current alerts are reactive ("ROI is 0.42x"). Next iteration: predictive alerts ("At current burn rate, this campaign will hit $50K loss by EOD").</p>
+              </div>
+              <div class="cs2-learning">
+                <h4 class="cs2-learning__title">Multi-User Collaboration</h4>
+                <p class="cs2-learning__desc">Adding "Campaign assigned to [User]" or "Alert acknowledged by [User]" would prevent duplicate work across distributed teams.</p>
+              </div>
+              <div class="cs2-learning">
+                <h4 class="cs2-learning__title">Mobile Command Center</h4>
+                <p class="cs2-learning__desc">A mobile companion app with push notifications would enable true 24/7 monitoring for on-the-go Ad-Ops managers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           CONCLUSION — Dramatic closing quote
+           ================================================================ -->
+      <section class="cs-block cs-block--centered">
+        <div class="cs-block__inner cs-quote-block">
+          <span class="cs-quote-block__mark" data-animate="fade-up">&ldquo;</span>
+          <blockquote class="cs-quote-block__text" data-animate="fade-up" data-delay="0.1">I don't check the dashboard anymore.<br>The dashboard <em>checks me</em>.</blockquote>
+          <cite class="cs-quote-block__source" data-animate="fade-up" data-delay="0.2">User feedback, 6 weeks post-launch</cite>
+        </div>
+      </section>
+
+
+      <!-- ================================================================
+           REFLECTION — Closing paragraph
+           ================================================================ -->
+      <section class="cs-block">
+        <div class="cs-block__inner cs-reflection">
+          <div class="cs-reflection__text" data-animate="fade-up">
+            <span class="cs-label">Conclusion</span>
+            <h2 class="cs-heading">A tool became a teammate</h2>
+            <p class="cs-body">Statera's transformation wasn't about better charts or prettier UI — it was about changing the relationship between Ad-Ops managers and their data. By shifting from passive reporting to active intelligence, we didn't just redesign a product; we redefined what an Ad-Tech platform could do.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="cs-footer">
+      <a href="index.html" class="cs-footer__back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to All Projects
+      </a>
+      <button class="cs-footer__top" aria-label="Scroll back to top">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back to Top</span>
+      </button>
+    </footer>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>
