@@ -625,6 +625,12 @@ body.menu-open {
   align-items: center;
   justify-content: center;
   z-index: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.work-card__reveal--visible {
+  opacity: 1;
 }
 
 .work-card__reveal-text {
@@ -798,66 +804,6 @@ body.menu-open {
   letter-spacing: 0.15em;
   color: var(--accent);
   margin-bottom: var(--space-lg);
-  vertical-align: middle;
-}
-
-/* ── Pixel coin next to About label ──────────────────────────────────── */
-
-.about__coin {
-  display: inline-block;
-  width: 3px;
-  height: 3px;
-  vertical-align: middle;
-  margin-left: 10px;
-  margin-bottom: 2px;
-  background: transparent;
-  animation: coinBounce 2s ease-in-out infinite;
-  /* 8x8 pixel coin — copper with highlight */
-  box-shadow:
-    /* Row 0 — top edge */
-     9px  0px 0 0 var(--accent),
-    12px  0px 0 0 var(--accent),
-    /* Row 1 */
-     6px  3px 0 0 var(--accent),
-     9px  3px 0 0 #daa06d,
-    12px  3px 0 0 var(--accent),
-    15px  3px 0 0 var(--accent),
-    /* Row 2 */
-     3px  6px 0 0 var(--accent),
-     6px  6px 0 0 #daa06d,
-     9px  6px 0 0 #daa06d,
-    12px  6px 0 0 var(--accent),
-    15px  6px 0 0 var(--accent),
-    18px  6px 0 0 var(--accent),
-    /* Row 3 */
-     3px  9px 0 0 var(--accent),
-     6px  9px 0 0 #daa06d,
-     9px  9px 0 0 var(--text-primary),
-    12px  9px 0 0 #daa06d,
-    15px  9px 0 0 var(--accent),
-    18px  9px 0 0 var(--accent),
-    /* Row 4 */
-     3px 12px 0 0 var(--accent),
-     6px 12px 0 0 #daa06d,
-     9px 12px 0 0 var(--text-primary),
-    12px 12px 0 0 #daa06d,
-    15px 12px 0 0 var(--accent),
-    18px 12px 0 0 var(--accent),
-    /* Row 5 */
-     3px 15px 0 0 var(--accent),
-     6px 15px 0 0 var(--accent),
-     9px 15px 0 0 #daa06d,
-    12px 15px 0 0 var(--accent),
-    15px 15px 0 0 var(--accent),
-    18px 15px 0 0 var(--accent),
-    /* Row 6 */
-     6px 18px 0 0 var(--accent),
-     9px 18px 0 0 var(--accent),
-    12px 18px 0 0 var(--accent),
-    15px 18px 0 0 var(--accent),
-    /* Row 7 — bottom edge */
-     9px 21px 0 0 var(--accent),
-    12px 21px 0 0 var(--accent);
 }
 
 .about__headline {

@@ -173,12 +173,20 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    scratch.addEventListener('mousedown', (e) => { initScratch(); isScratching = true; scratchAt(getPos(e).x, getPos(e).y); });
+    function startScratch(e) {
+      initScratch();
+      isScratching = true;
+      reveal.classList.add('work-card__reveal--visible');
+      const p = getPos(e);
+      scratchAt(p.x, p.y);
+    }
+
+    scratch.addEventListener('mousedown', startScratch);
     scratch.addEventListener('mousemove', (e) => { if (isScratching) { const p = getPos(e); scratchAt(p.x, p.y); } });
     scratch.addEventListener('mouseup', () => { isScratching = false; });
     scratch.addEventListener('mouseleave', () => { isScratching = false; });
 
-    scratch.addEventListener('touchstart', (e) => { initScratch(); isScratching = true; scratchAt(getPos(e).x, getPos(e).y); }, { passive: true });
+    scratch.addEventListener('touchstart', startScratch, { passive: true });
     scratch.addEventListener('touchmove', (e) => { if (isScratching) { const p = getPos(e); scratchAt(p.x, p.y); } }, { passive: true });
     scratch.addEventListener('touchend', () => { isScratching = false; });
   });

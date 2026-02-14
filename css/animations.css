@@ -86,19 +86,7 @@
 
 
 /* ==========================================================================
-   4. ABOUT — PIXEL COIN BOUNCE
-   ========================================================================== */
-
-@keyframes coinBounce {
-  0%, 100% { transform: translateY(0); }
-  40%      { transform: translateY(-6px); }
-  50%      { transform: translateY(-7px); }
-  60%      { transform: translateY(-6px); }
-}
-
-
-/* ==========================================================================
-   5. ACCESSIBILITY
+   4. ACCESSIBILITY
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
