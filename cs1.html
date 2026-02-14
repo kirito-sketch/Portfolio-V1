@@ -345,18 +345,38 @@
 
     <!-- Footer -->
     <footer class="cs-footer">
-      <a href="index.html" class="cs-footer__back">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to All Projects
+      <div class="cs-footer__nav">
+        <button class="cs-footer__top" aria-label="Scroll back to top">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Back to Top</span>
+        </button>
+        <a href="index.html" class="cs-footer__back">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Back to Home
+        </a>
+      </div>
+      <a href="cs2.html" class="cs-footer__next">
+        <span class="cs-footer__next-label">Next Case Study</span>
+        <div class="cs-footer__next-card">
+          <div class="cs-footer__next-image">
+            <img src="assets/images/cs2/new-dashboard.png" alt="Statera Command Center preview" loading="lazy">
+          </div>
+          <div class="cs-footer__next-info">
+            <h3 class="cs-footer__next-title">Statera <em>Command Center</em></h3>
+            <p class="cs-footer__next-desc">From passive reporting to active intelligence for high-velocity ad campaigns</p>
+            <span class="cs-footer__next-arrow">
+              View project
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+        </div>
       </a>
-      <button class="cs-footer__top" aria-label="Scroll back to top">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M10 16V4M10 4L5 9M10 4L15 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span>Back to Top</span>
-      </button>
     </footer>
 
   </div>
