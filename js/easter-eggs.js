@@ -77,6 +77,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (heroCanvas) {
     heroCanvas.style.cursor = 'pointer';
 
+    // Show subtle tooltip after hovering for 5s
+    let hoverTimer = null;
+    heroCanvas.addEventListener('mouseenter', () => {
+      hoverTimer = setTimeout(() => {
+        heroCanvas.title = 'Try triple-clicking\u2026';
+      }, 5000);
+    });
+    heroCanvas.addEventListener('mouseleave', () => {
+      clearTimeout(hoverTimer);
+      heroCanvas.removeAttribute('title');
+    });
+
     heroCanvas.addEventListener('click', () => {
       clickCount++;
 
@@ -119,7 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
     reveal.className = 'work-card__reveal';
     reveal.innerHTML = '<span class="work-card__reveal-text">Still cooking\u2026 \u{1F373}</span>';
     image.style.position = 'relative';
-    image.appendChild(reveal);
+    image.insertBefore(reveal, image.firstChild);
+
+    // Reference to clock icon so we can hide it
+    const clockIcon = card.querySelector('.work-card__soon-icon');
 
     // Create scratch overlay (covers the striped pattern)
     const scratch = document.createElement('canvas');
@@ -177,6 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
       initScratch();
       isScratching = true;
       reveal.classList.add('work-card__reveal--visible');
+      if (clockIcon) clockIcon.style.display = 'none';
       const p = getPos(e);
       scratchAt(p.x, p.y);
     }
@@ -219,6 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(
     '%carunperi.design@gmail.com',
     'color: #c9834e; font-size: 13px; padding: 4px 12px; font-family: Inter, sans-serif;'
+  );
+
+  console.log(
+    '%cP.S. There are more secrets on this page. Try the classics.',
+    'color: ' + fg + '; font-size: 11px; padding: 4px 12px; font-style: italic; opacity: 0.6; font-family: Inter, sans-serif;'
   );
 
 
