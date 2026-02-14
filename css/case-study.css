@@ -1179,6 +1179,7 @@
   justify-content: center;
   gap: clamp(2rem, 5vw, 4rem);
   margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
@@ -1280,7 +1281,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-md);
   max-width: 900px;
-  margin: 0 auto;
+  margin: var(--space-md) auto 0;
 }
 
 .cs2-method {
@@ -1304,7 +1305,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent-deep);
+  background: rgba(201, 131, 78, 0.12);
   border-radius: 14px;
   color: var(--accent);
   margin-bottom: var(--space-sm);
@@ -1336,17 +1337,12 @@
 
 .cs2-findings__col {
   min-width: 0;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  padding: var(--space-lg);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .cs2-findings__header {
-  padding: 0.75rem 1.25rem;
-  border-radius: 10px;
-  font-size: 0.9rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
   font-weight: 600;
   text-align: center;
   margin-bottom: var(--space-md);
@@ -1431,7 +1427,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: var(--space-xl);
+  margin-top: var(--space-2xl);
 }
 
 .cs2-pill {
@@ -2029,6 +2025,13 @@
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.7;
+}
+
+
+/* ── Dark theme: stronger icon bg ────────────────────────────────────── */
+
+[data-theme="dark"] .cs2-method__icon {
+  background: rgba(201, 131, 78, 0.15);
 }
 
 
