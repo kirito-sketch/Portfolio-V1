@@ -751,6 +751,66 @@ body.menu-open {
   letter-spacing: 0.15em;
   color: var(--accent);
   margin-bottom: var(--space-lg);
+  vertical-align: middle;
+}
+
+/* ── Pixel coin next to About label ──────────────────────────────────── */
+
+.about__coin {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  vertical-align: middle;
+  margin-left: 10px;
+  margin-bottom: 2px;
+  background: transparent;
+  animation: coinBounce 2s ease-in-out infinite;
+  /* 8x8 pixel coin — copper with highlight */
+  box-shadow:
+    /* Row 0 — top edge */
+     9px  0px 0 0 var(--accent),
+    12px  0px 0 0 var(--accent),
+    /* Row 1 */
+     6px  3px 0 0 var(--accent),
+     9px  3px 0 0 #daa06d,
+    12px  3px 0 0 var(--accent),
+    15px  3px 0 0 var(--accent),
+    /* Row 2 */
+     3px  6px 0 0 var(--accent),
+     6px  6px 0 0 #daa06d,
+     9px  6px 0 0 #daa06d,
+    12px  6px 0 0 var(--accent),
+    15px  6px 0 0 var(--accent),
+    18px  6px 0 0 var(--accent),
+    /* Row 3 */
+     3px  9px 0 0 var(--accent),
+     6px  9px 0 0 #daa06d,
+     9px  9px 0 0 var(--text-primary),
+    12px  9px 0 0 #daa06d,
+    15px  9px 0 0 var(--accent),
+    18px  9px 0 0 var(--accent),
+    /* Row 4 */
+     3px 12px 0 0 var(--accent),
+     6px 12px 0 0 #daa06d,
+     9px 12px 0 0 var(--text-primary),
+    12px 12px 0 0 #daa06d,
+    15px 12px 0 0 var(--accent),
+    18px 12px 0 0 var(--accent),
+    /* Row 5 */
+     3px 15px 0 0 var(--accent),
+     6px 15px 0 0 var(--accent),
+     9px 15px 0 0 #daa06d,
+    12px 15px 0 0 var(--accent),
+    15px 15px 0 0 var(--accent),
+    18px 15px 0 0 var(--accent),
+    /* Row 6 */
+     6px 18px 0 0 var(--accent),
+     9px 18px 0 0 var(--accent),
+    12px 18px 0 0 var(--accent),
+    15px 18px 0 0 var(--accent),
+    /* Row 7 — bottom edge */
+     9px 21px 0 0 var(--accent),
+    12px 21px 0 0 var(--accent);
 }
 
 .about__headline {
@@ -821,111 +881,6 @@ body.menu-open {
   font-weight: 500;
   color: var(--text-primary);
   line-height: 1.5;
-}
-
-
-/* ── Pixel art character ──────────────────────────────────────────────── */
-
-.about__character {
-  position: absolute;
-  right: 8%;
-  top: 10%;
-  z-index: 0;
-  animation: characterJump 2s ease-in-out infinite;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.about__pixel-char {
-  width: 4px;
-  height: 4px;
-  background: transparent;
-  /* 16x16 pixel grid — retro platformer character in jump pose */
-  /* Each shadow: Xpx Ypx 0 0 color (no blur = crisp pixels) */
-  box-shadow:
-    /* ── Hat (copper accent) ── */
-    20px 0px 0 0 var(--accent),
-    24px 0px 0 0 var(--accent),
-    28px 0px 0 0 var(--accent),
-    32px 0px 0 0 var(--accent),
-    16px 4px 0 0 var(--accent),
-    20px 4px 0 0 var(--accent),
-    24px 4px 0 0 var(--accent),
-    28px 4px 0 0 var(--accent),
-    32px 4px 0 0 var(--accent),
-    36px 4px 0 0 var(--accent),
-
-    /* ── Head ── */
-    20px 8px 0 0 var(--text-primary),
-    24px 8px 0 0 var(--text-primary),
-    28px 8px 0 0 var(--text-primary),
-    32px 8px 0 0 var(--text-primary),
-    20px 12px 0 0 var(--text-primary),
-    24px 12px 0 0 var(--bg-surface),
-    28px 12px 0 0 var(--text-primary),
-    32px 12px 0 0 var(--bg-surface),
-    20px 16px 0 0 var(--text-primary),
-    24px 16px 0 0 var(--text-primary),
-    28px 16px 0 0 var(--text-primary),
-    32px 16px 0 0 var(--text-primary),
-
-    /* ── Body (copper accent) ── */
-    16px 20px 0 0 var(--accent),
-    20px 20px 0 0 var(--accent),
-    24px 20px 0 0 var(--accent),
-    28px 20px 0 0 var(--accent),
-    32px 20px 0 0 var(--accent),
-    36px 20px 0 0 var(--accent),
-    20px 24px 0 0 var(--accent),
-    24px 24px 0 0 var(--accent),
-    28px 24px 0 0 var(--accent),
-    32px 24px 0 0 var(--accent),
-    20px 28px 0 0 var(--accent),
-    24px 28px 0 0 var(--accent),
-    28px 28px 0 0 var(--accent),
-    32px 28px 0 0 var(--accent),
-
-    /* ── Arms (outstretched — jump pose) ── */
-    8px 20px 0 0 var(--text-primary),
-    12px 20px 0 0 var(--text-primary),
-    40px 20px 0 0 var(--text-primary),
-    44px 20px 0 0 var(--text-primary),
-    4px 24px 0 0 var(--text-primary),
-    8px 24px 0 0 var(--text-primary),
-    44px 24px 0 0 var(--text-primary),
-    48px 24px 0 0 var(--text-primary),
-
-    /* ── Belt ── */
-    20px 32px 0 0 var(--text-primary),
-    24px 32px 0 0 var(--text-primary),
-    28px 32px 0 0 var(--text-primary),
-    32px 32px 0 0 var(--text-primary),
-
-    /* ── Legs (spread — jump pose) ── */
-    16px 36px 0 0 var(--text-primary),
-    20px 36px 0 0 var(--text-primary),
-    32px 36px 0 0 var(--text-primary),
-    36px 36px 0 0 var(--text-primary),
-    12px 40px 0 0 var(--text-primary),
-    16px 40px 0 0 var(--text-primary),
-    36px 40px 0 0 var(--text-primary),
-    40px 40px 0 0 var(--text-primary),
-
-    /* ── Feet (copper boots) ── */
-    8px 44px 0 0 var(--accent),
-    12px 44px 0 0 var(--accent),
-    16px 44px 0 0 var(--accent),
-    36px 44px 0 0 var(--accent),
-    40px 44px 0 0 var(--accent),
-    44px 44px 0 0 var(--accent);
-}
-
-@media (max-width: 768px) {
-  .about__character { display: none; }
-}
-
-@media (max-width: 1024px) and (min-width: 769px) {
-  .about__character { transform: scale(0.8); }
 }
 
 
