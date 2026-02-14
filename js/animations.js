@@ -236,6 +236,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
+     4b. CS2 Pie Chart Draw-In Animation
+     ======================================================================== */
+
+  const pieChart = document.querySelector('.cs2-pie-chart');
+  if (pieChart) {
+    const pieDonut = pieChart.querySelector('.cs2-pie-chart__donut');
+
+    // Fade up the container
+    gsap.fromTo(pieChart,
+      { opacity: 0, y: 40 },
+      {
+        opacity: 1, y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: pieChart,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        }
+      }
+    );
+
+    // Animate the donut slice via proxy
+    if (pieDonut) {
+      const pieProxy = { angle: 0 };
+      gsap.to(pieProxy, {
+        angle: 223.2,
+        duration: 1.4,
+        ease: 'power2.out',
+        onUpdate() {
+          pieDonut.style.setProperty('--pie-angle', pieProxy.angle + 'deg');
+        },
+        scrollTrigger: {
+          trigger: pieChart,
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        }
+      });
+    }
+  }
+
+
+  /* ========================================================================
+     4c. CS2 Staggered Group Reveals
+     ======================================================================== */
+
+  function staggerReveal(containerSelector, childSelector, staggerDelay) {
+    document.querySelectorAll(containerSelector).forEach(container => {
+      const children = container.querySelectorAll(childSelector);
+      if (!children.length) return;
+
+      gsap.fromTo(children,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power2.out',
+          stagger: staggerDelay,
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        }
+      );
+    });
+  }
+
+  staggerReveal('.cs2-methods', '.cs2-method', 0.15);
+  staggerReveal('.cs2-findings__quotes', '.cs2-findings__quote', 0.12);
+  staggerReveal('.cs2-findings__list', 'li', 0.1);
+  staggerReveal('.cs2-pills', '.cs2-pill', 0.08);
+  staggerReveal('.cs2-arch__flow', '.cs2-arch__node, .cs2-arch__connector', 0.15);
+  staggerReveal('.cs2-principles', '.cs2-principle', 0.1);
+
+
+  /* ========================================================================
      5. Reading Progress Bar (case study page)
      ======================================================================== */
 
@@ -272,12 +350,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // This handles edge cases where ScrollTrigger doesn't fire on mobile
     // (lazy loading delays, layout shifts, or viewport timing).
     setTimeout(() => {
-      document.querySelectorAll('.cs-showcase-full__phone, .cs-quote-block__mark, .cs-quote-block__text, .cs-quote-block__source').forEach(el => {
+      document.querySelectorAll('.cs-showcase-full__phone, .cs-quote-block__mark, .cs-quote-block__text, .cs-quote-block__source, .cs2-pie-chart, .cs2-method, .cs2-findings__quote, .cs2-findings__list li, .cs2-pill, .cs2-arch__node, .cs2-arch__connector, .cs2-principle').forEach(el => {
         if (getComputedStyle(el).opacity === '0') {
           el.style.opacity = '1';
           el.style.transform = 'none';
         }
       });
+      // Also ensure pie chart donut is fully drawn
+      const fallbackDonut = document.querySelector('.cs2-pie-chart__donut');
+      if (fallbackDonut) {
+        fallbackDonut.style.setProperty('--pie-angle', '223.2deg');
+      }
     }, 4000);
   });
 

@@ -845,15 +845,38 @@
   opacity: 0;
 }
 
+/* CS2 stagger children + pie chart — start hidden */
+.cs2-method,
+.cs2-findings__quote,
+.cs2-findings__list li,
+.cs2-pill,
+.cs2-arch__node,
+.cs2-arch__connector,
+.cs2-principle {
+  opacity: 0;
+}
+
 /* Reduced motion: show everything immediately */
 @media (prefers-reduced-motion: reduce) {
   .cs-quote-block__mark,
   .cs-quote-block__text,
   .cs-quote-block__source,
   .cs-showcase-full__phone,
-  .cs-hero__phone {
+  .cs-hero__phone,
+  .cs2-pie-chart,
+  .cs2-method,
+  .cs2-findings__quote,
+  .cs2-findings__list li,
+  .cs2-pill,
+  .cs2-arch__node,
+  .cs2-arch__connector,
+  .cs2-principle {
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .cs2-pie-chart__donut {
+    --pie-angle: 223.2deg !important;
   }
 }
 
@@ -1100,6 +1123,7 @@
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0;
 }
 
 .cs2-pie-chart__visual {
@@ -1110,13 +1134,11 @@
 }
 
 .cs2-pie-chart__donut {
+  --pie-angle: 0deg;
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: conic-gradient(
-    #EF4444 0deg 223.2deg,
-    #8B8FA3 223.2deg 360deg
-  );
+  background: conic-gradient(#EF4444 0deg var(--pie-angle), #8B8FA3 var(--pie-angle) 360deg);
   mask: radial-gradient(circle at center, transparent 55%, black 56%);
   -webkit-mask: radial-gradient(circle at center, transparent 55%, black 56%);
 }
@@ -1854,86 +1876,6 @@
 }
 
 
-/* ── Design System Showcase ──────────────────────────────────────────── */
-
-.cs2-design-subtitle {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  color: var(--text-primary);
-  margin-bottom: var(--space-md);
-  text-align: center;
-}
-
-.cs2-design-colors {
-  margin-top: var(--space-xl);
-}
-
-.cs2-design-colors__grid {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  flex-wrap: wrap;
-}
-
-.cs2-color-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  width: 120px;
-}
-
-.cs2-color-card__swatch {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  margin-bottom: 0.25rem;
-}
-
-.cs2-color-card strong {
-  font-size: 0.85rem;
-  color: var(--text-primary);
-}
-
-.cs2-color-card span {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  text-align: center;
-}
-
-.cs2-design-type {
-  margin-top: var(--space-xl);
-}
-
-.cs2-design-type__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.cs2-type-sample {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding: var(--space-md);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-}
-
-.cs2-type-sample__preview {
-  color: var(--text-primary);
-  font-family: var(--font-body);
-}
-
-.cs2-type-sample__label {
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
 
 
 /* ── Adoption Metrics (below Impact) ─────────────────────────────────── */
@@ -2064,10 +2006,6 @@
     grid-template-columns: 1fr;
   }
 
-  .cs2-design-type__grid {
-    grid-template-columns: 1fr;
-  }
-
   .cs2-adoption {
     grid-template-columns: 1fr;
   }
@@ -2085,18 +2023,5 @@
 @media (max-width: 480px) {
   .cs2-principles {
     grid-template-columns: 1fr;
-  }
-
-  .cs2-design-colors__grid {
-    gap: var(--space-sm);
-  }
-
-  .cs2-color-card {
-    width: 90px;
-  }
-
-  .cs2-color-card__swatch {
-    width: 44px;
-    height: 44px;
   }
 }
