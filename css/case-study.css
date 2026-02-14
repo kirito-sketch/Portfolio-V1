@@ -782,36 +782,6 @@
   margin-bottom: var(--space-xl);
 }
 
-.cs-footer__back {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.6rem 1.2rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-light);
-  border-radius: 50px;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: all var(--duration-fast) var(--ease-smooth);
-}
-
-.cs-footer__back:hover {
-  color: var(--accent);
-  border-color: rgba(201, 131, 78, 0.2);
-  transform: translateX(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-}
-
-.cs-footer__back svg {
-  transition: transform var(--duration-fast);
-}
-
-.cs-footer__back:hover svg {
-  transform: translateX(-3px);
-}
-
 .cs-footer__top {
   display: inline-flex;
   align-items: center;
