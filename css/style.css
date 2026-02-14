@@ -824,6 +824,111 @@ body.menu-open {
 }
 
 
+/* ── Pixel art character ──────────────────────────────────────────────── */
+
+.about__character {
+  position: absolute;
+  right: 8%;
+  top: 10%;
+  z-index: 0;
+  animation: characterJump 2s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.about__pixel-char {
+  width: 4px;
+  height: 4px;
+  background: transparent;
+  /* 16x16 pixel grid — retro platformer character in jump pose */
+  /* Each shadow: Xpx Ypx 0 0 color (no blur = crisp pixels) */
+  box-shadow:
+    /* ── Hat (copper accent) ── */
+    20px 0px 0 0 var(--accent),
+    24px 0px 0 0 var(--accent),
+    28px 0px 0 0 var(--accent),
+    32px 0px 0 0 var(--accent),
+    16px 4px 0 0 var(--accent),
+    20px 4px 0 0 var(--accent),
+    24px 4px 0 0 var(--accent),
+    28px 4px 0 0 var(--accent),
+    32px 4px 0 0 var(--accent),
+    36px 4px 0 0 var(--accent),
+
+    /* ── Head ── */
+    20px 8px 0 0 var(--text-primary),
+    24px 8px 0 0 var(--text-primary),
+    28px 8px 0 0 var(--text-primary),
+    32px 8px 0 0 var(--text-primary),
+    20px 12px 0 0 var(--text-primary),
+    24px 12px 0 0 var(--bg-surface),
+    28px 12px 0 0 var(--text-primary),
+    32px 12px 0 0 var(--bg-surface),
+    20px 16px 0 0 var(--text-primary),
+    24px 16px 0 0 var(--text-primary),
+    28px 16px 0 0 var(--text-primary),
+    32px 16px 0 0 var(--text-primary),
+
+    /* ── Body (copper accent) ── */
+    16px 20px 0 0 var(--accent),
+    20px 20px 0 0 var(--accent),
+    24px 20px 0 0 var(--accent),
+    28px 20px 0 0 var(--accent),
+    32px 20px 0 0 var(--accent),
+    36px 20px 0 0 var(--accent),
+    20px 24px 0 0 var(--accent),
+    24px 24px 0 0 var(--accent),
+    28px 24px 0 0 var(--accent),
+    32px 24px 0 0 var(--accent),
+    20px 28px 0 0 var(--accent),
+    24px 28px 0 0 var(--accent),
+    28px 28px 0 0 var(--accent),
+    32px 28px 0 0 var(--accent),
+
+    /* ── Arms (outstretched — jump pose) ── */
+    8px 20px 0 0 var(--text-primary),
+    12px 20px 0 0 var(--text-primary),
+    40px 20px 0 0 var(--text-primary),
+    44px 20px 0 0 var(--text-primary),
+    4px 24px 0 0 var(--text-primary),
+    8px 24px 0 0 var(--text-primary),
+    44px 24px 0 0 var(--text-primary),
+    48px 24px 0 0 var(--text-primary),
+
+    /* ── Belt ── */
+    20px 32px 0 0 var(--text-primary),
+    24px 32px 0 0 var(--text-primary),
+    28px 32px 0 0 var(--text-primary),
+    32px 32px 0 0 var(--text-primary),
+
+    /* ── Legs (spread — jump pose) ── */
+    16px 36px 0 0 var(--text-primary),
+    20px 36px 0 0 var(--text-primary),
+    32px 36px 0 0 var(--text-primary),
+    36px 36px 0 0 var(--text-primary),
+    12px 40px 0 0 var(--text-primary),
+    16px 40px 0 0 var(--text-primary),
+    36px 40px 0 0 var(--text-primary),
+    40px 40px 0 0 var(--text-primary),
+
+    /* ── Feet (copper boots) ── */
+    8px 44px 0 0 var(--accent),
+    12px 44px 0 0 var(--accent),
+    16px 44px 0 0 var(--accent),
+    36px 44px 0 0 var(--accent),
+    40px 44px 0 0 var(--accent),
+    44px 44px 0 0 var(--accent);
+}
+
+@media (max-width: 768px) {
+  .about__character { display: none; }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .about__character { transform: scale(0.8); }
+}
+
+
 /* ==========================================================================
    10. FOOTER — Floating rounded rectangle with retro grid
    ========================================================================== */
