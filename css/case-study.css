@@ -1143,55 +1143,33 @@
 
 /* ── Key Impacts Cards ───────────────────────────────────────────────── */
 
-.cs2-impacts {
+/* ── Problem Statement ──────────────────────────────────────────────── */
+
+.cs2-problem-statement {
   margin-top: var(--space-xl);
+  padding: var(--space-lg);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-surface);
+  border-radius: 0 12px 12px 0;
 }
 
-.cs2-impacts__title {
+.cs2-problem-statement__label {
+  display: block;
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--text-muted);
-  margin-bottom: var(--space-md);
+  color: var(--accent);
+  margin-bottom: var(--space-sm);
 }
 
-.cs2-impacts__cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-md);
-  max-width: 700px;
-}
-
-.cs2-impacts__card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
-  padding: var(--space-lg);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
-}
-
-.cs2-impacts__arrow {
-  margin-bottom: 0.25rem;
-}
-
-.cs2-impacts__value {
+.cs2-problem-statement__text {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 400;
-  color: #22C55E;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.cs2-impacts__desc {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
+  font-style: italic;
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
@@ -2104,37 +2082,106 @@
 
 /* ── Adoption Metrics (below Impact) ─────────────────────────────────── */
 
-.cs2-adoption {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-md);
-  margin-top: var(--space-xl);
-}
+/* ── Outcome Section ────────────────────────────────────────────────── */
 
-.cs2-adoption__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  padding: var(--space-md);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.cs2-outcome__honest {
+  max-width: 700px;
+  margin: 0 auto var(--space-xl);
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.cs2-adoption__label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+.cs2-outcome__honest p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.cs2-outcome__honest p:last-child {
+  margin-bottom: 0;
+  font-style: italic;
   color: rgba(255, 255, 255, 0.5);
 }
 
-.cs2-adoption__change {
-  font-size: 1.1rem;
+.cs2-validated__title {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   color: var(--accent);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.cs2-validated__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.cs2-validated__item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cs2-validated__icon {
+  color: var(--accent);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.cs2-validated__item strong {
+  display: block;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+.cs2-validated__item p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+/* ── Constraints ───────────────────────────────────────────────────── */
+
+.cs2-constraints {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cs2-constraint {
+  padding: var(--space-md) var(--space-lg);
+  border-left: 2px solid var(--text-muted);
+  background: var(--bg-surface);
+  border-radius: 0 10px 10px 0;
+}
+
+.cs2-constraint__title {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+}
+
+.cs2-constraint__desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
 }
 
 
@@ -2195,9 +2242,6 @@
 }
 
 @media (max-width: 768px) {
-  .cs2-impacts__cards {
-    grid-template-columns: 1fr;
-  }
 
   .cs2-meta-row {
     flex-wrap: wrap;
@@ -2253,9 +2297,6 @@
     grid-template-columns: 1fr;
   }
 
-  .cs2-adoption {
-    grid-template-columns: 1fr;
-  }
 
   .cs2-learnings {
     grid-template-columns: 1fr;
