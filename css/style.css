@@ -154,7 +154,7 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.8s var(--ease-smooth), opacity 0.8s var(--ease-smooth),
+  transition: transform 0.8s var(--ease-smooth),
               background-color 0.4s var(--ease-smooth);
 }
 
@@ -205,7 +205,7 @@ body::after {
   animation: loaderBall 1.5s linear infinite;
 }
 
-.loader.loaded { transform: translateY(-100%); opacity: 0; }
+.loader.loaded { transform: translateY(-100%); }
 
 
 /* ==========================================================================
