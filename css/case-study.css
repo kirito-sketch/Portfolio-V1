@@ -1184,13 +1184,16 @@
   margin-left: auto;
   margin-right: auto;
   opacity: 0;
+  perspective: 800px;
 }
 
 .cs2-pie-chart__visual {
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 260px;
+  height: 260px;
   flex-shrink: 0;
+  transform: rotateX(50deg);
+  filter: drop-shadow(0 24px 16px rgba(0, 0, 0, 0.15));
 }
 
 .cs2-pie-chart__donut {
@@ -1198,9 +1201,13 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: conic-gradient(#EF4444 0deg var(--pie-angle), #8B8FA3 var(--pie-angle) 360deg);
+  background: conic-gradient(var(--accent) 0deg var(--pie-angle), #B8B0A8 var(--pie-angle) 360deg);
   mask: radial-gradient(circle at center, transparent 55%, black 56%);
   -webkit-mask: radial-gradient(circle at center, transparent 55%, black 56%);
+}
+
+[data-theme="dark"] .cs2-pie-chart__donut {
+  background: conic-gradient(var(--accent) 0deg var(--pie-angle), #4A4540 var(--pie-angle) 360deg);
 }
 
 .cs2-pie-chart__center {
@@ -1215,7 +1222,7 @@
 .cs2-pie-chart__center-value {
   font-family: var(--font-display);
   font-size: 2rem;
-  color: #EF4444;
+  color: var(--accent);
   line-height: 1;
 }
 
@@ -1247,8 +1254,10 @@
   margin-top: 3px;
 }
 
-.cs2-pie-chart__legend-dot--primary { background: #EF4444; }
-.cs2-pie-chart__legend-dot--secondary { background: #8B8FA3; }
+.cs2-pie-chart__legend-dot--primary { background: var(--accent); }
+.cs2-pie-chart__legend-dot--secondary { background: #B8B0A8; }
+
+[data-theme="dark"] .cs2-pie-chart__legend-dot--secondary { background: #4A4540; }
 
 .cs2-pie-chart__legend-value {
   font-family: var(--font-display);
@@ -2034,6 +2043,10 @@
   background: rgba(201, 131, 78, 0.15);
 }
 
+[data-theme="dark"] .cs2-pie-chart__visual {
+  filter: drop-shadow(0 24px 20px rgba(0, 0, 0, 0.35));
+}
+
 
 /* ==========================================================================
    CS2: RESPONSIVE
@@ -2071,6 +2084,12 @@
 
   .cs2-pie-chart {
     flex-direction: column;
+  }
+
+  .cs2-pie-chart__visual {
+    transform: rotateX(40deg);
+    width: 220px;
+    height: 220px;
   }
 
   .cs2-methods {
