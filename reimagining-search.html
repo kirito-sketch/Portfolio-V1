@@ -285,42 +285,34 @@
 
 
       <!-- ================================================================
-           IMPACT — Big animated metrics
+           MEASURING SUCCESS — What I'd track if this shipped
            ================================================================ -->
-      <section class="cs-block cs-block--dark" id="measuring-success" data-nav-label="Measuring Success">
+      <section class="cs-block" id="measuring-success" data-nav-label="Measuring Success">
         <div class="cs-block__inner">
-          <div class="cs-section-header cs-section-header--light cs-section-header--center" data-animate="fade-up">
-            <span class="cs-label cs-label--light">Impact</span>
-            <h2 class="cs-heading cs-heading--light">The numbers tell the story</h2>
+          <div class="cs-section-header cs-section-header--center" data-animate="fade-up">
+            <span class="cs-label">Measuring Success</span>
+            <h2 class="cs-heading">What I'd track</h2>
           </div>
 
-          <p class="cs-metrics__note" data-animate="fade-up" data-delay="0.05">Projected from usability testing (n=18, moderated sessions)</p>
-          <div class="cs-metrics">
-            <div class="cs-metric" data-animate="fade-up">
-              <div class="cs-metric__number">
-                <span data-target="40">0</span>
-                <span class="cs-metric__unit">%</span>
-              </div>
-              <p class="cs-metric__label">faster content selection</p>
-              <p class="cs-metric__context">Median time from search to play dropped from 8.5 min to 5.1 min across test sessions</p>
+          <div class="cs-kpis">
+            <div class="cs-kpi" data-animate="fade-up">
+              <h3 class="cs-kpi__name">Time to Content</h3>
+              <p class="cs-kpi__rationale">The core problem was browsing fatigue. Measuring median time from search initiation to play would validate whether mood-based filters actually reduce the decision burden.</p>
             </div>
-            <div class="cs-metric" data-animate="fade-up" data-delay="0.15">
-              <div class="cs-metric__number">
-                <span data-target="25">0</span>
-                <span class="cs-metric__unit">%</span>
-              </div>
-              <p class="cs-metric__label">increase in browse-to-play</p>
-              <p class="cs-metric__context">More participants completed the search-to-watch flow in the redesign vs baseline</p>
+            <div class="cs-kpi" data-animate="fade-up" data-delay="0.1">
+              <h3 class="cs-kpi__name">Browse-to-Play Conversion</h3>
+              <p class="cs-kpi__rationale">What percentage of search sessions end with the user selecting content? A higher conversion rate means the discovery flow is guiding, not just displaying.</p>
             </div>
-            <div class="cs-metric" data-animate="fade-up" data-delay="0.3">
-              <div class="cs-metric__number">
-                <span data-target="4.6">0</span>
-                <span class="cs-metric__unit">/5</span>
-              </div>
-              <p class="cs-metric__label">user satisfaction</p>
-              <p class="cs-metric__context">Post-task satisfaction score, up from 3.2 in the baseline experience</p>
+            <div class="cs-kpi" data-animate="fade-up" data-delay="0.2">
+              <h3 class="cs-kpi__name">Search Refinement Rate</h3>
+              <p class="cs-kpi__rationale">How often users modify their initial query or mood selection. Lower refinement suggests the first set of results was relevant enough to act on.</p>
+            </div>
+            <div class="cs-kpi" data-animate="fade-up" data-delay="0.3">
+              <h3 class="cs-kpi__name">Return Search Usage</h3>
+              <p class="cs-kpi__rationale">What percentage of returning users engage with mood-based search again? Repeat usage separates novelty from genuine utility.</p>
             </div>
           </div>
+          <p class="cs-kpis__note">This project was validated through usability testing but did not ship to production.</p>
         </div>
       </section>
 
