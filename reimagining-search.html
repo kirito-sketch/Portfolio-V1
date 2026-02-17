@@ -372,6 +372,23 @@
       </a>
     </footer>
 
+    <!-- Section Navigator -->
+    <nav class="section-nav" aria-label="Case study sections">
+      <button class="section-nav__toggle" aria-expanded="false" aria-controls="section-nav-list">
+        <svg class="section-nav__hamburger" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <line x1="2" y1="4" x2="14" y2="4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="2" y1="8" x2="14" y2="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="2" y1="12" x2="14" y2="12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="section-nav__current">Overview</span>
+        <svg class="section-nav__chevron" width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M4 6L7 9L10 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="section-nav__progress">0%</span>
+      </button>
+      <ul class="section-nav__list" id="section-nav-list"></ul>
+    </nav>
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
