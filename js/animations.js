@@ -314,12 +314,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ========================================================================
-     5. Reading Progress Bar (case study page)
+     5. Section Navigator (case study page)
      ======================================================================== */
 
-  const progressBar = document.querySelector('.cs-progress__bar');
-  const progressContainer = document.querySelector('.cs-progress');
-  if (progressBar) {
+  const sectionNav = document.querySelector('.section-nav');
+  if (sectionNav) {
+    const toggle = sectionNav.querySelector('.section-nav__toggle');
+    const list = sectionNav.querySelector('.section-nav__list');
+    const currentLabel = sectionNav.querySelector('.section-nav__current');
+    const progressLabel = sectionNav.querySelector('.section-nav__progress');
+
+    // Build section list from data-nav-label attributes
+    const sections = [];
+    document.querySelectorAll('main section[data-nav-label]').forEach(sec => {
+      sections.push({ id: sec.id, label: sec.dataset.navLabel, el: sec });
+      const li = document.createElement('li');
+      li.className = 'section-nav__item';
+      li.textContent = sec.dataset.navLabel;
+      li.setAttribute('role', 'button');
+      li.setAttribute('tabindex', '0');
+      li.addEventListener('click', () => {
+        sec.scrollIntoView({ behavior: 'smooth' });
+        closeNav();
+      });
+      li.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          sec.scrollIntoView({ behavior: 'smooth' });
+          closeNav();
+        }
+      });
+      list.appendChild(li);
+    });
+
+    const listItems = list.querySelectorAll('.section-nav__item');
+
+    // Toggle expand/collapse
+    function openNav() {
+      sectionNav.dataset.expanded = 'true';
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeNav() {
+      sectionNav.dataset.expanded = 'false';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', () => {
+      const isExpanded = sectionNav.dataset.expanded === 'true';
+      if (isExpanded) closeNav();
+      else openNav();
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!sectionNav.contains(e.target)) closeNav();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeNav();
+    });
+
+    // Track active section with IntersectionObserver
+    let activeIndex = 0;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sections.findIndex(s => s.el === entry.target);
+          if (idx !== -1) {
+            activeIndex = idx;
+            currentLabel.textContent = sections[idx].label;
+            listItems.forEach((li, i) => {
+              li.classList.toggle('section-nav__item--active', i === idx);
+            });
+          }
+        }
+      });
+    }, {
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    });
+
+    sections.forEach(s => observer.observe(s.el));
+
+    // Track scroll progress
     let progressTicking = false;
     window.addEventListener('scroll', () => {
       if (!progressTicking) {
@@ -327,10 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const scrollTop = window.scrollY;
           const docHeight = document.documentElement.scrollHeight - window.innerHeight;
           const progress = Math.round((scrollTop / docHeight) * 100);
-          progressBar.style.width = progress + '%';
-          if (progressContainer) {
-            progressContainer.setAttribute('aria-valuenow', progress);
-          }
+          progressLabel.textContent = progress + '%';
           progressTicking = false;
         });
         progressTicking = true;
