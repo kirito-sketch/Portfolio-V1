@@ -747,6 +747,52 @@
 
 
 /* ==========================================================================
+   MEASURING SUCCESS — KPI cards
+   ========================================================================== */
+
+.cs-kpis {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.cs-kpi {
+  padding: var(--space-lg);
+  border-radius: 16px;
+  background: var(--card-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-subtle);
+  transition: border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.cs-kpi:hover {
+  border-color: rgba(201, 131, 78, 0.2);
+}
+
+.cs-kpi__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.cs-kpi__rationale {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.cs-kpis__note {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted, rgba(255, 255, 255, 0.35));
+  text-align: center;
+  margin-top: var(--space-lg);
+  letter-spacing: 0.03em;
+}
+
+
+/* ==========================================================================
    REFLECTION — Closing thoughts
    ========================================================================== */
 
@@ -1164,6 +1210,10 @@
   .cs-metrics {
     grid-template-columns: 1fr;
     gap: var(--space-md);
+  }
+
+  .cs-kpis {
+    grid-template-columns: 1fr;
   }
 
   .cs-showcase-full { padding: 0 var(--space-sm); }
