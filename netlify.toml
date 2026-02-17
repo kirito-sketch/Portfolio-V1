@@ -1,6 +1,15 @@
 [build]
   publish = "."
 
+[build.processing.html]
+  pretty_urls = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/assets/*"
   [headers.values]
