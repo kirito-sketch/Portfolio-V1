@@ -50,24 +50,6 @@
 }
 
 
-/* ── Progress Bar ─────────────────────────────────────────────────────── */
-
-.cs-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  z-index: 101;
-  background: var(--border-subtle);
-}
-
-.cs-progress__bar {
-  height: 100%;
-  width: 0%;
-  background: var(--accent);
-  transition: width 0.1s linear;
-}
 
 
 /* ==========================================================================
@@ -974,6 +956,116 @@
   opacity: 0;
 }
 
+/* ==========================================================================
+   SECTION NAVIGATOR — Fixed bottom-left expandable panel
+   ========================================================================== */
+
+.section-nav {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  z-index: 100;
+  font-family: var(--font-body);
+}
+
+.section-nav__toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  transition: all var(--duration-fast) var(--ease-smooth);
+  width: 100%;
+}
+
+.section-nav__toggle:hover {
+  color: var(--text-primary);
+  border-color: rgba(201, 131, 78, 0.2);
+}
+
+.section-nav__current {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.section-nav__chevron {
+  transition: transform var(--duration-fast) var(--ease-smooth);
+  flex-shrink: 0;
+}
+
+.section-nav[data-expanded="true"] .section-nav__chevron {
+  transform: rotate(180deg);
+}
+
+.section-nav__progress {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  min-width: 2.5em;
+  text-align: right;
+}
+
+.section-nav__list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.3s var(--ease-smooth),
+              opacity 0.2s var(--ease-smooth);
+  pointer-events: none;
+}
+
+.section-nav[data-expanded="true"] .section-nav__list {
+  max-height: 400px;
+  opacity: 1;
+  pointer-events: auto;
+  overflow-y: auto;
+}
+
+.section-nav__item {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--duration-fast),
+              background var(--duration-fast);
+  white-space: nowrap;
+}
+
+.section-nav__item:hover {
+  color: var(--text-primary);
+  background: rgba(201, 131, 78, 0.06);
+}
+
+.section-nav__item--active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+
 /* Reduced motion: show everything immediately */
 @media (prefers-reduced-motion: reduce) {
   .cs-quote-block__mark,
@@ -1095,6 +1187,15 @@
   .cs-context__details {
     grid-template-columns: 1fr 1fr;
   }
+
+  .section-nav {
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .section-nav__current {
+    max-width: 100px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1135,6 +1236,20 @@
 
   .cs-finding__callout {
     max-width: 100%;
+  }
+
+  .section-nav {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .section-nav__toggle {
+    font-size: 0.8rem;
+  }
+
+  .section-nav__current {
+    max-width: 80px;
   }
 }
 
