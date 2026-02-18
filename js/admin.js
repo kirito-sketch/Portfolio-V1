@@ -6,6 +6,7 @@
   var loginPassword = document.getElementById('loginPassword');
   var loginError = document.getElementById('loginError');
   var logoutBtn = document.getElementById('logoutBtn');
+  var toggleEye = document.getElementById('toggleEye');
 
   var protectionToggle = document.getElementById('protectionToggle');
   var csPassword = document.getElementById('csPassword');
@@ -26,9 +27,23 @@
     el.className = 'admin-status ' + (success ? 'admin-status--success' : 'admin-status--error');
   }
 
+  function showLoginError(msg) {
+    loginError.textContent = msg;
+    loginError.classList.add('admin-login__error--visible');
+  }
+
   function authHeaders() {
     return { 'Authorization': 'Bearer ' + token };
   }
+
+  // ── Eye toggle ──
+  toggleEye.addEventListener('click', function () {
+    var isPassword = loginPassword.type === 'password';
+    loginPassword.type = isPassword ? 'text' : 'password';
+    toggleEye.querySelector('.eye-open').style.display = isPassword ? 'none' : '';
+    toggleEye.querySelector('.eye-closed').style.display = isPassword ? '' : 'none';
+    loginPassword.focus();
+  });
 
   // ── Auth ──
   function showDashboard() {
@@ -45,25 +60,43 @@
     e.preventDefault();
     loginError.classList.remove('admin-login__error--visible');
 
+    var btn = loginForm.querySelector('.admin-login__btn');
+    btn.textContent = 'Signing in...';
+    btn.disabled = true;
+
     fetch('/api/admin-auth', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: loginPassword.value })
     })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (r) {
+        return r.text().then(function (text) {
+          try {
+            var data = JSON.parse(text);
+            return { ok: r.ok, status: r.status, data: data };
+          } catch (e) {
+            return { ok: false, status: r.status, data: { error: 'Server error (' + r.status + ')' } };
+          }
+        });
+      })
       .then(function (res) {
+        btn.textContent = 'Sign In';
+        btn.disabled = false;
         if (res.ok && res.data.token) {
           token = res.data.token;
           sessionStorage.setItem('admin_token', token);
           showDashboard();
         } else {
-          loginError.classList.add('admin-login__error--visible');
+          showLoginError(res.data.error || 'Invalid password.');
           loginPassword.value = '';
           loginPassword.focus();
         }
       })
-      .catch(function () {
-        loginError.classList.add('admin-login__error--visible');
+      .catch(function (err) {
+        btn.textContent = 'Sign In';
+        btn.disabled = false;
+        showLoginError('Connection failed. Check console.');
+        console.error('Admin auth error:', err);
       });
   });
 

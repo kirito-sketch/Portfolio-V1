@@ -45,6 +45,12 @@ body {
   gap: var(--space-sm);
 }
 
+.admin-login__input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .admin-login__input {
   background: var(--bg-secondary);
   border: 1px solid var(--border-subtle);
@@ -52,13 +58,33 @@ body {
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 0.95rem;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  width: 100%;
+  box-sizing: border-box;
   outline: none;
   transition: border-color var(--duration-fast) var(--ease-smooth);
 }
 
 .admin-login__input:focus {
   border-color: var(--accent);
+}
+
+.admin-login__eye {
+  position: absolute;
+  right: 0.6rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-login__eye:hover {
+  color: var(--text-primary);
 }
 
 .admin-login__btn {
