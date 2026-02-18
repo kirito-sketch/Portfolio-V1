@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    { "source": "/resume", "destination": "/api/serve-resume" }
+  ],
+  "headers": [
+    {
+      "source": "/admin.html",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    }
+  ]
+}

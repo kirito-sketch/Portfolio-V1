@@ -73,7 +73,7 @@ Custom properties: `--space-xs` (0.5rem) through `--space-3xl` (12rem). Section 
 3. **Intro** — Centered positioning statement in Instrument Serif
 4. **Work Showcase** — "Selected Work" heading + 3 work cards:
    - Card 1: "Reimagining Search" → links to `cs1.html` (has image + hover button)
-   - Card 2 & 3: "Coming Soon" placeholders with "In Progress" badges
+   - Card 2 & 3: "Coming Soon" placeholder cards (`.work-card--soon`) — not clickable `<div>`s with diagonal stripe pattern background, clock SVG icon, "In Progress" dashed-border pill badge, reduced opacity (0.6 → 0.75 on hover)
    - Gallery has a focus effect: hovering one card dims/blurs siblings
 5. **About** — Label + headline + two-column grid (bio text | structured details)
 6. **Footer** — Rounded rectangle with animated retro perspective grid background, "Let's work together" CTA, email link with hover button, LinkedIn + Resume pill links, credit line
@@ -106,7 +106,7 @@ Custom properties: `--space-xs` (0.5rem) through `--space-3xl` (12rem). Section 
    - V2: Mood-first discovery
    - Final: The confidence card (accent callout)
    - Phone images have parallax same as findings
-9. **Final Showcase** — 3 phones side-by-side, center one elevated, stagger fade-in
+9. **Final Showcase** — 3 phones side-by-side, center one elevated, stagger fade-in. Each phone has a caption + description paragraph (`.cs-showcase-full__desc`) explaining the design rationale. Phone sizes are larger for readability: base `clamp(300px, 40vw, 680px)`, hero `clamp(360px, 50vw, 840px)`
 10. **User Voice** — Big pull quote with animated quotation mark, text, source
 11. **Impact** — 3 metric cards with animated counters (40%, 25%, 4.6/5)
 12. **Reflection** — "What I learned" closing text

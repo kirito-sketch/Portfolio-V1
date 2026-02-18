@@ -24,6 +24,86 @@
 </head>
 <body>
 
+  <!-- Password Gate -->
+  <div class="password-gate" id="passwordGate">
+    <div class="password-gate__card">
+      <div class="password-gate__icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <h2 class="password-gate__title">This case study is protected</h2>
+      <p class="password-gate__desc">Please enter the password to view this project.</p>
+      <form class="password-gate__form" id="passwordForm">
+        <div class="password-gate__input-wrap">
+          <input type="password" class="password-gate__input" id="passwordInput" placeholder="Enter password" autocomplete="off" autofocus>
+          <button type="submit" class="password-gate__submit" aria-label="Submit">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+        <p class="password-gate__error" id="passwordError">Incorrect password. Please try again.</p>
+      </form>
+      <div class="password-gate__divider"><span>or</span></div>
+      <a href="mailto:arunperi0595@gmail.com?subject=Case%20Study%20Access%20Request&body=Hi%20Arun%2C%0A%0AI'd%20like%20to%20request%20access%20to%20your%20case%20studies.%0A%0AThanks!" class="password-gate__request">
+        Request Access
+      </a>
+    </div>
+  </div>
+  <script>
+  (function() {
+    var gate = document.getElementById('passwordGate');
+    var form = document.getElementById('passwordForm');
+    var input = document.getElementById('passwordInput');
+    var error = document.getElementById('passwordError');
+
+    if (sessionStorage.getItem('cs_access') === 'granted') {
+      gate.remove();
+      return;
+    }
+
+    // Check if protection is enabled
+    fetch('/api/get-config')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (!data.protectionEnabled) {
+          gate.remove();
+          document.body.classList.remove('password-locked');
+        }
+      })
+      .catch(function() { /* keep gate visible on error */ });
+
+    document.body.classList.add('password-locked');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var pw = input.value;
+      fetch('/api/validate-pw', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw })
+      })
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data.valid) {
+            sessionStorage.setItem('cs_access', 'granted');
+            gate.classList.add('password-gate--unlocked');
+            document.body.classList.remove('password-locked');
+            setTimeout(function() { gate.remove(); }, 400);
+          } else {
+            error.classList.add('password-gate__error--visible');
+            input.value = '';
+            input.focus();
+          }
+        })
+        .catch(function() {
+          error.classList.add('password-gate__error--visible');
+          input.value = '';
+          input.focus();
+        });
+    });
+  })();
+  </script>
+
   <div class="site-wrapper">
 
     <a href="#main-content" class="skip-link">Skip to content</a>

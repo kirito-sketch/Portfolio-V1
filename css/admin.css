@@ -1,0 +1,304 @@
+/* ==========================================================================
+   admin.css — Admin page styles (uses existing CSS tokens from style.css)
+   ========================================================================== */
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ── Login Screen ───────────────────────────────────────────────────────── */
+
+.admin-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--space-md);
+}
+
+.admin-login__card {
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+
+.admin-login__title {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin: 0 0 var(--space-xs);
+}
+
+.admin-login__desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin: 0 0 var(--space-lg);
+}
+
+.admin-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.admin-login__input {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-login__input:focus {
+  border-color: var(--accent);
+}
+
+.admin-login__btn {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  transition: background var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-login__btn:hover {
+  background: var(--accent-hover);
+}
+
+.admin-login__error {
+  color: #e53e3e;
+  font-size: 0.85rem;
+  margin: 0;
+  opacity: 0;
+  transition: opacity var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-login__error--visible {
+  opacity: 1;
+}
+
+/* ── Dashboard ──────────────────────────────────────────────────────────── */
+
+.admin-dashboard {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.admin-header__title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.admin-header__logout {
+  background: none;
+  border: 1px solid var(--border-medium);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.4rem 0.8rem;
+  transition: all var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-header__logout:hover {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}
+
+.admin-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ── Card ───────────────────────────────────────────────────────────────── */
+
+.admin-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: var(--space-md);
+}
+
+.admin-card__title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 0 0 var(--space-xs);
+}
+
+.admin-card__desc {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: 0 0 var(--space-md);
+}
+
+/* ── Fields ─────────────────────────────────────────────────────────────── */
+
+.admin-field {
+  margin-bottom: var(--space-sm);
+}
+
+.admin-field__label {
+  color: var(--text-secondary);
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+}
+
+.admin-field__input {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.6rem 0.8rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-field__input:focus {
+  border-color: var(--accent);
+}
+
+/* ── Toggle ─────────────────────────────────────────────────────────────── */
+
+.admin-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.admin-toggle input {
+  display: none;
+}
+
+.admin-toggle__slider {
+  width: 44px;
+  height: 24px;
+  background: var(--border-medium);
+  border-radius: 12px;
+  position: relative;
+  flex-shrink: 0;
+  transition: background var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-toggle__slider::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-toggle input:checked + .admin-toggle__slider {
+  background: var(--accent);
+}
+
+.admin-toggle input:checked + .admin-toggle__slider::after {
+  transform: translateX(20px);
+}
+
+.admin-toggle__label {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+/* ── Button ─────────────────────────────────────────────────────────────── */
+
+.admin-btn {
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  transition: background var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-btn:hover {
+  background: var(--accent-hover);
+}
+
+.admin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Upload ─────────────────────────────────────────────────────────────── */
+
+.admin-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed var(--border-medium);
+  border-radius: 8px;
+  cursor: pointer;
+  min-height: 80px;
+  padding: var(--space-sm);
+  transition: border-color var(--duration-fast) var(--ease-smooth);
+}
+
+.admin-upload:hover,
+.admin-upload--dragover {
+  border-color: var(--accent);
+}
+
+.admin-upload__text {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* ── Status ─────────────────────────────────────────────────────────────── */
+
+.admin-status {
+  font-size: 0.85rem;
+  margin: var(--space-xs) 0 0;
+  min-height: 1.2em;
+}
+
+.admin-status--success {
+  color: #38a169;
+}
+
+.admin-status--error {
+  color: #e53e3e;
+}

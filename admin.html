@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin | Arun Peri</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- Login Screen -->
+  <div class="admin-login" id="adminLogin">
+    <div class="admin-login__card">
+      <h1 class="admin-login__title">Admin</h1>
+      <p class="admin-login__desc">Enter the admin password to continue.</p>
+      <form class="admin-login__form" id="loginForm">
+        <input type="password" class="admin-login__input" id="loginPassword" placeholder="Admin password" autocomplete="off" autofocus>
+        <button type="submit" class="admin-login__btn">Sign In</button>
+        <p class="admin-login__error" id="loginError">Invalid password.</p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard (hidden until auth) -->
+  <div class="admin-dashboard" id="adminDashboard" hidden>
+    <header class="admin-header">
+      <h1 class="admin-header__title">Dashboard</h1>
+      <button class="admin-header__logout" id="logoutBtn">Sign Out</button>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- Case Study Protection -->
+      <section class="admin-card">
+        <h2 class="admin-card__title">Case Study Protection</h2>
+
+        <div class="admin-field">
+          <label class="admin-toggle">
+            <input type="checkbox" id="protectionToggle" checked>
+            <span class="admin-toggle__slider"></span>
+            <span class="admin-toggle__label">Password protection enabled</span>
+          </label>
+        </div>
+
+        <div class="admin-field">
+          <label class="admin-field__label" for="csPassword">Case Study Password</label>
+          <input type="text" class="admin-field__input" id="csPassword" placeholder="Enter new password">
+        </div>
+
+        <button class="admin-btn" id="saveConfigBtn">Save Settings</button>
+        <p class="admin-status" id="configStatus"></p>
+      </section>
+
+      <!-- Resume Upload -->
+      <section class="admin-card">
+        <h2 class="admin-card__title">Resume</h2>
+        <p class="admin-card__desc">Upload a new PDF to replace the current resume. Takes effect immediately.</p>
+
+        <div class="admin-field">
+          <label class="admin-upload" id="uploadArea">
+            <input type="file" accept="application/pdf" id="resumeFile" hidden>
+            <span class="admin-upload__text" id="uploadText">Choose PDF or drag here</span>
+          </label>
+        </div>
+
+        <button class="admin-btn" id="uploadResumeBtn" disabled>Upload Resume</button>
+        <p class="admin-status" id="resumeStatus"></p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>
