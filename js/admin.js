@@ -1,4 +1,6 @@
 (function () {
+  'use strict';
+
   // ── Elements ──
   var loginScreen = document.getElementById('adminLogin');
   var dashboard = document.getElementById('adminDashboard');
@@ -23,11 +25,13 @@
 
   // ── Helpers ──
   function showStatus(el, msg, success) {
+    if (!el) return;
     el.textContent = msg;
     el.className = 'admin-status ' + (success ? 'admin-status--success' : 'admin-status--error');
   }
 
   function showLoginError(msg) {
+    if (!loginError) return;
     loginError.textContent = msg;
     loginError.classList.add('admin-login__error--visible');
   }
@@ -37,18 +41,22 @@
   }
 
   // ── Eye toggle ──
-  toggleEye.addEventListener('click', function () {
-    var isPassword = loginPassword.type === 'password';
-    loginPassword.type = isPassword ? 'text' : 'password';
-    toggleEye.querySelector('.eye-open').style.display = isPassword ? 'none' : '';
-    toggleEye.querySelector('.eye-closed').style.display = isPassword ? '' : 'none';
-    loginPassword.focus();
-  });
+  if (toggleEye && loginPassword) {
+    toggleEye.addEventListener('click', function () {
+      var isPassword = loginPassword.type === 'password';
+      loginPassword.type = isPassword ? 'text' : 'password';
+      var eyeOpen = toggleEye.querySelector('.eye-open');
+      var eyeClosed = toggleEye.querySelector('.eye-closed');
+      if (eyeOpen) eyeOpen.style.display = isPassword ? 'none' : '';
+      if (eyeClosed) eyeClosed.style.display = isPassword ? '' : 'none';
+      loginPassword.focus();
+    });
+  }
 
   // ── Auth ──
   function showDashboard() {
-    loginScreen.hidden = true;
-    dashboard.hidden = false;
+    if (loginScreen) loginScreen.hidden = true;
+    if (dashboard) dashboard.hidden = false;
     loadConfig();
   }
 
@@ -56,158 +64,166 @@
     showDashboard();
   }
 
-  loginForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    loginError.classList.remove('admin-login__error--visible');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (loginError) loginError.classList.remove('admin-login__error--visible');
 
-    var btn = loginForm.querySelector('.admin-login__btn');
-    btn.textContent = 'Signing in...';
-    btn.disabled = true;
+      var btn = loginForm.querySelector('.admin-login__btn');
+      if (btn) {
+        btn.textContent = 'Signing in...';
+        btn.disabled = true;
+      }
 
-    fetch('/api/admin-auth', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password: loginPassword.value })
-    })
-      .then(function (r) {
-        return r.text().then(function (text) {
-          try {
-            var data = JSON.parse(text);
-            return { ok: r.ok, status: r.status, data: data };
-          } catch (e) {
-            return { ok: false, status: r.status, data: { error: 'Server error (' + r.status + ')' } };
+      fetch('/api/admin-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: loginPassword.value })
+      })
+        .then(function (r) {
+          return r.text().then(function (text) {
+            try {
+              var data = JSON.parse(text);
+              return { ok: r.ok, status: r.status, data: data };
+            } catch (parseErr) {
+              return { ok: false, status: r.status, data: { error: 'Server error (' + r.status + ')' } };
+            }
+          });
+        })
+        .then(function (res) {
+          if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+          if (res.ok && res.data.token) {
+            token = res.data.token;
+            sessionStorage.setItem('admin_token', token);
+            showDashboard();
+          } else {
+            showLoginError(res.data.error || 'Invalid password.');
+            if (loginPassword) { loginPassword.value = ''; loginPassword.focus(); }
           }
+        })
+        .catch(function (err) {
+          if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+          showLoginError('Connection failed: ' + err.message);
         });
-      })
-      .then(function (res) {
-        btn.textContent = 'Sign In';
-        btn.disabled = false;
-        if (res.ok && res.data.token) {
-          token = res.data.token;
-          sessionStorage.setItem('admin_token', token);
-          showDashboard();
-        } else {
-          showLoginError(res.data.error || 'Invalid password.');
-          loginPassword.value = '';
-          loginPassword.focus();
-        }
-      })
-      .catch(function (err) {
-        btn.textContent = 'Sign In';
-        btn.disabled = false;
-        showLoginError('Connection failed. Check console.');
-        console.error('Admin auth error:', err);
-      });
-  });
+    });
+  }
 
-  logoutBtn.addEventListener('click', function () {
-    sessionStorage.removeItem('admin_token');
-    token = null;
-    loginScreen.hidden = false;
-    dashboard.hidden = true;
-    loginPassword.value = '';
-    loginPassword.focus();
-  });
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+      sessionStorage.removeItem('admin_token');
+      token = null;
+      if (loginScreen) loginScreen.hidden = false;
+      if (dashboard) dashboard.hidden = true;
+      if (loginPassword) { loginPassword.value = ''; loginPassword.focus(); }
+    });
+  }
 
   // ── Config ──
   function loadConfig() {
     fetch('/api/get-config')
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        protectionToggle.checked = data.protectionEnabled !== false;
+        if (protectionToggle) protectionToggle.checked = data.protectionEnabled !== false;
       })
       .catch(function () { /* keep defaults */ });
   }
 
-  saveConfigBtn.addEventListener('click', function () {
-    var body = {
-      protectionEnabled: protectionToggle.checked
-    };
-    if (csPassword.value.trim()) {
-      body.csPassword = csPassword.value.trim();
-    }
+  if (saveConfigBtn) {
+    saveConfigBtn.addEventListener('click', function () {
+      var body = {
+        protectionEnabled: protectionToggle ? protectionToggle.checked : true
+      };
+      if (csPassword && csPassword.value.trim()) {
+        body.csPassword = csPassword.value.trim();
+      }
 
-    fetch('/api/update-config', {
-      method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
-      body: JSON.stringify(body)
-    })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
-      .then(function (res) {
-        if (res.ok && res.data.success) {
-          showStatus(configStatus, 'Settings saved.', true);
-          csPassword.value = '';
-        } else {
-          showStatus(configStatus, res.data.error || 'Failed to save.', false);
-        }
+      fetch('/api/update-config', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
+        body: JSON.stringify(body)
       })
-      .catch(function () {
-        showStatus(configStatus, 'Network error.', false);
-      });
-  });
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.data.success) {
+            showStatus(configStatus, 'Settings saved.', true);
+            if (csPassword) csPassword.value = '';
+          } else {
+            showStatus(configStatus, res.data.error || 'Failed to save.', false);
+          }
+        })
+        .catch(function () {
+          showStatus(configStatus, 'Network error.', false);
+        });
+    });
+  }
 
   // ── Resume Upload ──
   var selectedFile = null;
 
-  resumeFile.addEventListener('change', function () {
-    if (resumeFile.files.length > 0) {
-      selectedFile = resumeFile.files[0];
-      uploadText.textContent = selectedFile.name;
-      uploadResumeBtn.disabled = false;
-    }
-  });
-
-  // Drag and drop
-  uploadArea.addEventListener('dragover', function (e) {
-    e.preventDefault();
-    uploadArea.classList.add('admin-upload--dragover');
-  });
-
-  uploadArea.addEventListener('dragleave', function () {
-    uploadArea.classList.remove('admin-upload--dragover');
-  });
-
-  uploadArea.addEventListener('drop', function (e) {
-    e.preventDefault();
-    uploadArea.classList.remove('admin-upload--dragover');
-    if (e.dataTransfer.files.length > 0) {
-      var file = e.dataTransfer.files[0];
-      if (file.type === 'application/pdf') {
-        selectedFile = file;
-        uploadText.textContent = file.name;
-        uploadResumeBtn.disabled = false;
-      } else {
-        showStatus(resumeStatus, 'Only PDF files are accepted.', false);
+  if (resumeFile) {
+    resumeFile.addEventListener('change', function () {
+      if (resumeFile.files.length > 0) {
+        selectedFile = resumeFile.files[0];
+        if (uploadText) uploadText.textContent = selectedFile.name;
+        if (uploadResumeBtn) uploadResumeBtn.disabled = false;
       }
-    }
-  });
+    });
+  }
 
-  uploadResumeBtn.addEventListener('click', function () {
-    if (!selectedFile) return;
+  if (uploadArea) {
+    uploadArea.addEventListener('dragover', function (e) {
+      e.preventDefault();
+      uploadArea.classList.add('admin-upload--dragover');
+    });
 
-    uploadResumeBtn.disabled = true;
-    showStatus(resumeStatus, 'Uploading...', true);
+    uploadArea.addEventListener('dragleave', function () {
+      uploadArea.classList.remove('admin-upload--dragover');
+    });
 
-    fetch('/api/upload-resume', {
-      method: 'POST',
-      headers: Object.assign({ 'Content-Type': 'application/pdf' }, authHeaders()),
-      body: selectedFile
-    })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
-      .then(function (res) {
-        if (res.ok && res.data.success) {
-          showStatus(resumeStatus, 'Resume uploaded successfully.', true);
-          selectedFile = null;
-          uploadText.textContent = 'Choose PDF or drag here';
-          uploadResumeBtn.disabled = true;
+    uploadArea.addEventListener('drop', function (e) {
+      e.preventDefault();
+      uploadArea.classList.remove('admin-upload--dragover');
+      if (e.dataTransfer.files.length > 0) {
+        var file = e.dataTransfer.files[0];
+        if (file.type === 'application/pdf') {
+          selectedFile = file;
+          if (uploadText) uploadText.textContent = file.name;
+          if (uploadResumeBtn) uploadResumeBtn.disabled = false;
         } else {
-          showStatus(resumeStatus, res.data.error || 'Upload failed.', false);
-          uploadResumeBtn.disabled = false;
+          showStatus(resumeStatus, 'Only PDF files are accepted.', false);
         }
+      }
+    });
+  }
+
+  if (uploadResumeBtn) {
+    uploadResumeBtn.addEventListener('click', function () {
+      if (!selectedFile) return;
+
+      uploadResumeBtn.disabled = true;
+      showStatus(resumeStatus, 'Uploading...', true);
+
+      fetch('/api/upload-resume', {
+        method: 'POST',
+        headers: Object.assign({ 'Content-Type': 'application/pdf' }, authHeaders()),
+        body: selectedFile
       })
-      .catch(function () {
-        showStatus(resumeStatus, 'Network error.', false);
-        uploadResumeBtn.disabled = false;
-      });
-  });
+        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+        .then(function (res) {
+          if (res.ok && res.data.success) {
+            showStatus(resumeStatus, 'Resume uploaded successfully.', true);
+            selectedFile = null;
+            if (uploadText) uploadText.textContent = 'Choose PDF or drag here';
+            uploadResumeBtn.disabled = true;
+          } else {
+            showStatus(resumeStatus, res.data.error || 'Upload failed.', false);
+            uploadResumeBtn.disabled = false;
+          }
+        })
+        .catch(function () {
+          showStatus(resumeStatus, 'Network error.', false);
+          uploadResumeBtn.disabled = false;
+        });
+    });
+  }
 })();
