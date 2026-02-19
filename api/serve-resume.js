@@ -1,8 +1,11 @@
 const { list } = require('@vercel/blob');
 const path = require('path');
 const fs = require('fs');
+const cors = require('./_cors');
 
 module.exports = async function handler(req, res) {
+  if (cors(req, res)) return;
+
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

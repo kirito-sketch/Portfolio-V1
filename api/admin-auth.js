@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const cors = require('./_cors');
 
 function createToken(adminPassword) {
   const expires = Date.now() + 4 * 60 * 60 * 1000; // 4 hours
@@ -8,6 +9,8 @@ function createToken(adminPassword) {
 }
 
 module.exports = async function handler(req, res) {
+  if (cors(req, res)) return;
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }

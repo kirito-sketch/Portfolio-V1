@@ -1,5 +1,6 @@
 const crypto = require('crypto');
 const { put } = require('@vercel/blob');
+const cors = require('./_cors');
 
 function verifyToken(token, adminPassword) {
   try {
@@ -15,6 +16,8 @@ function verifyToken(token, adminPassword) {
 }
 
 module.exports = async function handler(req, res) {
+  if (cors(req, res)) return;
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
