@@ -75,36 +75,41 @@
         btn.disabled = true;
       }
 
-      fetch('/api/admin-auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: loginPassword.value })
-      })
-        .then(function (r) {
-          return r.text().then(function (text) {
-            try {
-              var data = JSON.parse(text);
-              return { ok: r.ok, status: r.status, data: data };
-            } catch (parseErr) {
-              return { ok: false, status: r.status, data: { error: 'Server error (' + r.status + ')' } };
-            }
-          });
-        })
-        .then(function (res) {
-          if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-          if (res.ok && res.data.token) {
-            token = res.data.token;
+      var pw = loginPassword ? loginPassword.value : '';
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/admin-auth', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.timeout = 15000;
+
+      xhr.onload = function () {
+        if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (xhr.status === 200 && data.token) {
+            token = data.token;
             sessionStorage.setItem('admin_token', token);
             showDashboard();
           } else {
-            showLoginError(res.data.error || 'Invalid password.');
+            showLoginError(data.error || 'Invalid password.');
             if (loginPassword) { loginPassword.value = ''; loginPassword.focus(); }
           }
-        })
-        .catch(function (err) {
-          if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-          showLoginError('Connection failed: ' + err.message);
-        });
+        } catch (parseErr) {
+          showLoginError('Bad response (status ' + xhr.status + ')');
+        }
+      };
+
+      xhr.onerror = function () {
+        if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+        showLoginError('Network error — could not reach server.');
+      };
+
+      xhr.ontimeout = function () {
+        if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
+        showLoginError('Request timed out.');
+      };
+
+      xhr.send(JSON.stringify({ password: pw }));
     });
   }
 
