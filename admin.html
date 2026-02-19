@@ -89,55 +89,6 @@
     </main>
   </div>
 
-  <script>
-  // Inline debug version
-  document.getElementById('loginForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = this.querySelector('.admin-login__btn');
-    var pw = document.getElementById('loginPassword').value;
-    var errEl = document.getElementById('loginError');
-    btn.textContent = 'Signing in...';
-    btn.disabled = true;
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/admin-auth');
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.timeout = 15000;
-    xhr.onload = function() {
-      alert('Response: ' + xhr.status + ' ' + xhr.responseText.substring(0, 200));
-      btn.textContent = 'Sign In';
-      btn.disabled = false;
-      try {
-        var data = JSON.parse(xhr.responseText);
-        if (xhr.status === 200 && data.token) {
-          sessionStorage.setItem('admin_token', data.token);
-          document.getElementById('adminLogin').hidden = true;
-          document.getElementById('adminDashboard').hidden = false;
-        } else {
-          errEl.textContent = data.error || 'Invalid password.';
-          errEl.classList.add('admin-login__error--visible');
-        }
-      } catch(ex) {
-        errEl.textContent = 'Parse error: ' + ex.message;
-        errEl.classList.add('admin-login__error--visible');
-      }
-    };
-    xhr.onerror = function() { alert('XHR error event fired'); btn.textContent = 'Sign In'; btn.disabled = false; };
-    xhr.ontimeout = function() { alert('XHR timeout'); btn.textContent = 'Sign In'; btn.disabled = false; };
-    xhr.send(JSON.stringify({ password: pw }));
-  });
-
-  // Eye toggle
-  var eye = document.getElementById('toggleEye');
-  if (eye) {
-    eye.addEventListener('click', function() {
-      var inp = document.getElementById('loginPassword');
-      var show = inp.type === 'password';
-      inp.type = show ? 'text' : 'password';
-      eye.querySelector('.eye-open').style.display = show ? 'none' : '';
-      eye.querySelector('.eye-closed').style.display = show ? '' : 'none';
-    });
-  }
-  </script>
+  <script src="js/admin.js?v=4"></script>
 </body>
 </html>

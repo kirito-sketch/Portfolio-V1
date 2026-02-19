@@ -328,3 +328,8 @@ body {
 .admin-status--error {
   color: #e53e3e;
 }
+
+/* Ensure hidden attribute works despite display rules */
+[hidden] {
+  display: none !important;
+}
