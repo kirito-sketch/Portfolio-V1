@@ -23,6 +23,37 @@
 
   var token = sessionStorage.getItem('admin_token');
 
+  // ── XHR Helper ──
+  function apiCall(method, url, body, headers, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open(method, url, true);
+    xhr.timeout = 15000;
+
+    if (headers) {
+      Object.keys(headers).forEach(function (k) {
+        xhr.setRequestHeader(k, headers[k]);
+      });
+    }
+
+    xhr.onload = function () {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        callback(null, xhr.status, data);
+      } catch (e) {
+        callback(null, xhr.status, { error: 'Bad response' });
+      }
+    };
+    xhr.onerror = function () { callback('Network error'); };
+    xhr.ontimeout = function () { callback('Request timed out'); };
+
+    if (body && typeof body === 'object' && !(body instanceof File)) {
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.send(JSON.stringify(body));
+    } else {
+      xhr.send(body || null);
+    }
+  }
+
   // ── Helpers ──
   function showStatus(el, msg, success) {
     if (!el) return;
@@ -34,10 +65,6 @@
     if (!loginError) return;
     loginError.textContent = msg;
     loginError.classList.add('admin-login__error--visible');
-  }
-
-  function authHeaders() {
-    return { 'Authorization': 'Bearer ' + token };
   }
 
   // ── Eye toggle ──
@@ -70,46 +97,20 @@
       if (loginError) loginError.classList.remove('admin-login__error--visible');
 
       var btn = loginForm.querySelector('.admin-login__btn');
-      if (btn) {
-        btn.textContent = 'Signing in...';
-        btn.disabled = true;
-      }
+      if (btn) { btn.textContent = 'Signing in...'; btn.disabled = true; }
 
-      var pw = loginPassword ? loginPassword.value : '';
-
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', '/api/admin-auth', true);
-      xhr.setRequestHeader('Content-Type', 'application/json');
-      xhr.timeout = 15000;
-
-      xhr.onload = function () {
+      apiCall('POST', '/api/admin-auth', { password: loginPassword ? loginPassword.value : '' }, null, function (err, status, data) {
         if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-        try {
-          var data = JSON.parse(xhr.responseText);
-          if (xhr.status === 200 && data.token) {
-            token = data.token;
-            sessionStorage.setItem('admin_token', token);
-            showDashboard();
-          } else {
-            showLoginError(data.error || 'Invalid password.');
-            if (loginPassword) { loginPassword.value = ''; loginPassword.focus(); }
-          }
-        } catch (parseErr) {
-          showLoginError('Bad response (status ' + xhr.status + ')');
+        if (err) return showLoginError(err);
+        if (status === 200 && data.token) {
+          token = data.token;
+          sessionStorage.setItem('admin_token', token);
+          showDashboard();
+        } else {
+          showLoginError(data.error || 'Invalid password.');
+          if (loginPassword) { loginPassword.value = ''; loginPassword.focus(); }
         }
-      };
-
-      xhr.onerror = function () {
-        if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-        showLoginError('Network error — could not reach server.');
-      };
-
-      xhr.ontimeout = function () {
-        if (btn) { btn.textContent = 'Sign In'; btn.disabled = false; }
-        showLoginError('Request timed out.');
-      };
-
-      xhr.send(JSON.stringify({ password: pw }));
+      });
     });
   }
 
@@ -125,12 +126,11 @@
 
   // ── Config ──
   function loadConfig() {
-    fetch('/api/get-config')
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
+    apiCall('GET', '/api/get-config', null, null, function (err, status, data) {
+      if (!err && data) {
         if (protectionToggle) protectionToggle.checked = data.protectionEnabled !== false;
-      })
-      .catch(function () { /* keep defaults */ });
+      }
+    });
   }
 
   if (saveConfigBtn) {
@@ -142,23 +142,19 @@
         body.csPassword = csPassword.value.trim();
       }
 
-      fetch('/api/update-config', {
-        method: 'POST',
-        headers: Object.assign({ 'Content-Type': 'application/json' }, authHeaders()),
-        body: JSON.stringify(body)
-      })
-        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
-        .then(function (res) {
-          if (res.ok && res.data.success) {
-            showStatus(configStatus, 'Settings saved.', true);
-            if (csPassword) csPassword.value = '';
-          } else {
-            showStatus(configStatus, res.data.error || 'Failed to save.', false);
-          }
-        })
-        .catch(function () {
-          showStatus(configStatus, 'Network error.', false);
-        });
+      saveConfigBtn.disabled = true;
+      showStatus(configStatus, 'Saving...', true);
+
+      apiCall('POST', '/api/update-config', body, { 'Authorization': 'Bearer ' + token }, function (err, status, data) {
+        saveConfigBtn.disabled = false;
+        if (err) return showStatus(configStatus, err, false);
+        if (status === 200 && data.success) {
+          showStatus(configStatus, 'Settings saved.', true);
+          if (csPassword) csPassword.value = '';
+        } else {
+          showStatus(configStatus, data.error || 'Failed to save.', false);
+        }
+      });
     });
   }
 
@@ -208,27 +204,33 @@
       uploadResumeBtn.disabled = true;
       showStatus(resumeStatus, 'Uploading...', true);
 
-      fetch('/api/upload-resume', {
-        method: 'POST',
-        headers: Object.assign({ 'Content-Type': 'application/pdf' }, authHeaders()),
-        body: selectedFile
-      })
-        .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
-        .then(function (res) {
-          if (res.ok && res.data.success) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload-resume', true);
+      xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+      xhr.setRequestHeader('Content-Type', 'application/pdf');
+      xhr.timeout = 60000;
+
+      xhr.onload = function () {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          if (xhr.status === 200 && data.success) {
             showStatus(resumeStatus, 'Resume uploaded successfully.', true);
             selectedFile = null;
             if (uploadText) uploadText.textContent = 'Choose PDF or drag here';
             uploadResumeBtn.disabled = true;
           } else {
-            showStatus(resumeStatus, res.data.error || 'Upload failed.', false);
+            showStatus(resumeStatus, data.error || 'Upload failed.', false);
             uploadResumeBtn.disabled = false;
           }
-        })
-        .catch(function () {
-          showStatus(resumeStatus, 'Network error.', false);
+        } catch (e) {
+          showStatus(resumeStatus, 'Bad response (status ' + xhr.status + ')', false);
           uploadResumeBtn.disabled = false;
-        });
+        }
+      };
+      xhr.onerror = function () { showStatus(resumeStatus, 'Network error.', false); uploadResumeBtn.disabled = false; };
+      xhr.ontimeout = function () { showStatus(resumeStatus, 'Upload timed out.', false); uploadResumeBtn.disabled = false; };
+
+      xhr.send(selectedFile);
     });
   }
 })();
