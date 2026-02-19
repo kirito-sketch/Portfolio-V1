@@ -24,8 +24,8 @@
 </head>
 <body>
 
-  <!-- Password Gate -->
-  <div class="password-gate" id="passwordGate">
+  <!-- Password Gate (hidden by default, shown only if protection is on) -->
+  <div class="password-gate" id="passwordGate" style="display:none">
     <div class="password-gate__card">
       <div class="password-gate__icon">
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -36,7 +36,7 @@
       <p class="password-gate__desc">Please enter the password to view this project.</p>
       <form class="password-gate__form" id="passwordForm">
         <div class="password-gate__input-wrap">
-          <input type="password" class="password-gate__input" id="passwordInput" placeholder="Enter password" autocomplete="off" autofocus>
+          <input type="password" class="password-gate__input" id="passwordInput" placeholder="Enter password" autocomplete="off">
           <button type="submit" class="password-gate__submit" aria-label="Submit">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
@@ -56,50 +56,68 @@
     var input = document.getElementById('passwordInput');
     var error = document.getElementById('passwordError');
 
+    // Already granted this session
     if (sessionStorage.getItem('cs_access') === 'granted') {
       gate.remove();
       return;
     }
 
-    // Check if protection is enabled
-    fetch('/api/get-config')
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        if (!data.protectionEnabled) {
+    // Check if protection is enabled via XHR
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/get-config', true);
+    xhr.timeout = 10000;
+    xhr.onload = function() {
+      try {
+        var data = JSON.parse(xhr.responseText);
+        if (data.protectionEnabled === false) {
           gate.remove();
-          document.body.classList.remove('password-locked');
+          return;
         }
-      })
-      .catch(function() { /* keep gate visible on error */ });
+      } catch(e) {}
+      // Protection is on — show the gate
+      gate.style.display = '';
+      document.body.classList.add('password-locked');
+      input.focus();
+    };
+    xhr.onerror = function() {
+      // Can't reach API — show gate as fallback
+      gate.style.display = '';
+      document.body.classList.add('password-locked');
+      input.focus();
+    };
+    xhr.ontimeout = xhr.onerror;
+    xhr.send();
 
-    document.body.classList.add('password-locked');
-
+    // Password submission
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var pw = input.value;
-      fetch('/api/validate-pw', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: pw })
-      })
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
+      var vxhr = new XMLHttpRequest();
+      vxhr.open('POST', '/api/validate-pw', true);
+      vxhr.setRequestHeader('Content-Type', 'application/json');
+      vxhr.timeout = 10000;
+      vxhr.onload = function() {
+        try {
+          var data = JSON.parse(vxhr.responseText);
           if (data.valid) {
             sessionStorage.setItem('cs_access', 'granted');
             gate.classList.add('password-gate--unlocked');
             document.body.classList.remove('password-locked');
             setTimeout(function() { gate.remove(); }, 400);
-          } else {
-            error.classList.add('password-gate__error--visible');
-            input.value = '';
-            input.focus();
+            return;
           }
-        })
-        .catch(function() {
-          error.classList.add('password-gate__error--visible');
-          input.value = '';
-          input.focus();
-        });
+        } catch(ex) {}
+        error.classList.add('password-gate__error--visible');
+        input.value = '';
+        input.focus();
+      };
+      vxhr.onerror = function() {
+        error.classList.add('password-gate__error--visible');
+        input.value = '';
+        input.focus();
+      };
+      vxhr.ontimeout = vxhr.onerror;
+      vxhr.send(JSON.stringify({ password: pw }));
     });
   })();
   </script>
