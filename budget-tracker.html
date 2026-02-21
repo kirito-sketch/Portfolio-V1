@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Budget Tracker — a PWA that puts transaction logging front and center. Built by Arun Peri.">
+  <title>Budget Tracker | Arun Peri</title>
+
+  <meta property="og:title" content="Budget Tracker | Arun Peri">
+  <meta property="og:description" content="A PWA that puts transaction logging front and center — no buried menus, no bank connections.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#10022;</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/case-study.css">
+</head>
+<body>
+
+  <div class="site-wrapper">
+
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Custom Cursor -->
+    <div class="cursor">
+      <div class="cursor__dot"></div>
+      <div class="cursor__ring"></div>
+    </div>
+
+    <!-- Back Navigation + Theme Toggle -->
+    <nav class="cs-nav">
+      <a href="/" class="cs-nav__back">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16 10H4M4 10L9 5M4 10L9 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Back</span>
+      </a>
+      <button class="theme-toggle cs-nav__theme" aria-label="Toggle theme">
+        <svg class="theme-toggle__sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="theme-toggle__moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+    </nav>
+
+    <main id="main-content">
+
+      <!-- ── Hero ── -->
+      <section class="cs-hero">
+        <div class="cs-hero__bg">
+          <div class="cs-hero__gradient"></div>
+        </div>
+        <div class="cs-hero__content">
+          <div class="cs-hero__meta">
+            <span class="cs-hero__tag">PWA</span>
+            <span class="cs-hero__tag">Groq AI</span>
+            <span class="cs-hero__tag">Design OS</span>
+          </div>
+          <h1 class="cs-hero__title" style="font-size: clamp(3rem, 8vw, 6rem);">Budget<br><em>Tracker</em></h1>
+          <p class="cs-hero__subtitle">A personal finance app that puts logging front and center — because the best budget app is the one you actually use.</p>
+          <div class="cs-hero__phone-wrapper">
+            <img class="cs-hero__phone" src="assets/images/budget tracker app/home-personal.jpeg" alt="Budget tracker home screen with instant Log Transaction input" width="390" height="844">
+          </div>
+        </div>
+      </section>
+
+      <!-- ── The Problem ── -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <h2 class="cs-block__heading" data-animate="fade-up">The Problem</h2>
+          <div class="cs-block__text" data-animate="fade-up" data-delay="0.1">
+            <p>Every budget app my wife and I tried had the same issue: the core action — logging a transaction — was buried behind multiple taps, menus, and screens. By the time you navigated there, you'd already lost motivation.</p>
+            <p>On top of that, most apps require connecting your bank account. Handing over credentials to a third-party service never felt right.</p>
+            <p>I wanted something simple: open the app, log the transaction, done. No bank connections, no syncing, no friction.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── The Approach ── -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <h2 class="cs-block__heading" data-animate="fade-up">The Approach</h2>
+          <div class="cs-block__text" data-animate="fade-up" data-delay="0.1">
+            <p>I started with a <strong>Design OS</strong> — a set of tokens, components, and layout primitives — to establish the visual foundation quickly and consistently.</p>
+            <p>From there, I built it as a <strong>Progressive Web App</strong> so it feels native on any phone without the friction of an app store. All data stays local on the device.</p>
+            <p>I used <strong>Claude Code</strong> throughout — from scaffolding the app to building features. It was a real test of what's possible when a designer codes with AI assistance.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Key Features ── -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <h2 class="cs-block__heading" data-animate="fade-up">Key Features</h2>
+        </div>
+
+        <div class="cs-block__inner">
+
+          <!-- Feature: Instant Logging -->
+          <div class="project-feature" data-animate="fade-up">
+            <div class="project-feature__text">
+              <h3 class="project-feature__name">Instant Transaction Logging</h3>
+              <p>The home screen opens directly to Log Transaction. Type naturally — "Spent 500 on lunch" — or expand the manual form for full control over amount, category, and date.</p>
+            </div>
+            <div class="project-feature__screens">
+              <img src="assets/images/budget tracker app/home-personal.jpeg" alt="Home screen with natural language input" width="390" height="844">
+              <img src="assets/images/budget tracker app/manual-entry.jpeg" alt="Manual entry form expanded" width="390" height="844">
+            </div>
+          </div>
+
+          <!-- Feature: Joint Account -->
+          <div class="project-feature project-feature--reverse" data-animate="fade-up">
+            <div class="project-feature__text">
+              <h3 class="project-feature__name">Personal & Joint Accounts</h3>
+              <p>Switch between personal and joint accounts with a single tap. My wife and I track shared household expenses separately from individual spending.</p>
+            </div>
+            <div class="project-feature__screens">
+              <img src="assets/images/budget tracker app/home-joint.jpeg" alt="Joint account view - Our Nest" width="390" height="844">
+            </div>
+          </div>
+
+          <!-- Feature: Transactions -->
+          <div class="project-feature" data-animate="fade-up">
+            <div class="project-feature__text">
+              <h3 class="project-feature__name">Transaction History & Export</h3>
+              <p>Monthly breakdowns with opening/closing balances. Export any date range — current month, last quarter, or custom — as a file for your records.</p>
+            </div>
+            <div class="project-feature__screens">
+              <img src="assets/images/budget tracker app/transactions.jpeg" alt="Transaction history with monthly breakdown" width="390" height="844">
+              <img src="assets/images/budget tracker app/export.jpeg" alt="Export transactions with date range selection" width="390" height="844">
+            </div>
+          </div>
+
+          <!-- Feature: AI Insights -->
+          <div class="project-feature project-feature--reverse" data-animate="fade-up">
+            <div class="project-feature__text">
+              <h3 class="project-feature__name">AI-Powered Insights</h3>
+              <p>A dashboard with spending breakdowns and a chat assistant powered by Groq AI. Ask questions like "How much did I spend on food this month?" and get instant answers.</p>
+            </div>
+            <div class="project-feature__screens">
+              <img src="assets/images/budget tracker app/insights.jpeg" alt="Insights dashboard with spending categories" width="390" height="844">
+              <img src="assets/images/budget tracker app/ai-chat.jpeg" alt="AI chat assistant for spending questions" width="390" height="844">
+            </div>
+          </div>
+
+          <!-- Feature: Settings -->
+          <div class="project-feature" data-animate="fade-up">
+            <div class="project-feature__text">
+              <h3 class="project-feature__name">Customizable & Private</h3>
+              <p>Dark, light, and system themes. Groq API key stays on your device. All data stored locally — no servers, no bank connections, no tracking.</p>
+            </div>
+            <div class="project-feature__screens">
+              <img src="assets/images/budget tracker app/settings.jpeg" alt="Settings with theme options and API key" width="390" height="844">
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── What I Learned ── -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <h2 class="cs-block__heading" data-animate="fade-up">What I Learned</h2>
+          <div class="cs-block__text" data-animate="fade-up" data-delay="0.1">
+            <p>Building this taught me that the best way to understand users is to be one. Every design decision was tested by daily use — if something felt slow or awkward, I fixed it immediately.</p>
+            <p>Working with AI (Claude Code) as a build partner was eye-opening. The Design OS gave me a consistent visual language from the start, and AI handled the implementation plumbing. My role was the same as always: deciding what to build, how it should feel, and when something wasn't right.</p>
+            <p>The biggest takeaway? Solving your own problem is the purest form of user-centered design.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ── Footer (back to home) ── -->
+    <footer class="cs-footer">
+      <div class="cs-footer__inner" data-animate="fade-up">
+        <a href="/" class="cs-footer__back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to all projects
+        </a>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>
