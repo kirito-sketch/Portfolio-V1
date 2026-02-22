@@ -135,6 +135,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
     }
+
+    // Budget Tracker — fanned phone screens entrance
+    const btScreens = csHero.querySelector('.bt-hero__screens');
+    if (btScreens) {
+      const screens = btScreens.querySelectorAll('.bt-hero__screen');
+      gsap.set(screens, { opacity: 0, y: 40 });
+      gsap.to(screens, {
+        opacity: (i) => i === 1 ? 1 : 0.85, // center screen full opacity
+        y: 0,
+        duration: 0.7,
+        delay: 0.5,
+        stagger: 0.12,
+        ease: 'power2.out',
+      });
+    }
   }
 
 

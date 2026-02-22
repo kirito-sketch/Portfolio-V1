@@ -315,6 +315,84 @@ body.password-locked .site-wrapper {
   display: block;
 }
 
+/* ── Budget Tracker hero — fanned phone screens ────────────────────── */
+
+.bt-hero__screens {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: var(--space-xl);
+  padding: 0 var(--space-md);
+  height: 360px;
+}
+
+.bt-hero__screen {
+  width: 180px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s var(--ease-smooth);
+  position: absolute;
+}
+
+.bt-hero__screen--center {
+  z-index: 3;
+  transform: translateY(0);
+}
+
+.bt-hero__screen--left {
+  z-index: 2;
+  transform: translateX(-140px) rotate(-8deg) scale(0.9);
+  opacity: 0.85;
+}
+
+.bt-hero__screen--right {
+  z-index: 2;
+  transform: translateX(140px) rotate(8deg) scale(0.9);
+  opacity: 0.85;
+}
+
+.bt-hero__screens:hover .bt-hero__screen--left {
+  transform: translateX(-160px) rotate(-10deg) scale(0.92);
+}
+
+.bt-hero__screens:hover .bt-hero__screen--right {
+  transform: translateX(160px) rotate(10deg) scale(0.92);
+}
+
+@media (max-width: 768px) {
+  .bt-hero__screens {
+    height: 280px;
+  }
+  .bt-hero__screen {
+    width: 140px;
+    border-radius: 16px;
+  }
+  .bt-hero__screen--left {
+    transform: translateX(-100px) rotate(-8deg) scale(0.88);
+  }
+  .bt-hero__screen--right {
+    transform: translateX(100px) rotate(8deg) scale(0.88);
+  }
+}
+
+@media (max-width: 480px) {
+  .bt-hero__screens {
+    height: 220px;
+  }
+  .bt-hero__screen {
+    width: 110px;
+    border-radius: 12px;
+  }
+  .bt-hero__screen--left {
+    transform: translateX(-80px) rotate(-6deg) scale(0.88);
+  }
+  .bt-hero__screen--right {
+    transform: translateX(80px) rotate(6deg) scale(0.88);
+  }
+}
+
 /* Scroll indicator */
 .cs-hero__scroll {
   position: absolute;
