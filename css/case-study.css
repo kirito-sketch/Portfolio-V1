@@ -318,7 +318,7 @@ body.password-locked .site-wrapper {
 /* ── Budget Tracker hero — phone mockup ─────────────────────────────── */
 
 .bt-hero__phone {
-  margin-top: var(--space-xl);
+  margin: var(--space-xl) auto 0;
   width: 240px;
   border-radius: 32px;
   overflow: hidden;
