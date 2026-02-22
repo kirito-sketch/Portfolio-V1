@@ -315,81 +315,40 @@ body.password-locked .site-wrapper {
   display: block;
 }
 
-/* ── Budget Tracker hero — fanned phone screens ────────────────────── */
+/* ── Budget Tracker hero — phone mockup ─────────────────────────────── */
 
-.bt-hero__screens {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+.bt-hero__phone {
   margin-top: var(--space-xl);
-  padding: 0 var(--space-md);
-  height: 360px;
+  width: 240px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #000;
+  border: 4px solid #333;
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.25),
+              0 20px 40px rgba(0, 0, 0, 0.15),
+              inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.bt-hero__screen {
-  width: 180px;
+.bt-hero__phone img {
+  width: 100%;
   height: auto;
-  border-radius: 20px;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
-  transition: transform 0.4s var(--ease-smooth);
-  position: absolute;
-}
-
-.bt-hero__screen--center {
-  z-index: 3;
-  transform: translateY(0);
-}
-
-.bt-hero__screen--left {
-  z-index: 2;
-  transform: translateX(-140px) rotate(-8deg) scale(0.9);
-  opacity: 0.85;
-}
-
-.bt-hero__screen--right {
-  z-index: 2;
-  transform: translateX(140px) rotate(8deg) scale(0.9);
-  opacity: 0.85;
-}
-
-.bt-hero__screens:hover .bt-hero__screen--left {
-  transform: translateX(-160px) rotate(-10deg) scale(0.92);
-}
-
-.bt-hero__screens:hover .bt-hero__screen--right {
-  transform: translateX(160px) rotate(10deg) scale(0.92);
+  display: block;
 }
 
 @media (max-width: 768px) {
-  .bt-hero__screens {
-    height: 280px;
-  }
-  .bt-hero__screen {
-    width: 140px;
-    border-radius: 16px;
-  }
-  .bt-hero__screen--left {
-    transform: translateX(-100px) rotate(-8deg) scale(0.88);
-  }
-  .bt-hero__screen--right {
-    transform: translateX(100px) rotate(8deg) scale(0.88);
+  .bt-hero__phone {
+    width: 200px;
+    border-radius: 28px;
   }
 }
 
 @media (max-width: 480px) {
-  .bt-hero__screens {
-    height: 220px;
-  }
-  .bt-hero__screen {
-    width: 110px;
-    border-radius: 12px;
-  }
-  .bt-hero__screen--left {
-    transform: translateX(-80px) rotate(-6deg) scale(0.88);
-  }
-  .bt-hero__screen--right {
-    transform: translateX(80px) rotate(6deg) scale(0.88);
+  .bt-hero__phone {
+    width: 180px;
+    border-radius: 24px;
+    border-width: 3px;
   }
 }
 

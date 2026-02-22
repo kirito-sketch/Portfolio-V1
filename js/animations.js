@@ -136,17 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Budget Tracker — fanned phone screens entrance
-    const btScreens = csHero.querySelector('.bt-hero__screens');
-    if (btScreens) {
-      const screens = btScreens.querySelectorAll('.bt-hero__screen');
-      gsap.set(screens, { opacity: 0, y: 40 });
-      gsap.to(screens, {
-        opacity: (i) => i === 1 ? 1 : 0.85, // center screen full opacity
+    // Budget Tracker — phone mockup entrance
+    const btPhone = csHero.querySelector('.bt-hero__phone');
+    if (btPhone) {
+      gsap.to(btPhone, {
+        opacity: 1,
         y: 0,
-        duration: 0.7,
-        delay: 0.5,
-        stagger: 0.12,
+        duration: 0.8,
+        delay: 0.6,
         ease: 'power2.out',
       });
     }
