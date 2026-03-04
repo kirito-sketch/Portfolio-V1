@@ -33,9 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const delay = parseFloat(el.dataset.delay || 0);
         setTimeout(() => {
           el.classList.add('revealed');
-        }, 300 + delay * 1000);
+        }, 200 + delay * 600);
       });
-    }, 2500);
+    }, 1200);
 
     loader.addEventListener('transitionend', () => {
       loader.style.display = 'none';
