@@ -576,8 +576,8 @@ body.password-locked .site-wrapper {
 
 .cs-stat-hero__source {
   font-family: monospace;
-  font-size: 0.65rem;
-  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
   margin-top: var(--space-sm);
   letter-spacing: 0.03em;
 }
