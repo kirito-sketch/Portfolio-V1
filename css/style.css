@@ -779,17 +779,35 @@ body.menu-open {
 }
 
 .side-projects__title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-family: monospace;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
   font-weight: 400;
   text-align: center;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  text-transform: uppercase;
   margin-bottom: var(--space-xs);
 }
 
+.side-projects__cursor {
+  display: inline-block;
+  margin-left: 0.15em;
+  animation: arcadeBlink 1s step-end infinite;
+  color: var(--accent);
+}
+
+@keyframes arcadeBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 .side-projects__subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-family: monospace;
+  font-size: 0.7rem;
   color: var(--text-secondary);
   text-align: center;
+  letter-spacing: 0.25em;
+  opacity: 0.5;
   margin-bottom: var(--space-lg);
 }
 
