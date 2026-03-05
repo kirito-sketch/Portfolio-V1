@@ -750,6 +750,31 @@ body.menu-open {
 
 .side-projects {
   padding: var(--space-2xl) 0;
+  background-color: #0a0a0a;
+  position: relative;
+  background-image: radial-gradient(circle, rgba(201, 131, 78, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Scanline overlay */
+.side-projects::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 3px,
+    rgba(0, 0, 0, 0.08) 3px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.side-projects .container {
+  position: relative;
+  z-index: 1;
 }
 
 .side-projects__title {
