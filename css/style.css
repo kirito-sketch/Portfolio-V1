@@ -246,9 +246,9 @@ body::after {
 .hero__scroll-cue span {
   font-family: monospace;
   color: var(--text-secondary);
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  padding-left: 0.18em;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  padding-left: 0.15em;
   animation: scrollPulse 2.4s ease-in-out infinite;
 }
 
