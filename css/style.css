@@ -801,6 +801,12 @@ body.menu-open {
   50% { opacity: 0; }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .side-projects__cursor {
+    animation: none;
+  }
+}
+
 .side-projects__subtitle {
   font-family: monospace;
   font-size: 0.7rem;
