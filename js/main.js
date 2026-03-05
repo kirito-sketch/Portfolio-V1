@@ -335,4 +335,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
     footerObserver.observe(siteFooter);
   }
+
+
+  /* ========================================================================
+     Lab Section — String of Lights
+     ======================================================================== */
+
+  const labLights = document.querySelector('.lab-lights');
+  if (labLights) {
+    const count = 20;
+    const shades = [
+      { bg: '#c9834e', glow: 'rgba(201,131,78,0.9)' },
+      { bg: '#d4956a', glow: 'rgba(212,149,106,0.85)' },
+      { bg: '#e8b080', glow: 'rgba(232,176,128,0.8)' },
+      { bg: '#b87040', glow: 'rgba(184,112,64,0.9)' },
+      { bg: '#f0c878', glow: 'rgba(240,200,120,0.75)' },
+    ];
+
+    for (let i = 0; i < count; i++) {
+      const bulb = document.createElement('span');
+      bulb.className = 'lab-light';
+      const pct = (i / (count - 1)) * 88 + 6; // 6% → 94%
+      const shade = shades[i % shades.length];
+      const duration = (3 + Math.random() * 5).toFixed(2);
+      const delay = (Math.random() * 6).toFixed(2);
+      bulb.style.cssText = [
+        `left:${pct}%`,
+        `background:${shade.bg}`,
+        `box-shadow:0 0 6px 3px ${shade.glow},0 0 14px 4px ${shade.glow}`,
+        `animation:labFlicker ${duration}s ${delay}s ease-in-out infinite`,
+      ].join(';');
+      labLights.appendChild(bulb);
+    }
+  }
 });
