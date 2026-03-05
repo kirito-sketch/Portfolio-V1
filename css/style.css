@@ -750,8 +750,9 @@ body.menu-open {
 
 .side-projects {
   padding: var(--space-2xl) 0;
-  background-color: #0a0a0a;
+  background-color: #0a0a0a; /* intentionally always dark — arcade aesthetic */
   position: relative;
+  isolation: isolate;
   background-image: radial-gradient(circle, rgba(201, 131, 78, 0.12) 1px, transparent 1px);
   background-size: 28px 28px;
 }
