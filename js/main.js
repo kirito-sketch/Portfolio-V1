@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
           el.classList.add('revealed');
         }, 200 + delay * 600);
       });
-    }, 1200);
+    }, 1800);
 
     loader.addEventListener('transitionend', () => {
       loader.style.display = 'none';
