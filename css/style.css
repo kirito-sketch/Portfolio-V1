@@ -833,6 +833,7 @@ body.menu-open {
   box-shadow:
     0 0 0 1px rgba(201, 131, 78, 0.08),
     inset 0 0 20px rgba(201, 131, 78, 0.03);
+  transform: translateZ(0);
 }
 
 .project-card:hover {
