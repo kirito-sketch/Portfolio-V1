@@ -24,22 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const loader = document.querySelector('.loader');
   const heroElements = document.querySelectorAll('.hero [data-animate]');
 
-  // After a brief loading animation, hide loader and reveal hero
+  // After a brief loading animation, hide loader then reveal hero
   if (loader) {
     setTimeout(() => {
       loader.classList.add('loaded');
+    }, 2000);
 
+    // Wait for loader exit transition to fully complete before revealing hero
+    loader.addEventListener('transitionend', () => {
+      loader.style.display = 'none';
       heroElements.forEach((el) => {
         const delay = parseFloat(el.dataset.delay || 0);
         setTimeout(() => {
           el.classList.add('revealed');
-        }, 200 + delay * 600);
+        }, delay * 500);
       });
-    }, 1800);
-
-    loader.addEventListener('transitionend', () => {
-      loader.style.display = 'none';
-    });
+    }, { once: true });
   }
 
 

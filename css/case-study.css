@@ -221,6 +221,18 @@ body.password-locked .site-wrapper {
   text-align: center;
 }
 
+.cs-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(to top, var(--bg-primary), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
 .cs-hero__bg {
   position: absolute;
   inset: 0;
@@ -352,7 +364,7 @@ body.password-locked .site-wrapper {
   }
 }
 
-/* Scroll indicator */
+/* Scroll indicator — sits above the ::after scrim (z-index: 2) */
 .cs-hero__scroll {
   position: absolute;
   bottom: 2.5rem;
@@ -362,19 +374,14 @@ body.password-locked .site-wrapper {
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  z-index: 10;
-  padding: 0.75rem 1.25rem 0.5rem;
-  border-radius: 2rem;
-  background: rgba(10, 10, 10, 0.45);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  z-index: 3;
 }
 
 .cs-hero__scroll span {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: rgba(201, 131, 78, 0.85);
+  color: var(--text-secondary);
   padding-left: 0.2em;
 }
 
