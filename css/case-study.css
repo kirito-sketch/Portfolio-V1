@@ -1008,6 +1008,48 @@ body.password-locked .site-wrapper {
   max-width: 100%;
 }
 
+.cs-learnings {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-lg) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.cs-learning {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 0 var(--space-md);
+  padding-left: var(--space-sm);
+  border-left: 2px solid var(--accent);
+  align-items: start;
+}
+
+.cs-learning__tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  padding-top: 0.25em;
+  white-space: nowrap;
+}
+
+.cs-learning__text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (max-width: 600px) {
+  .cs-learning {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs) 0;
+  }
+}
+
 
 /* ==========================================================================
    CASE STUDY FOOTER
