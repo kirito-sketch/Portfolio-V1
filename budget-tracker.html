@@ -61,11 +61,40 @@
         <div class="cs-hero__content">
           <div class="cs-hero__meta">
             <span class="cs-hero__tag">Side Project</span>
+            <span class="cs-hero__tag">AI-Built</span>
           </div>
           <h1 class="cs-hero__title" style="font-size: clamp(3rem, 8vw, 6rem);">Budget<br><em>Tracker</em></h1>
-          <p class="cs-hero__subtitle">A personal finance app that puts logging front and center. The best budget app is the one you actually use.</p>
+          <p class="cs-hero__subtitle">A PWA built with AI — from idea to shipped product in 2 weeks.</p>
           <div class="bt-hero__phone">
             <img src="assets/images/budget tracker app/home-personal.jpeg" alt="Budget tracker home screen" width="390" height="844">
+          </div>
+        </div>
+        <div class="cs-hero__scroll">
+          <span>Scroll</span>
+          <div class="cs-hero__scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- ── Meta strip ── -->
+      <section class="cs-block">
+        <div class="cs-block__inner">
+          <div class="cs2-meta-row" data-animate="fade-up">
+            <div class="cs2-meta-row__item">
+              <span class="cs2-meta-row__label">Timeline</span>
+              <span class="cs2-meta-row__value">2 weeks</span>
+            </div>
+            <div class="cs2-meta-row__item">
+              <span class="cs2-meta-row__label">Role</span>
+              <span class="cs2-meta-row__value">Designer + Developer</span>
+            </div>
+            <div class="cs2-meta-row__item">
+              <span class="cs2-meta-row__label">Stack</span>
+              <span class="cs2-meta-row__value">PWA · IndexedDB · Groq AI</span>
+            </div>
+            <div class="cs2-meta-row__item">
+              <span class="cs2-meta-row__label">Year</span>
+              <span class="cs2-meta-row__value">2024</span>
+            </div>
           </div>
         </div>
       </section>
@@ -73,31 +102,59 @@
       <!-- ── The Problem ── -->
       <section class="cs-block">
         <div class="cs-block__inner">
-          <h2 class="cs-block__heading" data-animate="fade-up">The Problem</h2>
-          <div class="cs-block__text" data-animate="fade-up" data-delay="0.1">
-            <p>Every budget app my wife and I tried had the same issue: logging a transaction was buried behind multiple taps, menus, and screens. By the time you navigated there, you'd already lost motivation.</p>
-            <p>On top of that, most apps require connecting your bank account. Handing over credentials to a third-party service never felt right.</p>
-            <p>I wanted something simple: open the app, log the transaction, done. No bank connections, no syncing, no friction.</p>
-          </div>
+          <span class="cs-label" data-animate="fade-up">The Problem</span>
+          <h2 class="cs-heading" data-animate="fade-up">Every budget app got in the way.</h2>
+          <ul class="cs-learnings" style="margin-top: var(--space-lg);">
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.1">
+              <span class="cs-learning__tag">Friction</span>
+              <p class="cs-learning__text">Logging a transaction was buried 4+ taps deep. By the time you got there, the motivation was gone.</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.2">
+              <span class="cs-learning__tag">Privacy</span>
+              <p class="cs-learning__text">Most apps want bank credentials. Handing over access to a third-party service never felt right to us.</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.3">
+              <span class="cs-learning__tag">The Bar</span>
+              <p class="cs-learning__text">Open the app → log the transaction → done. That was it. Nothing more.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- ── The Approach ── -->
+      <!-- ── How I Built It ── -->
       <section class="cs-block">
         <div class="cs-block__inner">
-          <h2 class="cs-block__heading" data-animate="fade-up">The Approach</h2>
-          <div class="cs-block__text" data-animate="fade-up" data-delay="0.1">
-            <p>I started with a <strong>Design OS</strong>: a set of tokens, components, and layout primitives to establish the visual foundation quickly and consistently.</p>
-            <p>From there, I built it as a <strong>Progressive Web App</strong> so it feels native on any phone without the friction of an app store. All data stays local on the device.</p>
-            <p>I used <strong>Claude Code</strong> throughout, from scaffolding the app to building features. It was a real test of what's possible when a designer codes with AI assistance.</p>
-          </div>
+          <span class="cs-label" data-animate="fade-up">Process</span>
+          <h2 class="cs-heading" data-animate="fade-up">How I built it</h2>
+          <p class="cs-body" data-animate="fade-up" style="margin-top: var(--space-sm); margin-bottom: 0;">
+            No wireframes on a blank canvas. I used <a href="https://buildermethods.com/design-os" target="_blank" rel="noopener" class="cs-link">Design OS</a> to structure the build before writing a line of code.
+          </p>
+          <ul class="cs-learnings" style="margin-top: var(--space-lg);">
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.1">
+              <span class="cs-learning__tag">Design OS</span>
+              <p class="cs-learning__text">Defined the product scope, data model, and component structure using <a href="https://buildermethods.com/design-os" target="_blank" rel="noopener" class="cs-link">Design OS</a> — a tool that separates "what to build" from "how to build it" before any code is written.</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.2">
+              <span class="cs-learning__tag">Brainstorm</span>
+              <p class="cs-learning__text">Used the brainstorming skill to pressure-test requirements: what's the minimum viable feature set? What can be cut? What order do things need to be built in?</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.3">
+              <span class="cs-learning__tag">Spec → Code</span>
+              <p class="cs-learning__text">Design OS exported a complete handoff — data types, component specs, screen designs. That spec went straight to Claude Code as context.</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.4">
+              <span class="cs-learning__tag">Shipped</span>
+              <p class="cs-learning__text">A fully working PWA in 2 weeks. Not a prototype — a real app my wife and I use daily for household expenses.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <!-- ── What It Does ── -->
+      <!-- ── What Shipped ── -->
       <section class="cs-block">
         <div class="cs-block__inner">
-          <h2 class="cs-block__heading" data-animate="fade-up">What It Does</h2>
+          <span class="cs-label" data-animate="fade-up">The App</span>
+          <h2 class="cs-heading" data-animate="fade-up">What it does</h2>
         </div>
 
         <div class="cs-block__inner">
@@ -106,7 +163,11 @@
           <div class="project-feature" data-animate="fade-up">
             <div class="project-feature__text">
               <h3 class="project-feature__name">Log fast, switch easily</h3>
-              <p>The home screen opens straight to transaction logging. Type naturally ("Spent 500 on lunch") or use the manual form. Switch between personal and joint accounts with one tap — my wife and I use the joint view for household expenses.</p>
+              <ul class="bt-bullets">
+                <li>Home screen opens straight to logging</li>
+                <li>Natural language: "Spent 500 on lunch"</li>
+                <li>One tap to switch personal ↔ joint account</li>
+              </ul>
             </div>
             <div class="project-feature__screens">
               <img src="assets/images/budget tracker app/home-personal.jpeg" alt="Home screen with natural language input" width="390" height="844">
@@ -117,8 +178,12 @@
           <!-- Transactions + Insights -->
           <div class="project-feature project-feature--reverse" data-animate="fade-up">
             <div class="project-feature__text">
-              <h3 class="project-feature__name">History, insights, and AI</h3>
-              <p>Monthly breakdowns with opening and closing balances. An insights dashboard shows category spend at a glance. A chat assistant powered by Groq answers questions like "How much did I spend on food this month?" — all processed locally, no data leaves the device.</p>
+              <h3 class="project-feature__name">History, insights, AI</h3>
+              <ul class="bt-bullets">
+                <li>Monthly breakdowns with opening/closing balances</li>
+                <li>Category spend dashboard at a glance</li>
+                <li>Groq-powered chat: "What did I spend on food this month?"</li>
+              </ul>
             </div>
             <div class="project-feature__screens">
               <img src="assets/images/budget tracker app/transactions.jpeg" alt="Transaction history" width="390" height="844">
@@ -130,7 +195,11 @@
           <div class="project-feature" data-animate="fade-up">
             <div class="project-feature__text">
               <h3 class="project-feature__name">Private by default</h3>
-              <p>No bank connections, no accounts, no servers. All data stays in local storage. Export any date range as a file when you need a record. Your Groq API key stays on your device.</p>
+              <ul class="bt-bullets">
+                <li>No bank connections, no accounts, no servers</li>
+                <li>All data in local storage — nothing leaves the device</li>
+                <li>Export any date range as a file</li>
+              </ul>
             </div>
             <div class="project-feature__screens">
               <img src="assets/images/budget tracker app/export.jpeg" alt="Export with date range selection" width="390" height="844">
@@ -143,19 +212,29 @@
 
       <!-- ── What I Learned ── -->
       <section class="cs-block">
-        <div class="cs-block__inner">
-          <h2 class="cs-block__heading" data-animate="fade-up">What I Learned</h2>
-          <div class="cs-block__text" data-animate="fade-up" data-delay="0.1">
-            <p>Building this taught me that the best way to understand users is to be one. Every design decision was tested by daily use. If something felt slow or awkward, I fixed it immediately.</p>
-            <p>Working with AI (Claude Code) as a build partner was eye-opening. The Design OS gave me a consistent visual language from the start, and AI handled the implementation plumbing. My role was the same as always: deciding what to build, how it should feel, and when something wasn't right.</p>
-            <p>The biggest takeaway? Solving your own problem is the purest form of user-centered design.</p>
-          </div>
+        <div class="cs-block__inner cs-reflection">
+          <span class="cs-label" data-animate="fade-up">Reflection</span>
+          <h2 class="cs-heading" data-animate="fade-up">What I learned</h2>
+          <ul class="cs-learnings">
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.1">
+              <span class="cs-learning__tag">Design first</span>
+              <p class="cs-learning__text">Using Design OS before touching code meant every AI prompt had real context. The output was sharper because the input was structured.</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.2">
+              <span class="cs-learning__tag">Be the user</span>
+              <p class="cs-learning__text">Solving your own problem is the fastest feedback loop. If something felt off during daily use, I fixed it the same day.</p>
+            </li>
+            <li class="cs-learning" data-animate="fade-up" data-delay="0.3">
+              <span class="cs-learning__tag">Ship it</span>
+              <p class="cs-learning__text">A designer who can spec, build, and ship with AI is a different kind of designer. This project proved that to me.</p>
+            </li>
+          </ul>
         </div>
       </section>
 
     </main>
 
-    <!-- ── Footer (back to home) ── -->
+    <!-- ── Footer ── -->
     <footer class="cs-footer">
       <div class="cs-footer__inner" data-animate="fade-up">
         <a href="/" class="cs-footer__back-link">
